@@ -1,0 +1,15 @@
+{
+  "name": "dsplugins-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Public site for dsplugins: Scope Planner landing page, user guide, privacy policy and terms of use.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node --run build && python3 -m http.server 8137 --directory public",
+    "sync": "bash sync.sh"
+  },
+  "devDependencies": {
+    "markdown-it": "^14.1.0"
+  }
+}

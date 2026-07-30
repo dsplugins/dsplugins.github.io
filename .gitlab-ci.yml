@@ -1,0 +1,36 @@
+# GitLab Pages for dsplugins.gitlab.io
+#
+# `public/` is committed, and `pages` only publishes it — deliberately. Two of these pages are the
+# Privacy Policy and Terms of Use that the Atlassian Marketplace listing links to as required
+# fields; a build that needs npm at deploy time is a build that can take them offline during a
+# review. `check:site` re-renders and diffs instead, so committed output cannot drift from source.
+
+stages: [check, deploy]
+
+check:site:
+  stage: check
+  image: node:22
+  script:
+    - npm ci
+    - npm run build
+    - |
+      if ! git diff --quiet -- public; then
+        echo "✗ public/ is stale — run 'npm run build' and commit the result."
+        git --no-pager diff --stat -- public
+        exit 1
+      fi
+    - echo "✓ public/ matches content/"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH
+
+pages:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - echo "Publishing pre-rendered public/ — see check:site for the freshness gate."
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
