@@ -1,7 +1,7 @@
-# dsplugins.gitlab.io
+# dsplugins.github.io
 
 Public site for **dsplugins**: the Scope Planner landing page, user guide, privacy policy and terms
-of use. Static, self-contained, served by GitLab Pages.
+of use. Static, self-contained, served by GitHub Pages.
 
 It exists because the Atlassian Marketplace listing **requires a public Privacy Policy URL** (and
 either a Terms/EULA URL or acceptance of Atlassian's standard EULA). Those documents live in the
@@ -9,29 +9,29 @@ private app repo; this repo is how they become publicly reachable.
 
 ## Why this is a separate repo
 
-The app repo is private and should stay that way. GitLab Pages built from a private project
-defaults to member-only access, which would make the policy URLs unreachable for an Atlassian
-reviewer — the opposite of the requirement. A public project avoids that failure mode entirely, and
-a project named `<namespace>.gitlab.io` serves at the namespace root.
+The app repo is private and should stay that way. Pages served from a private repo is not publicly
+readable — on GitHub it needs a paid plan and stays visibility-restricted — which would make the
+policy URLs unreachable for an Atlassian reviewer, the opposite of the requirement. A public repo
+avoids that failure mode entirely, and a repo named `<namespace>.github.io` serves at the namespace
+root.
 
 ## Published URLs
 
 | Page | URL |
 | :-- | :-- |
-| Landing | `https://dsplugins.gitlab.io/` |
-| User guide | `https://dsplugins.gitlab.io/guide/` |
-| **Privacy policy** | `https://dsplugins.gitlab.io/privacy/` |
-| **Terms of use** | `https://dsplugins.gitlab.io/terms/` |
+| Landing | `https://dsplugins.github.io/` |
+| User guide | `https://dsplugins.github.io/guide/` |
+| **Privacy policy** | `https://dsplugins.github.io/privacy/` |
+| **Terms of use** | `https://dsplugins.github.io/terms/` |
 
 The two in bold are the ones the listing form asks for.
 
 ## First-time setup
 
-1. Create a **public** GitLab group named `dsplugins`.
-2. Inside it create a **public** project named exactly `dsplugins.gitlab.io`.
+1. Create a GitHub organization named `dsplugins`.
+2. Inside it create a **public** repo named exactly `dsplugins.github.io`, empty.
 3. Push this repo to it (`main` is the default branch).
-4. Settings → Pages: confirm the site is public. Deployments → Pages must not require
-   authentication; if "Access Control" is offered, set it to **Everyone**.
+4. Settings → Pages → **Source: GitHub Actions**. Wait for the `Pages` workflow to go green.
 5. Open the four URLs above and check they load in a private browser window — signed out is the
    state a Marketplace reviewer will be in.
 

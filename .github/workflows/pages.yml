@@ -1,0 +1,58 @@
+# GitHub Pages for dsplugins.github.io
+#
+# `public/` is committed, and the deploy job only uploads it — deliberately. Two of these pages are
+# the Privacy Policy and Terms of Use that the Atlassian Marketplace listing links to as required
+# fields; a build that needs npm at deploy time is a build that can take them offline during a
+# review. `check` re-renders and diffs instead, so committed output cannot drift from source.
+
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run build
+      - name: public/ must match content/
+        run: |
+          if ! git diff --quiet -- public; then
+            echo "✗ public/ is stale — run 'npm run build' and commit the result."
+            git --no-pager diff --stat -- public
+            exit 1
+          fi
+          echo "✓ public/ matches content/"
+
+  deploy:
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - id: deployment
+        uses: actions/deploy-pages@v4
