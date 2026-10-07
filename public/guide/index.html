@@ -33,6 +33,14 @@ the draft with the team.</li>
 <li><strong>Publish</strong> <em>(Pro)</em> — write the estimates back to the real Jira fields in one action.</li>
 </ol>
 <p>Nothing touches your Jira issues until you explicitly publish.</p>
+<p><strong>New here? The five-minute path:</strong></p>
+<ol>
+<li><em>Jira admin, once:</em> open the app’s admin page and press <strong>🔍 Detect Fields</strong>, then <strong>Save</strong> (§3).</li>
+<li>Open a Scrum board → <strong>⋯</strong> → <strong>Scope Planner</strong>. The current sprint loads.</li>
+<li>Click a Story Points cell and pick a value; repeat down the table. It saves itself.</li>
+<li><strong>🚀 Sprint Preview</strong> — check what will change.</li>
+<li><strong>✅ Apply Estimates to Jira</strong> <em>(Pro, or during the free trial)</em>.</li>
+</ol>
 <hr>
 <h2>2. Opening the app</h2>
 <p>Scope Planner appears in three places inside Jira:</p>
@@ -57,7 +65,7 @@ the draft with the team.</li>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Project page</strong></td>
-<td style="text-align:left">Project sidebar → <strong>Apps</strong> → <em>Scope Planner</em></td>
+<td style="text-align:left">The project’s tabs above the board → <strong>More</strong> → <em>Scope Planner</em></td>
 <td style="text-align:left">The project’s open sprints</td>
 </tr>
 </tbody>
@@ -68,6 +76,9 @@ also a separate <strong>admin configuration page</strong> (see §3) for Jira adm
 <h2>3. First-time setup (Jira admins)</h2>
 <p>Until a Story Points field is configured, every user sees an <strong>onboarding banner</strong> explaining
 that setup is needed (admins see inline steps; other users are told to ask an admin).</p>
+<p>If the app cannot load its settings at all — a network or service hiccup — it says exactly that on
+its own screen and offers <strong>Retry</strong>, instead of claiming the app is unconfigured. Your drafts and
+settings are untouched while that screen is up.</p>
 <p>Open the admin page (the ⚙️ Preferences panel inside the app shows admins a direct link with
 step-by-step navigation), then:</p>
 <ol>
@@ -79,24 +90,36 @@ is saved until you press Save.</li>
 <li><strong>Field Mappings</strong> — confirm or hand-edit:
 <ul>
 <li><strong>Story Points field</strong> (required, numeric) — the app’s core column. Usually
-<code>customfield_10016</code> (“Story point estimate”) or similar.</li>
+<code>customfield_10016</code> (“Story point estimate”) or similar. <strong>Save</strong> refuses a text or
+dropdown field here: the app writes numbers into it, and such a field would read as changed
+in Jira on every row.</li>
 <li><strong>Epic field</strong> (optional) — enables the Epic column and epic grouping.</li>
-<li><strong>T-Shirt Size field</strong> (optional, must be a <em>text</em> field) — required only if your team
-estimates in T-shirt sizes. The numeric SP field cannot be reused for this.</li>
+<li><strong>T-Shirt Size field</strong> (optional, a <em>text</em> field or a <em>single-select</em> dropdown) — required
+only if your team estimates in T-shirt sizes. A dropdown needs the six sizes as its options,
+spelled exactly <code>XS</code>, <code>S</code>, <code>M</code>, <code>L</code>, <code>XL</code>, <code>XXL</code>: Jira refuses any value that is not one of a
+dropdown’s options. The numeric SP field cannot be reused for this.</li>
 <li><strong>Original / Remaining Estimate fields</strong> — default to Jira’s built-in time-tracking
 fields; only change these if your site uses custom ones.</li>
 <li><strong>Start Date / Team / Sprint fields</strong> (optional) — enable the corresponding table columns.</li>
 </ul>
 </li>
-<li><strong>Defaults &amp; retention</strong> — default estimation scale for new users and <strong>draft retention</strong>
-(<code>draftTtlDays</code>, default 30 days; expired drafts are deleted automatically).</li>
+<li><strong>Default Estimation Scales</strong> — what people see before they choose for themselves: a Story
+Points scale and a time-stepping unit. A team that estimates in T-shirt sizes should not have to
+set that up one person at a time. Two rules worth knowing: anyone who picks a scale in their own
+Preferences keeps it, and changing this later does not move them; and <strong>T-Shirt Sizes cannot be
+chosen here until a T-shirt field is mapped above</strong> — defaulting a whole site onto a scale it
+cannot publish would make every cell accept a size and every publish fail.</li>
+<li><strong>Draft retention</strong> — <code>draftTtlDays</code>, default 30 days; expired drafts are deleted
+automatically.</li>
 <li><strong>Save</strong>. Only users with Jira admin permission can save this page — the server rejects
 anyone else.</li>
 </ol>
 <blockquote>
-<p><strong>Why some cells are disabled:</strong> a cell is editable only if the mapped field is actually on
-that issue type’s screen in Jira. An issue type without the Story Points field shows a
-disabled SP cell — that’s Jira configuration, not an app error.</p>
+<p><strong>Why some cells are disabled:</strong> a Story Points cell is disabled when that issue type is outside
+the Story Points field’s <strong>context</strong> in Jira — Jira would refuse the write, so the app does not
+let you type one. That’s Jira configuration, not an app error. A field that is in context but
+missing from the issue type’s <strong>edit screen</strong> stays editable here and publishes fine; it just
+cannot be edited from the issue view. Either way a banner above the table names the issue types.</p>
 </blockquote>
 <hr>
 <h2>4. Choosing your scope</h2>
@@ -123,6 +146,8 @@ date, Team, Sprint) can be toggled via the <strong>⚙️ Columns</strong> menu 
 <li><strong>Click the value</strong> → an input opens, together with a row of preset chips for your scale
 (e.g. Fibonacci). Type a number and press <strong>Enter</strong> to commit, click a chip to set it
 instantly, or press <strong>Esc</strong> to cancel.</li>
+<li><strong>Clicking a chip applies the value and closes the chip row</strong>, so it stops covering the rows
+below. Picked the wrong one? Click back into the field to bring the chips up again.</li>
 <li><strong>Stepper (+/−)</strong> → snaps to the next/previous value <em>of your scale</em> (from 6, Fibonacci steps
 up to 8 and down to 5 — not ±1). At the top of a scale, stepping up leaves the value where it
 is rather than inventing one.</li>
@@ -130,6 +155,13 @@ is rather than inventing one.</li>
 <h3>Editing Story Points (T-Shirt scale)</h3>
 <p>With the T-Shirt scale selected (§10), SP cells show <strong>XS S M L XL XXL</strong> chips instead — click
 to select. Requires the admin-configured T-shirt field.</p>
+<p>⚠️ <strong>Sizes and points are two different Jira fields</strong>, and the scale chooses which one the column
+shows. So a numeric estimate in your draft does not appear while you are on the T-shirt scale — the
+chips have nowhere to put it — and it is not marked as an edit there either. Nothing is lost:
+hover the cell and it tells you what the draft holds, the Story Points total still counts it, and
+Sprint Preview still lists it as a change to publish. Switch back to a numeric scale to see or
+change it. The reverse is not true: a size shows up as <code>M</code> in a numeric cell, because a numeric
+cell can display any text.</p>
 <h3>Editing time estimates (Original / Remaining)</h3>
 <ul>
 <li>Type a <strong>bare number</strong> — it’s interpreted in your chosen time unit (hours by default, see
@@ -139,20 +171,49 @@ standard workday: <strong>1d = 8h, 1w = 5d</strong>.</li>
 <li>The stepper steps by your chosen unit (15m / 1h / 1d).</li>
 </ul>
 <h3>Draft values vs. current values</h3>
-<p>An edited cell shows your <strong>draft value</strong>; unedited cells show the current Jira value. Clearing
-a draft value reverts the cell to whatever is currently in Jira (or <code>—</code> if the issue was never
-estimated). Your edits never change Jira until you publish.</p>
+<p>A cell you typed shows <strong>your value</strong>; every other cell shows <strong>what Jira holds now</strong>. Your edits
+never change Jira until you publish.</p>
+<p>The app re-reads Jira every 30 seconds while the table is open. When a colleague changes an estimate
+in Jira, a cell you have not typed follows it — and its background <strong>flashes briefly</strong>, so a number
+that moved by itself is visibly an arrival rather than a silent edit. A cell you typed never moves
+by itself: it keeps your value, and only its highlight tells you whether that still differs from
+Jira.</p>
+<p>The <strong>list of issues</strong> is fixed when the search runs: an issue added to or removed from the sprint
+shows up (or goes) the next time you run the search or reload. An estimate you typed on an issue
+that has since left the scope stays in your draft — Sprint Preview lists it (§11).</p>
+<p><strong>Undoing an edit.</strong> Click an edited Story Points cell and the quick-pick palette opens with a <strong>↺</strong>
+button at the end of it — it appears only on a cell you have actually changed, and puts Jira’s
+value straight back, with no need to click away first. It tells you what it will restore if you
+hover it.</p>
+<p>Two other ways do the same thing: clear the field and press Enter (or click away), or click the
+<strong>selected</strong> chip again to un-select it. On the T-shirt scale the selected chip is the way — its
+sizes sit in the cell itself rather than in a palette. Clearing the field works in every scale:
+Story Points, Original and Remaining.</p>
+<p>However you undo it — or if you simply type the number that was already there — a row with nothing
+left different from Jira stops counting in <em>rows differ from Jira</em>. The draft itself stays until you
+delete it, reading <strong>0 rows differ from Jira</strong> once nothing is left.</p>
+<p>Undo returns the cell to <strong>what Jira holds now</strong> — the same number an untyped cell beside it would
+show. If a teammate changed the issue in Jira since you opened the scope, that is their number.</p>
+<p>To undo across many issues at once, select them and use <strong>Delete Estimates ▾</strong> in the bulk bar; it
+does exactly the same thing to every selected row.</p>
+<p>Cells you have actually changed are <strong>highlighted</strong>, so you can see at a glance what a publish
+would write. The highlight tracks the <em>value</em>, not the act of typing: set a cell back to the
+number Jira already holds and the highlight clears, because publishing it would change nothing.
+Sprint Preview marks the same rows the same way.</p>
 <h3>Estimation history <em>(Pro)</em></h3>
-<p>Hover a numeric SP cell and click the <strong>⏱</strong> button to see who changed the issue’s estimates,
-when, and from/to what — sourced from the Jira changelog. One history popover is open at a
-time; press <strong>Esc</strong> or click anywhere outside it to dismiss.</p>
+<p>Every numeric SP cell carries a faint <strong>⏱</strong> button next to the value (it brightens when you point
+at it). Click it to see who changed the issue’s estimates, when, and from/to what — sourced from
+the Jira changelog. One history popover is open at a time; press <strong>Esc</strong> or click anywhere outside
+it to dismiss. The T-shirt scale has no ⏱: its cell is six chips wide with no room for one.</p>
 <hr>
 <h2>6. Bulk actions</h2>
-<p>Tick the checkboxes of <strong>two or more rows</strong> (or use the header select-all) and the bulk action
-bar activates. For each of SP / Original / Remaining you can:</p>
+<p>Tick the checkbox of <strong>one or more rows</strong> (or use the header select-all) and the bulk action bar
+appears above the table. For each of SP / Original / Remaining you can:</p>
 <ul>
 <li><strong>Apply</strong> one value to every selected issue, or</li>
-<li><strong>Clear</strong> the draft value from every selected issue.</li>
+<li><strong>Clear</strong> your value from every selected issue — <strong>Delete Estimates ▾</strong> → <em>Clear All</em>, <em>Clear 🎯
+Story Points</em>, <em>Clear ⏱ Original</em> or <em>Clear ⏳ Remaining</em>. Each cell then shows what Jira holds
+again, exactly as ↺ does for one cell (§5).</li>
 </ul>
 <p>Each bulk action asks for confirmation before applying. Bulk-apply also works on rows whose
 inline cell is disabled (e.g. issue types without the SP field) — useful for pre-staging values.</p>
@@ -188,8 +249,20 @@ Workload adds the bar, the avatar and the overload comparison.</p>
 configured (Team, Sprint, Start Date, and the estimation columns) don’t appear in the menu at
 all until an admin maps the field.</p>
 <hr>
-<h2>9. Drafts: private, shared, and the team lifecycle</h2>
-<p>The <strong>draft status bar</strong> shows where your work stands:</p>
+<h2>9. Drafts: private, team, and the lifecycle between them</h2>
+<p><strong>Two sentences, and the rest of this section follows from them:</strong></p>
+<blockquote>
+<p>Your <strong>private draft</strong> is visible only to you. The <strong>team draft</strong> is visible to everyone who can
+browse the projects your scope touches. Only the private draft can be edited — changes reach the
+team draft whole, through a review screen.</p>
+</blockquote>
+<h3>9.1 A draft has a status, and it changes</h3>
+<p><code>private → team → published</code>. Each step is the <em>same draft</em> moving on, not a copy left behind. When
+you share a draft it <strong>becomes</strong> the team draft; when you publish, it <strong>becomes</strong> published. That is
+why nothing here talks about your draft being deleted: the numbers went somewhere, they were not
+thrown away.</p>
+<h3>9.2 The status bar</h3>
+<p>The badge names <strong>the copy you are looking at</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -200,7 +273,7 @@ all until an admin maps the field.</p>
 <tbody>
 <tr>
 <td style="text-align:left">○ Unsaved</td>
-<td style="text-align:left">Edits not yet auto-saved (auto-save fires ~1s after you stop typing)</td>
+<td style="text-align:left">Nothing of yours is saved yet (auto-save fires ~1s after you stop typing)</td>
 </tr>
 <tr>
 <td style="text-align:left">● Private Draft</td>
@@ -208,63 +281,292 @@ all until an admin maps the field.</p>
 </tr>
 <tr>
 <td style="text-align:left">◈ Shared Draft</td>
-<td style="text-align:left">A team-shared draft exists for this scope</td>
+<td style="text-align:left">The table is showing the <strong>team draft</strong>, read-only</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Private drafts</strong> are keyed to you + the exact scope (the JQL text). Coming back to the same
-board/sprint later restores your draft. Drafts expire after the admin-configured retention
-period (default 30 days).</p>
-<p><strong>Share with the team:</strong> <em>Promote</em> your private draft to a <strong>shared draft</strong>. Teammates opening
-the same scope see it, with attribution and timestamp. If someone else already shared a draft
-for this scope you get a <strong>conflict dialog</strong>: <em>Override Shared Draft</em> (replace theirs) or
-<em>Keep Existing</em>.</p>
-<p><strong>Adopt Shared</strong> copies the team draft into <em>your</em> working copy (and private draft) — this is
-the intended way to publish what a teammate shared, because preview and publish always operate
-on <strong>your own</strong> working copy.</p>
-<p><strong>Staying in sync:</strong> the app checks every 30 seconds. If a teammate updates the shared draft
-while you’re viewing it, a <strong>“🔄 Updated by a teammate”</strong> pill appears — click to pull in their
-version (the app never replaces what you’re looking at without you asking). If a teammate
-<strong>publishes</strong> the scope after your last edit, a banner tells you your draft predates their
-publish, with <strong>Review</strong> (opens Sprint Preview), <strong>Discard my draft</strong>, and <strong>Dismiss</strong> options.</p>
-<p><strong>Deleting:</strong> the ⋯ menu offers <strong>Discard My Draft</strong> (your private draft only — nobody can
-discard anyone else’s) and <strong>Remove Shared Draft</strong> (removes the team draft <em>for everyone</em>;
-shows who created it and asks for confirmation; private drafts are untouched).</p>
-<p><strong>Copy from published:</strong> if a scope was published before, you can start a new draft from the
-last published values instead of from scratch.</p>
+<p>Beside it, the toolbar describes <strong>only the copy on screen</strong>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Chip</th>
+<th style="text-align:left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">N rows · M values differ from Jira</td>
+<td style="text-align:left">How many rows of the copy on screen differ from <strong>Jira now</strong>, and how many cells — exactly the highlighted ones. <strong>0 rows differ from Jira</strong> while a draft exists and nothing in it differs; no chip when there is no draft and nothing differs</td>
+</tr>
+<tr>
+<td style="text-align:left">Updated by <em>name</em> · 2m ago</td>
+<td style="text-align:left"><em>(while reading the team draft)</em> who last wrote it, and when — <em>Updated by you</em> if it was you</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>other</strong> copy is announced by the buttons that act on it, not by a chip:</p>
+<ul>
+<li><strong>◈ View Team Draft</strong> appears once a team draft exists; <strong>● Back to My Draft</strong> takes you home.</li>
+<li><strong>↑ Merge into Team Draft…</strong> is greyed out while the team draft already has your values — hover it
+and it says so: <em>“The team draft already has your values”</em>.</li>
+<li><strong>⤓ Copy Team Draft to Mine</strong> (in <strong>Manage ▾</strong>) and <strong>📋 Copy to My Private Draft</strong> are greyed out
+while your table already shows every value in the team draft: <em>“Your table already matches the
+team draft”</em>.</li>
+</ul>
+<p>Each of these is live exactly when the screen it opens would have something on it.</p>
+<p>⚠️ <strong>The count follows Jira.</strong> <em>rows differ from Jira</em> is against what Jira holds now, so it moves
+when Jira does — a colleague publishing your number makes your row level, a colleague publishing a
+different one makes it differ. That is the point: it says what publishing this copy would change.</p>
+<p>⚠️ <strong>How you know a publish landed:</strong> the numbers you published are in the table, no longer
+highlighted. With <em>Publish and delete this draft</em> ticked — the default — the draft goes and its
+<em>rows differ from Jira</em> chip with it, so the draft going away is expected and tells you nothing on
+its own. Left unticked, the draft stays and reads <strong>0 rows differ from Jira</strong> (§11).</p>
+<h3>9.3 Reading the team draft</h3>
+<p><strong>◈ View Team Draft</strong> shows it in the same table you estimate in — read-only. Nothing you type there
+goes anywhere, because the team draft is read-only for <em>everyone</em>, including whoever shared it: the
+only way it changes is somebody merging into it, or deleting it and sharing anew. Rows the team draft does not estimate show Jira’s
+values, just as in your own copy.</p>
+<p>To change it, use <strong>📋 Copy to My Private Draft</strong>, edit your own copy, and push your changes back
+with <strong>↑ Merge into Team Draft…</strong>.</p>
+<p>While you are reading it, the totals, the workload panel and a CSV export all describe <strong>the team
+draft</strong> — what you are looking at is what gets counted and exported.</p>
+<p><strong>If a teammate changes the team draft while you are reading it</strong>, the newer version appears on
+its own within half a minute — the cells that changed flash, and <em>Updated by</em> names who wrote it.
+Nothing of yours is in it, so there is nothing to lose by it moving.</p>
+<p><strong>If a teammate publishes or deletes the team draft while you have it open</strong>, your table leaves
+read-only mode on its own within half a minute — the copy you were reading no longer exists. Every
+cell you have not typed shows what Jira holds now, including what was just published; your own
+values stay exactly as you typed them.</p>
+<h3>9.4 ⚠️ Who can see a team draft</h3>
+<p><strong>Everyone who can browse every project your scope touches.</strong> They do not need to have opened the
+scope, and they do not need a draft of their own — that is the point, and it is what makes sharing
+with a colleague possible at all.</p>
+<p>Two consequences worth stating plainly:</p>
+<ul>
+<li><strong>Your scope’s name and its JQL text become visible to those people.</strong> Not just the numbers: the
+label you gave the draft and the query itself. You are told this on the review screen before you
+share.</li>
+<li><strong>A scope spanning several projects needs access to ALL of them.</strong> If your scope is
+<code>project in (WEB, API)</code>, a colleague who can browse only WEB will <strong>not</strong> see it in their Drafts
+list — not even partially. This is deliberate: showing it would reveal that a scope reaching into
+API exists, to someone who cannot see API. If you want a draft a WEB-only colleague can find, give
+it a WEB-only scope.</li>
+</ul>
+<p>Your <strong>private</strong> draft is unaffected by any of this. Nobody else can see it, ever.</p>
+<h3>9.5 Sharing, and merging</h3>
+<p><strong>↑ Share with Team</strong> turns your private draft into the team draft. If nobody has shared one for
+this scope yet, it happens immediately — there is nothing to review.</p>
+<p>⚠️ <strong>Sharing MOVES your draft — it does not copy it.</strong> The moment you share, your draft <em>becomes</em>
+the team draft: the table switches to it, read-only, and your own side is empty again (<strong>○
+Unsaved</strong>). Nothing is lost and nothing is published; the numbers are the ones everyone is now
+looking at. To have a working copy of your own again, take one back:</p>
+<ul>
+<li><strong>📋 Copy to My Private Draft</strong> while you are reading the team draft, or</li>
+<li><strong>Manage ▾ → ⤓ Copy Team Draft to Mine</strong> once you are back on your own side
+(<strong>● Back to My Draft</strong>).</li>
+</ul>
+<p>This is the one status change most often read as data loss. It is not one.</p>
+<p>If a team draft already exists, the button reads <strong>↑ Merge into Team Draft…</strong> and opens the
+<strong>↑ Merge into Team Draft</strong> screen: row by row, the estimates <strong>you typed</strong> and what the team draft shows on the same rows
+today — its own value, or Jira’s where it has none. Every differing row has a tick box, and only
+the rows you leave ticked are handed over, and only the fields you typed; everything else keeps
+whatever the team draft holds today. <strong>Merging never removes anything</strong> from the team draft: rows
+only the team estimated are not even on the screen. The <em>Team draft after merging</em> column shows
+the result as you tick. Your private draft then closes and you continue on the team draft. It
+refuses if somebody else changed the draft while you were reading; if
+that happens you can look again, or <strong>Merge Anyway</strong> now that you have seen their version.</p>
+<p>While the team draft already has every value you typed, <strong>↑ Merge into Team Draft…</strong> is greyed out:
+there is nothing to hand over. Change an estimate and it becomes available; change it back and it
+greys out again.</p>
+<h3>9.6 Copying the team draft into yours</h3>
+<p><strong>Manage ▾ → ⤓ Copy Team Draft to Mine</strong> lists the estimates <strong>the team draft has</strong>, row by row,
+against what <strong>your table shows</strong> on the same rows — your value, or Jira’s where you have none.
+(While you are <em>reading</em> the team draft, the same act is the <strong>📋 Copy to My Private Draft</strong> button
+on the toolbar itself.) If your draft is empty there is nothing to review, so it just copies.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Row</th>
+<th style="text-align:left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">⇄ Replaces mine</td>
+<td style="text-align:left">Your table shows a different number there</td>
+</tr>
+<tr>
+<td style="text-align:left">＋ Adds to mine</td>
+<td style="text-align:left">Your table shows nothing there — you have no value, and neither does Jira</td>
+</tr>
+</tbody>
+</table>
+<p>Rows where both already agree are hidden by default (toggle <strong>Unchanged</strong> to see them) and have no
+checkbox. Every other row starts <strong>checked</strong>; untick anything you don’t want. A ticked row takes
+only the fields the team estimated — your other fields on that row stay. <strong>Copying never removes
+anything:</strong> rows only you estimated are not on the screen at all, so no tick can reach them.</p>
+<p><strong>Copying only ever changes your own private draft — it never writes to Jira</strong>, and it does not take
+the team draft away from anyone. There is a box offering to delete it afterwards; it is <strong>off</strong> by
+default, because wanting your own copy does not imply wanting to remove everyone else’s.</p>
+<p>Who shared it is shown on this screen (“Shared by <em>name</em>” / “Shared by you”). While you read the
+team draft, the status bar names who last updated it (<em>Updated by name · 2m ago</em>).</p>
+<h3>9.7 Staying in sync</h3>
+<p>The app checks every 30 seconds while the main screen or the copy screen is open.</p>
+<ul>
+<li><strong>On the main screen</strong>, a newer team draft simply appears — the cells that changed flash, and
+<em>Updated by</em> names the new writer. There is nothing of yours in it to protect, so there is nothing
+to click.</li>
+<li><strong>On the copy screen</strong>, it does <strong>not</strong> change under you — you are in the middle of a decision.
+An inline notice says it changed, and pulling it in resets your selection so you re-check it
+against the fresh values.</li>
+<li><strong>On the merge screen</strong> there is no check while it is open. If the team draft changed since you
+opened it, pressing <strong>↑ Merge into Team Draft</strong> is refused — nothing is overwritten — and the screen
+shows the newer version; only then does <strong>↑ Merge Anyway</strong> appear.</li>
+<li><strong>Jira</strong> is re-read too: cells you have not typed follow it, flashing as they change (§5).</li>
+</ul>
+<p>If a teammate <strong>publishes</strong> the scope after your last edit, a banner tells you your draft predates
+their publish, with <strong>Compare in Preview</strong>, <strong>Discard my draft</strong> and <strong>Keep editing</strong>.</p>
+<h3>9.8 Deleting</h3>
+<p>Delete lives in the toolbar’s <strong>Manage ▾</strong> menu and deletes <strong>whichever copy you are looking at</strong> —
+and it <strong>says which on its face</strong>: <strong>🗑 Delete My Draft</strong> on your own copy, <strong>🗑 Delete Team Draft</strong>
+while you are reading the team’s. The confirmation repeats it:</p>
+<ul>
+<li>On your own draft: only yours goes. Nobody can delete anyone else’s private draft.</li>
+<li>On the team draft: it goes <strong>for everyone</strong>, and the dialog says so. Private drafts — yours and
+your teammates’ — are untouched, and so is anything already in Jira.</li>
+</ul>
+<p>Anyone can delete a team draft. It is a team object, not the property of whoever shared it. The same
+button is available from Sprint Preview and from the copy screen, so you can decide a draft’s fate
+from wherever you happened to be looking at it.</p>
+<p>Retention: drafts expire after the admin-configured period (default 30 days). <strong>Renew</strong> in the
+Drafts list resets that clock.</p>
+<h3>9.9 Finding drafts again — the <strong>🗂 Drafts</strong> screen</h3>
+<p>Lists your private drafts across every scope, plus every team draft you can see (§9.4). Each team row
+shows the projects that decide its visibility. From here you can <strong>Open</strong> (a team row opens read-only),
+<strong>Rename</strong>, <strong>Renew</strong> and <strong>Delete</strong>.</p>
+<p>Each row says how far that draft is from Jira <em>now</em> — <em>N rows · M values differ from Jira</em>, the
+same words as the status bar. The list refreshes itself every 30 seconds while it is open, so the
+numbers follow Jira; it waits while you are typing a new name or answering a delete prompt.</p>
+<p><strong>📋 Copy Last Published:</strong> if a scope was published before, Sprint Preview can start a new draft
+from the last published values instead of from scratch.</p>
 <hr>
 <h2>10. Preferences (per user)</h2>
+<p>These start from whatever the admin set as the site default (§3) and become yours the moment you
+change one — after that the site default no longer reaches you, even if an admin changes it.</p>
 <p>The ⚙️ button next to the title opens <strong>Preferences</strong>:</p>
 <ul>
-<li><strong>🎯 Story Points Scale</strong> — Fibonacci, Modified Fibonacci (default), Powers of 2, Linear, or
-T-Shirt Sizes. Controls the preset chips and stepper behavior. T-Shirt requires the admin
-field mapping.</li>
-<li><strong>⏱ Time Estimate Stepping</strong> — Minutes (±15m), Hours (±1h, default), or Days (±1d). Also
-sets how bare numbers you type into time cells are interpreted.</li>
-<li><strong>🚀 Target Velocity</strong> <em>(Pro)</em> — your team’s SP-per-sprint target; powers the capacity
+<li>
+<p><strong>🎯 Story Points Scale</strong> — controls the preset chips and stepper behavior:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Scale</th>
+<th style="text-align:left">Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Fibonacci</td>
+<td style="text-align:left"><code>0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Modified Fibonacci <em>(default)</em></td>
+<td style="text-align:left"><code>0, 0.25, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Powers of 2</td>
+<td style="text-align:left"><code>0, 1, 2, 4, 8, 16, 32, 64</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Linear</td>
+<td style="text-align:left"><code>0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</code></td>
+</tr>
+<tr>
+<td style="text-align:left">T-Shirt Sizes</td>
+<td style="text-align:left"><code>XS, S, M, L, XL, XXL</code></td>
+</tr>
+</tbody>
+</table>
+<p>Modified Fibonacci is the standard Planning Poker deck: it adds fractions at the bottom for
+trivial work, and deliberately <em>rounds</em> at the top (20, 40, 100 rather than 21, 34, 55, 89)
+because that precision is not meaningful on large items. T-Shirt requires the admin field
+mapping.</p>
+</li>
+<li>
+<p><strong>⏱ Time Estimate Stepping</strong> — Minutes (±15m), Hours (±1h, default), or Days (±1d). Also
+sets how bare numbers you type into time cells are interpreted.</p>
+</li>
+<li>
+<p><strong>🚀 Target Velocity</strong> <em>(Pro)</em> — your team’s SP-per-sprint target; powers the capacity
 indicator in the totals bar. <strong>✨ Auto-calculate</strong> fills it with the average completed SP of
 the board’s last 5 completed sprints (only available when the app was opened from a board or
-sprint, since that’s what identifies the board).</li>
+sprint, since that’s what identifies the board).</p>
+</li>
 </ul>
 <hr>
 <h2>11. Sprint Preview &amp; publishing</h2>
-<p><strong>📋 Sprint Preview</strong> shows every issue with <strong>Draft</strong> and <strong>Current</strong> values side by side,
-plus totals. It also lists draft estimates for issues that have <strong>left the scope</strong> since you
+<p>Scope Planner has three review screens that share the same table shape. <strong>Sprint Preview</strong>,
+below, compares a draft <strong>against Jira</strong> and is the only one that writes to Jira. <strong>⤓ Copy Team
+Draft</strong> (§9.6) compares the <strong>team draft against your table</strong> and writes only to your own draft.
+<strong>↑ Merge into Team Draft</strong> (§9.5) compares <strong>your draft against the team draft</strong> and writes only
+to the team draft.</p>
+<p><strong>🚀 Sprint Preview</strong> shows every issue with <strong>Draft</strong> and <strong>Current</strong> values side by side,
+plus totals. <strong>Current</strong> is what Jira holds right now — the screen re-reads it as it opens. A row
+whose draft differs from Jira is marked, and its delta column shows <code>—</code> rather than <code>0</code> when the
+two agree. Every differing row is an estimate you typed, and every one starts <strong>ticked</strong>: if a
+colleague has put a different number into Jira since, it is right there under <em>Current</em>, with its
+delta — leave the box ticked to overwrite it, untick it to keep theirs. <strong>T-shirt sizes do not add to the Story Points total</strong> —
+they publish to the T-shirt field, not the numeric one, so the total counts that issue’s
+existing Story Points and the total keeps matching what a publish will actually produce. It also lists draft estimates for issues that have <strong>left the scope</strong> since you
 estimated them (marked “not in current scope results”) — so nothing is silently dropped or
-silently published.</p>
-<p><strong>Publish</strong> <em>(Pro)</em> writes all your draft estimates to Jira:</p>
+silently published. Like every differing row they start ticked, and a publish writes them to
+those issues; untick one to leave that issue alone.</p>
+<p><strong>🚀 Sprint Preview publishes the copy the table is showing</strong>, and says at the top which one that
+is:</p>
 <ul>
-<li>Story Points → the mapped SP field (or the T-shirt text field for T-shirt values).</li>
+<li>From your own draft — <em>🚀 Sprint Preview</em>. This is what most publishes are.</li>
+<li>While reading the team draft (§9.3) — <em>🚀 Publish Team Draft</em>. Available to anyone who can see
+it, including someone who has estimated nothing themselves; that is the point of sharing one. It
+refuses outright if a teammate changed the draft while you were reviewing, and nothing is
+written to Jira in that case.</li>
+</ul>
+<p>The screen also offers <strong>📋 Copy…</strong> (the team draft into yours, or the last published values back
+into yours) and <strong>🗑 Delete My Draft</strong>, so you can decide a draft’s fate without going back first.</p>
+<p><strong>Publish</strong> <em>(Pro)</em> writes the previewed estimates to Jira:</p>
+<ul>
+<li>Story Points → the mapped SP field (or the T-shirt field for T-shirt values).</li>
 <li>Original/Remaining → Jira’s time-tracking fields.</li>
 <li>Writes happen <strong>with your own Jira permissions</strong> — you can’t change issues you couldn’t edit
 yourself in Jira.</li>
 </ul>
-<p>The result screen reports per-issue success/failure. On <strong>partial failure</strong> (a permissions
-issue, a workflow restriction, a deleted issue) nothing is lost: your drafts stay alive, and a
-<strong>Retry</strong> button re-attempts just the failed issues. Once everything succeeds, the source
-drafts (your private draft and the shared draft, if you published one) are cleaned up
-automatically. A teammate’s private drafts are <strong>never</strong> deleted by your publish — they get the
-“superseded” banner instead (§9).</p>
+<p>The result screen reports per-issue success/failure <strong>and why each failure happened</strong> — Jira’s own
+message, listed once per distinct reason with the issues it affected, so a single misconfiguration
+reads as one problem rather than one line per row. Hovering the ❌ on a row shows the same text.
+On <strong>partial failure</strong> (a permissions issue, a workflow restriction, a deleted issue) nothing is
+lost: every draft stays alive, and a <strong>Retry</strong> button re-attempts just the failed issues.</p>
+<p>⚠️ <strong>Read the reason before pressing Retry.</strong> If the cause is configuration — a field that isn’t on
+the issue’s edit screen, say — retrying produces exactly the same result until an admin fixes it.</p>
+<p><strong>Before you publish</strong>, the screen warns you about T-shirt sizes Jira will refuse, naming the issue
+types involved, so you find out before the write rather than after it.</p>
+<p><strong>Publishing deletes the draft it published.</strong> The box — <em>“Publish and delete this draft”</em> — is
+<strong>ticked by default</strong>, because publishing is the end of a draft’s life: the numbers are in Jira,
+which is where they were going. Untick it if you mean to keep working on the draft afterwards: it
+stays, reading <strong>0 rows differ from Jira</strong>, and the result banner reminds you that <strong>🗑 Delete My
+Draft</strong> removes it when you are done.</p>
+<p>If you publish only <strong>some</strong> rows, there is <strong>no box</strong>: the draft stays, with the rows you left out,
+and nothing you did not publish can be deleted from this screen. A draft is only ever deleted
+because you asked — this box, <strong>🗑 Delete</strong>, or the draft’s expiry. On a <strong>partial failure nothing
+closes at all</strong> — the draft has to still be there for Retry to finish the job.</p>
+<p>When a publish does delete the draft, your estimates are not lost — they are in Jira, and
+<strong>📋 Copy Last Published</strong> in Sprint Preview pulls them back into a fresh draft. Two things do not
+come back: the draft’s <strong>name</strong>, and, once the published record expires with the drafts (§3), the
+shortcut itself.</p>
+<p>Because the draft does go away on the normal path, what tells you the publish landed is the table
+itself: the rows you published now show their new values, and the <em>rows differ from Jira</em> chip is
+gone with the draft. Every other row shows what Jira holds, as always — within half a minute of any
+change to it.</p>
+<p>A teammate’s private drafts are <strong>never</strong> touched by your publish — they get the “superseded”
+banner instead (§9).</p>
 <hr>
 <h2>12. CSV export <em>(Pro)</em></h2>
 <p>The <strong>Export CSV</strong> button in the totals bar downloads the full loaded scope (not just the
@@ -310,10 +612,14 @@ server call to withhold, and the underlying data is issue data you can already s
 <h2>14. Data, privacy &amp; GDPR</h2>
 <ul>
 <li>Drafts, preferences, and publish records live in <strong>Atlassian Forge storage inside your Jira
-site</strong> — no external servers, no data egress (see <a href="/privacy/">PRIVACY.md</a>).</li>
-<li>The app stores Atlassian account IDs only — never names or emails.</li>
-<li>When a user is deleted from Jira, their private drafts, presets, and preferences are
-hard-deleted automatically; their attribution on shared/published records is anonymized. User
+site</strong> — no external servers, no data egress (see <a href="/privacy/">PRIVACY.md</a>). Drafts <em>and</em>
+publish records expire on the same administrator-configured clock (30 days by default).</li>
+<li>The app identifies people by Atlassian account ID only — it never stores display names or
+avatars. The one thing to know: your <strong>JQL is stored exactly as you typed it</strong>, so a filter like
+<code>assignee = &quot;alex@example.com&quot;</code> keeps that text with the draft or publish record until it
+expires.</li>
+<li>When a user is deleted from Jira, their private drafts and preferences are hard-deleted
+automatically; their attribution on shared/published records is anonymized. User
 anonymization in Jira triggers the same reference cleanup.</li>
 </ul>
 <hr>
@@ -332,7 +638,19 @@ anonymization in Jira triggers the same reference cleanup.</li>
 </tr>
 <tr>
 <td style="text-align:left">One issue’s SP cell disabled</td>
-<td style="text-align:left">That issue type doesn’t have the SP field on its screen in Jira</td>
+<td style="text-align:left">That issue type is outside the Story Points field’s context in Jira — a Jira admin adds it. The banner above the table names the types</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>“N of M issues can’t store a Story Points value”</em></td>
+<td style="text-align:left">Same cause, counted: those issue types are outside the field’s context. A publish to them would fail, so their cells are disabled</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>“N of M issues have the Story Points field hidden”</em></td>
+<td style="text-align:left">The field is in context but not on those issue types’ edit screen. Estimating and publishing work; only the issue view cannot edit it until an admin adds the field to the screen</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>“This board estimates on a different field”</em></td>
+<td style="text-align:left">The board (<strong>Board settings → Estimation</strong>) uses another field than the Story Points field Scope Planner is set to, so the column looks empty and what you publish does not count toward the board’s velocity. An admin makes one match the other — or dismisses the warning if the difference is intended</td>
 </tr>
 <tr>
 <td style="text-align:left">T-Shirt scale greyed out in Preferences</td>
@@ -344,7 +662,11 @@ anonymization in Jira triggers the same reference cleanup.</li>
 </tr>
 <tr>
 <td style="text-align:left">Publish partially failed</td>
-<td style="text-align:left">Check the per-issue error, fix the cause (permissions, workflow), press Retry</td>
+<td style="text-align:left">Read the reason in the result banner (or hover the ❌), fix the cause (permissions, workflow, a field missing from the issue’s edit screen), then press Retry</td>
+</tr>
+<tr>
+<td style="text-align:left">“Jira will not accept” warning before publishing</td>
+<td style="text-align:left">The T-shirt field isn’t on the edit screen for those issue types — an admin has to add it; the rest of the publish is unaffected</td>
 </tr>
 <tr>
 <td style="text-align:left">Auto-calculate velocity disabled</td>
@@ -356,6 +678,17 @@ anonymization in Jira triggers the same reference cleanup.</li>
 </tr>
 </tbody>
 </table>
+<hr>
+<h2>16. Getting help</h2>
+<p>Write to <strong><a href="mailto:dsplugins@gmail.com">dsplugins@gmail.com</a></strong>. To get an answer in one round, include:</p>
+<ul>
+<li>what you did, what you expected, and what happened instead — a screenshot helps most;</li>
+<li>which screen you were on (estimation table, Sprint Preview, 🗂 Drafts, admin page);</li>
+<li>for a failed publish, the reason text from the result banner.</li>
+</ul>
+<p>Please do not send issue content you would not want to share outside your organisation — a
+description of the problem is almost always enough. Support is provided on a reasonable-effort
+basis (see the <a href="/terms/">terms of use</a>).</p>
 
   </main>
   <footer class="site">
