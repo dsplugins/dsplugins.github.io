@@ -1,8 +1,9 @@
 # Scope Planner — Terms of Use
 
-_Last updated: 30 July 2026_
+_Last updated: 7 October 2026_
 
-These terms apply to the use of the Scope Planner app for Jira Cloud ("the app"). By installing
+These terms apply to the use of the Scope Planner app for Jira Cloud ("the app"), developed and
+published on the Atlassian Marketplace by **DSPlugins** ("the developer"). By installing
 or using the app you agree to these terms. If you install the app on behalf of an organisation,
 you represent that you have authority to bind that organisation.
 

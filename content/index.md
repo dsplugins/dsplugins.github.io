@@ -1,6 +1,7 @@
 # Scope Planner
 
-Estimate a whole sprint on one screen — then publish the numbers into Jira.
+Estimate a whole sprint on one screen, review exactly what will change, then publish every
+estimate to Jira in one pass.
 
 Scope Planner is a Jira Cloud app for teams that estimate in batches instead of one issue at a
 time. Pick a scope, fill in the estimates in a single table, keep it as a private draft while you
@@ -17,8 +18,9 @@ is Atlassian account IDs.
 1. **Choose a scope** — a board and sprint, a project, or your own JQL.
 2. **Estimate in one table** — story points on a numeric or T-shirt scale, or time estimates.
    Inline edits, bulk fill, and running totals as you go.
-3. **Keep a draft** — private while you work; share it with the team when it is ready. Drafts do
-   not touch Jira, so nothing is written until you decide.
+3. **Keep a draft** — private while you work; share it and it becomes the team draft everyone
+   reads. Teammates merge their numbers into it through a row-by-row review, so nobody overwrites
+   anyone by accident. Drafts do not touch Jira — nothing is written until you decide.
 4. **Review and publish** — Sprint Preview shows exactly what will change before anything is
    written, and every write executes with your own Jira permissions.
 

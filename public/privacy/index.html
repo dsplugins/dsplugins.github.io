@@ -18,16 +18,22 @@
   </header>
   <main>
 <h1>Scope Planner — Privacy Policy</h1>
-<p><em>Last updated: 28 July 2026</em></p>
+<p><em>Last updated: 7 October 2026</em></p>
 <p>Scope Planner is a Jira Cloud app built on Atlassian Forge. It runs entirely on Atlassian’s
 infrastructure and has <strong>no servers, storage, or network egress outside Atlassian</strong>. The app’s
 manifest declares no external permissions, so the Forge platform itself blocks any outbound call —
 this is enforced by Atlassian, not merely promised by us.</p>
+<p><strong>In short:</strong> the app stores your estimation drafts and preferences inside your own Atlassian site,
+identifies people only by their Atlassian account ID, sends nothing anywhere, uses no analytics or
+cookies, and deletes a person’s private data automatically when their Atlassian account is deleted.</p>
+<h2>Who we are</h2>
+<p>Scope Planner is developed and published on the Atlassian Marketplace by <strong>DSPlugins</strong> (“we”,
+“the developer”). Contact: <strong><a href="mailto:dsplugins@gmail.com">dsplugins@gmail.com</a></strong>.</p>
 <h2>Roles</h2>
 <p>For data protection purposes, the customer operating the Atlassian site remains the <strong>controller</strong>
 of all data the app touches. Atlassian hosts and processes that data on its infrastructure under
-the customer’s existing agreements with Atlassian. The app’s developer operates no infrastructure
-of their own and receives no copies of customer data.</p>
+the customer’s existing agreements with Atlassian. The developer operates no infrastructure of its
+own and receives no copies of customer data.</p>
 <h2>What data the app processes</h2>
 <ul>
 <li><strong>Jira issue data</strong> (summaries, estimates, sprints, boards, assignees, labels, components) is
@@ -36,28 +42,62 @@ and shown only to users who already have permission to see those issues. All rea
 execute <strong>as the acting user</strong>, so Jira’s own permission scheme always applies.</li>
 <li><strong>Estimation drafts</strong> you create are stored in Atlassian Forge hosted storage, scoped to your
 Jira site. A draft contains issue keys, estimate values, the JQL text defining the scope,
-timestamps, and the Atlassian <strong>account ID</strong> of its author.</li>
-<li><strong>Shared drafts and publish records</strong> additionally store the account ID of the user who shared
-or published them, so teammates can see attribution.</li>
+timestamps, an optional <strong>name</strong> you may give it, and the Atlassian <strong>account ID</strong> of its author.
+The JQL text and the name are stored <strong>exactly as you type them</strong>, so they hold whatever you put
+in them — see “What the app does NOT do” below.</li>
+<li><strong>Team (shared) drafts and publish records</strong> additionally store the account ID of the user who
+last shared, merged into or published them, so teammates can see attribution. Where the app
+shows that person — “Shared by …” on the copy screen, “Updated by …” beside a team draft — it
+resolves the account ID to a <strong>display name</strong> by asking Jira <strong>as you</strong>, so you only ever see
+names you already have permission to see. The name is displayed, never stored.</li>
+<li><strong>A team draft also stores the Jira project keys its scope touches.</strong> These are derived by the
+app itself when you share the draft, by running your scope’s query <strong>as you</strong>, and they are what
+decide who may see the draft afterwards (see below). They are project identifiers, not personal
+data.</li>
 <li><strong>User preferences</strong> (estimation scales, column visibility, target velocity) are stored per
 account ID.</li>
+<li><strong>Site settings</strong> (which Jira fields hold estimates, default scales, how long drafts are kept)
+are stored once per site and can be changed only by Jira administrators. They contain no personal
+data.</li>
+<li><strong>A short-lived permissions cache</strong> records, per account ID and for five minutes, which Jira
+projects that account may browse. It holds project keys only and is deleted along with everything
+else when an account is erased.</li>
 <li><strong>Velocity figures</strong> (Pro): auto-calculated sprint velocity is derived from closed sprints and
-cached in Forge storage per board for up to 6 hours. The cache holds aggregate numbers only —
-no issue content and no personal data.</li>
-<li><strong>Estimation history</strong> (Pro) is read live from Jira issue changelogs each time it is shown.
-The app does <strong>not</strong> store estimation history itself.</li>
+cached in Forge storage per board for up to 6 hours. The cache holds aggregate numbers only — no
+issue content and no personal data.</li>
+<li><strong>Estimation history</strong> (Pro) is read live from Jira issue changelogs each time it is shown. The
+app does <strong>not</strong> store estimation history itself.</li>
 <li><strong>License status</strong> — the app receives from Atlassian only whether the site’s subscription is
 active or in trial. Billing runs entirely through the Atlassian Marketplace; the app and its
 developer never see payment details, invoices, or billing contacts.</li>
 </ul>
+<h3>Who can see a team draft</h3>
+<p><strong>Anyone who can browse every Jira project the draft’s scope touches.</strong> They do not have to have
+opened that scope, and they do not have to have a draft of their own.</p>
+<p>⚠️ <strong>What this widens is the scope description, and it is worth being explicit about.</strong> Sharing a
+draft makes its <strong>name</strong> and its <strong>JQL text</strong> — both free text you typed — readable by that whole
+group, not only by people who had already worked on the scope. The app tells you this on the
+review screen before you share.</p>
+<p>Two things are unchanged:</p>
+<ul>
+<li><strong>Private drafts remain private.</strong> They are stored under a key containing your own account ID and
+are unreadable by anyone else, at any layer.</li>
+<li><strong>Issue data is still governed by Jira.</strong> Every read runs as the acting user, so being able to see
+that a draft exists never grants sight of an issue you could not already open.</li>
+</ul>
+<p>Because a JQL string can name a person (<code>assignee = &quot;alex@example.com&quot;</code>), the retention period is
+the control that limits how long that text is exposed — see “Data retention and deletion” below.</p>
 <h2>What the app does NOT do</h2>
 <ul>
 <li>No data ever leaves Atlassian’s infrastructure — the app declares no external network
 permissions, so the platform itself blocks outbound calls.</li>
-<li>No names, email addresses, or avatars are stored — only Atlassian account IDs. Display names
-are fetched live from Jira when shown.</li>
+<li>No display names or avatars are stored — the app identifies people by Atlassian account ID
+only, and display names are fetched live from Jira when shown. One exception is worth stating
+plainly: the <strong>JQL text is stored exactly as you typed it</strong>, so if you write a person’s name or
+email address into a filter (for example <code>assignee = &quot;alex@example.com&quot;</code>), that text is stored
+with the draft or publish record until it expires or is deleted.</li>
 <li>No analytics, tracking, cookies, or advertising.</li>
-<li>No sharing of any data with third parties.</li>
+<li>No sale or sharing of any data with third parties, and no use of your data to train AI models.</li>
 <li>No issue content in logs. Application logs available to the developer for troubleshooting
 contain technical diagnostics only (and, for GDPR processing records, the account ID being
 deleted or anonymized) — never issue summaries, estimates, or other Jira content.</li>
@@ -66,26 +106,61 @@ deleted or anonymized) — never issue summaries, estimates, or other Jira conte
 <p>The CSV export is generated inside your own browser and saved directly to your device when you
 explicitly request it. The app transmits nothing anywhere in the process; what you then do with
 the exported file is under your control and your organisation’s policies.</p>
+<h2>Sub-processors</h2>
+<p><strong>Atlassian</strong> is the only party that hosts or processes data for the app: Forge compute, Forge
+hosted storage and the Jira APIs, under your organisation’s agreements with Atlassian. The developer
+uses no other sub-processor, hosting provider or service.</p>
 <h2>Data retention and deletion</h2>
 <ul>
-<li>Private and shared drafts expire automatically (administrator-configurable, 30 days by
-default) and can be deleted by their owners at any time from within the app.</li>
-<li>Publish records are overwritten by subsequent publishes of the same scope.</li>
-<li>The velocity cache expires automatically after at most 6 hours.</li>
+<li>Private drafts, team drafts and publish records all expire automatically on the same
+administrator-configurable clock (30 days by default). A <strong>private</strong> draft can also be deleted
+at any time by its owner, and only by its owner. A <strong>team</strong> draft is a team object and can be
+deleted from within the app by any user who can see it, not only the person who shared it.</li>
+<li>Publish records are additionally overwritten by any subsequent publish of the same scope.</li>
+<li>The velocity cache expires after at most 6 hours; the permissions cache after 5 minutes.</li>
 <li>When an Atlassian account is deleted or anonymized, the app’s GDPR handlers automatically
-delete that user’s private data (drafts, preferences) and anonymize their account ID in any
-shared or published records.</li>
+delete that user’s private data (drafts, preferences, and the permissions cache described above)
+and anonymize their account ID in any team or published records. A team draft is not deleted with
+its author’s account — it belongs to the team — so the free text inside it (its name, its JQL) is
+limited by the retention period rather than by erasure.</li>
 <li>Uninstalling the app removes its Forge storage per Atlassian’s platform policy.</li>
 </ul>
 <h2>Data residency</h2>
-<p>Because all app data lives in Atlassian Forge hosted storage, it follows the data-residency
-behaviour of the host Atlassian site as provided by the Forge platform.</p>
+<p>All data the app stores lives in Atlassian Forge hosted storage, so it follows the data residency
+location of your Atlassian site, and moves with it if your site’s data is migrated to another
+location. The app stores no data anywhere else.</p>
+<p><strong>In scope for data residency:</strong> private drafts, team drafts, publish records, user preferences,
+site settings, the velocity cache and the permissions cache — that is, everything listed under
+“What data the app processes” that the app stores. <strong>Out of scope:</strong> nothing the app stores is out
+of scope. Jira issue data itself is held by Jira, under Jira’s own data residency.</p>
+<h2>Security</h2>
+<ul>
+<li>The app runs only on Atlassian Forge and calls only your own Jira site’s APIs; outbound network
+access is blocked by the platform.</li>
+<li>Every Jira read and write runs with the acting user’s own Jira permissions, so the app cannot be
+used to see or change anything that user could not see or change in Jira directly.</li>
+<li>The app’s site settings can be changed only by Jira administrators; the server rejects anyone
+else.</li>
+<li>To report a security issue, write to the contact below. We acknowledge reports and fix
+confirmed vulnerabilities as a priority.</li>
+</ul>
 <h2>Permissions</h2>
 <p>The app requests the minimum Jira scopes needed to read issues, boards, and sprints, write
 estimate fields, and store drafts (<code>read:jira-work</code>, <code>write:jira-work</code>, <code>read:jira-user</code>,
-<code>read:board-scope:jira-software</code>, <code>read:project:jira</code>, <code>read:sprint:jira-software</code>,
-<code>storage:app</code>). All Jira writes happen <strong>as the acting user</strong>, so Jira’s own permission scheme
-always applies.</p>
+<code>read:board-scope:jira-software</code>, <code>read:board-scope.admin:jira-software</code>, <code>read:project:jira</code>,
+<code>read:sprint:jira-software</code>, <code>storage:app</code>). All Jira writes happen <strong>as the acting user</strong>, so
+Jira’s own permission scheme always applies.</p>
+<p><code>read:board-scope.admin:jira-software</code> is used for a single read: the app compares the board’s own
+estimation field against the field an administrator configured, so it can warn you when the two
+disagree. It reads board configuration only — no issue content, no user data, and nothing is
+written with it.</p>
+<h2>Your rights</h2>
+<p>Because your organisation is the controller, requests to access, correct, export or erase personal
+data are best made to your Jira site administrator, who has control over your Atlassian site and
+the accounts on it. Deleting or anonymizing an Atlassian account triggers the app’s automatic
+erasure described above. You can also delete your own private drafts at any time from the app’s
+<strong>🗂 Drafts</strong> screen. If you need help with a request, contact us.</p>
+<p>The app is a business tool for Jira users and is not directed at children.</p>
 <h2>Changes to this policy</h2>
 <p>This policy may be updated when the app’s functionality changes. The “Last updated” date above
 reflects the current revision; material changes will be noted in the app’s release notes on the
