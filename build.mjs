@@ -109,7 +109,7 @@ ${bodyHtml}
   <footer class="site">
     <p>&copy; ${year} dsplugins &middot; <a href="/privacy/">Privacy</a> &middot;
        <a href="/terms/">Terms</a> &middot;
-       <a href="mailto:dsplugins@gmail.com">dsplugins@gmail.com</a></p>
+       <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a></p>
     <p class="fineprint">Scope Planner is a Jira Cloud app built on Atlassian Forge. Jira and
        Atlassian are trademarks of Atlassian Pty Ltd, used here only to identify the platform the
        app runs on.</p>

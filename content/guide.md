@@ -618,7 +618,7 @@ server call to withhold, and the underlying data is issue data you can already s
 
 ## 16. Getting help
 
-Write to **dsplugins@gmail.com**. To get an answer in one round, include:
+Write to **support@dsplugins.dev**. To get an answer in one round, include:
 
 - what you did, what you expected, and what happened instead — a screenshot helps most;
 - which screen you were on (estimation table, Sprint Preview, 🗂 Drafts, admin page);
