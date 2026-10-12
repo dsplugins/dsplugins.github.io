@@ -1,4 +1,5 @@
-# GitHub Pages for dsplugins.github.io
+# GitHub Pages for dsplugins.github.io — served on the custom domain dsplugins.dev (set in
+# Settings → Pages, not by a CNAME file: an Actions deployment ignores one).
 #
 # `public/` is committed, and the deploy job only uploads it — deliberately. Two of these pages are
 # the Privacy Policy and Terms of Use that the Atlassian Marketplace listing links to as required

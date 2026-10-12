@@ -49,7 +49,7 @@ The user guide covers it, including the auto-detect helper.
 
 ## Contact
 
-Questions, bug reports, and feature requests: **[dsplugins@gmail.com](mailto:dsplugins@gmail.com)**
+Questions, bug reports, and feature requests: **[support@dsplugins.dev](mailto:support@dsplugins.dev)**
 
 Support is provided on a reasonable-effort basis. There is no guaranteed response time — see the
 [terms of use](/terms/).

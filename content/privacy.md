@@ -1,6 +1,6 @@
 # Scope Planner — Privacy Policy
 
-_Last updated: 7 October 2026_
+_Last updated: 12 October 2026_
 
 Scope Planner is a Jira Cloud app built on Atlassian Forge. It runs entirely on Atlassian's
 infrastructure and has **no servers, storage, or network egress outside Atlassian**. The app's
@@ -14,7 +14,7 @@ cookies, and deletes a person's private data automatically when their Atlassian 
 ## Who we are
 
 Scope Planner is developed and published on the Atlassian Marketplace by **DSPlugins** ("we",
-"the developer"). Contact: **dsplugins@gmail.com**.
+"the developer"). Contact: **support@dsplugins.dev**.
 
 ## Roles
 
@@ -176,4 +176,4 @@ updated policy.
 
 ## Contact
 
-Questions about this policy or your data: **dsplugins@gmail.com**
+Questions about this policy or your data: **support@dsplugins.dev**

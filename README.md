@@ -17,23 +17,49 @@ root.
 
 ## Published URLs
 
+The site's own domain is **`dsplugins.dev`** (bought 2026-10-11). Until its DNS is in place it is
+served at `https://dsplugins.github.io`, which redirects to the custom domain once that is set.
+
 | Page | URL |
 | :-- | :-- |
-| Landing | `https://dsplugins.github.io/` |
-| User guide | `https://dsplugins.github.io/guide/` |
-| **Privacy policy** | `https://dsplugins.github.io/privacy/` |
-| **Terms of use** | `https://dsplugins.github.io/terms/` |
+| Landing | `https://dsplugins.dev/` |
+| User guide | `https://dsplugins.dev/guide/` |
+| **Privacy policy** | `https://dsplugins.dev/privacy/` |
+| **Terms of use** | `https://dsplugins.dev/terms/` |
 
-The two in bold are the ones the listing form asks for.
+The two in bold are the ones the listing form asks for; the guide is the listing's required
+documentation URL.
 
-## First-time setup
+## First-time setup — done
 
-1. Create a GitHub organization named `dsplugins`.
-2. Inside it create a **public** repo named exactly `dsplugins.github.io`, empty.
-3. Push this repo to it (`main` is the default branch).
-4. Settings → Pages → **Source: GitHub Actions**. Wait for the `Pages` workflow to go green.
-5. Open the four URLs above and check they load in a private browser window — signed out is the
-   state a Marketplace reviewer will be in.
+The `dsplugins` GitHub account (a personal account, not an organization) and this public repo
+exist, Pages publishes from **GitHub Actions**, and the four pages have served at
+`https://dsplugins.github.io` since 2026-10-08.
+
+## Custom domain `dsplugins.dev`
+
+In this order — GitHub's own advice, so that no other repository can claim the domain in between:
+
+1. **Verify the domain for the account:** signed in as `dsplugins`, `https://github.com/settings/pages`
+   → *Add a domain* → `dsplugins.dev`; add the TXT record GitHub shows at the registrar; *Verify*.
+2. **Set it on this repo:** Settings → Pages → *Custom domain* = `dsplugins.dev` → Save. No `CNAME`
+   file: with an Actions workflow GitHub ignores one and takes the domain from the setting.
+3. **DNS at the registrar:**
+
+   | Type | Name | Value |
+   | :-- | :-- | :-- |
+   | A | `@` | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (four records) |
+   | AAAA | `@` | `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153` (four records) |
+   | CNAME | `www` | `dsplugins.github.io` |
+
+   No proxying (Cloudflare's orange cloud off) — GitHub must issue the certificate itself.
+4. When Settings → Pages shows the DNS check passing, tick **Enforce HTTPS** (up to 24 h). `.dev` is
+   HSTS-preloaded: browsers refuse plain HTTP, so the site is unreachable on the domain until the
+   certificate exists.
+5. Open the four URLs above in a private window.
+
+The mail records (MX, SPF, DKIM, DMARC) for `support@dsplugins.dev` live on the same domain — see
+the app repo's `docs/PUBLISHING.md` step 2Г. They do not conflict with the records above.
 
 ## Editing
 
@@ -71,10 +97,13 @@ npm run serve     # → http://localhost:8137
 
 ## Contact address
 
-**`dsplugins@gmail.com` is the only email address that may appear anywhere in this repo or the
-published site** — it matches the Atlassian vendor account that owns the app. No personal address
-belongs on a public storefront, and mixing addresses across the listing, the policies and the site
-looks careless to a reviewer. That includes git commit metadata here, since this repo is public.
+**`support@dsplugins.dev` is the only contact address on the published site** (since 2026-10-12) —
+the same address the listing, the policies and the guide give. Atlassian refuses a Gmail address for
+a paid app, mixing addresses across the listing, the policies and the site looks careless to a
+reviewer, and no personal address belongs on a public storefront.
+
+`dsplugins@gmail.com` remains only as a login: the GitHub account that owns this repo, and so the git
+commit metadata here, since this repo is public. It must not reappear in `content/` or `build.mjs`.
 
 ## Still to do
 
