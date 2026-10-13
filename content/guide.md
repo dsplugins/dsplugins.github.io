@@ -622,8 +622,10 @@ Write to **support@dsplugins.dev**. To get an answer in one round, include:
 
 - what you did, what you expected, and what happened instead — a screenshot helps most;
 - which screen you were on (estimation table, Sprint Preview, 🗂 Drafts, admin page);
-- for a failed publish, the reason text from the result banner.
+- for a failed publish, the reason text from the result banner;
+- for a licensing question, your Jira site address (`your-site.atlassian.net`).
 
 Please do not send issue content you would not want to share outside your organisation — a
 description of the problem is almost always enough. Support is provided on a reasonable-effort
-basis (see the [terms of use](../TERMS.md)).
+basis (see the [terms of use](../TERMS.md)); support hours and the first-reply target are on the
+[support page](https://dsplugins.dev/support/).

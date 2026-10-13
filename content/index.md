@@ -51,5 +51,4 @@ The user guide covers it, including the auto-detect helper.
 
 Questions, bug reports, and feature requests: **[support@dsplugins.dev](mailto:support@dsplugins.dev)**
 
-Support is provided on a reasonable-effort basis. There is no guaranteed response time — see the
-[terms of use](/terms/).
+Support hours, the first-reply target and what to include in a message: **[Support](/support/)**.
