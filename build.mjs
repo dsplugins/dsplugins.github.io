@@ -37,6 +37,7 @@ const LINK_MAP = {
 const PAGES = [
   { src: 'index.md', out: '.', label: 'Home', nav: true },
   { src: 'guide.md', out: 'guide', label: 'User guide', nav: true },
+  { src: 'support.md', out: 'support', label: 'Support', nav: true },
   { src: 'privacy.md', out: 'privacy', label: 'Privacy', nav: true },
   { src: 'terms.md', out: 'terms', label: 'Terms', nav: true },
 ];

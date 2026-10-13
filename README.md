@@ -24,6 +24,7 @@ served at `https://dsplugins.github.io`, which redirects to the custom domain on
 | :-- | :-- |
 | Landing | `https://dsplugins.dev/` |
 | User guide | `https://dsplugins.dev/guide/` |
+| Support | `https://dsplugins.dev/support/` — hours and the first-reply target; the Marketplace profile's *Support Channels* link and *Hours of Operation* SLA link point here |
 | **Privacy policy** | `https://dsplugins.dev/privacy/` |
 | **Terms of use** | `https://dsplugins.dev/terms/` |
 
@@ -56,7 +57,7 @@ In this order — GitHub's own advice, so that no other repository can claim the
 4. When Settings → Pages shows the DNS check passing, tick **Enforce HTTPS** (up to 24 h). `.dev` is
    HSTS-preloaded: browsers refuse plain HTTP, so the site is unreachable on the domain until the
    certificate exists.
-5. Open the four URLs above in a private window.
+5. Open the URLs above in a private window.
 
 The mail records (MX, SPF, DKIM, DMARC) for `support@dsplugins.dev` live on the same domain — see
 the app repo's `docs/PUBLISHING.md` step 2Г. They do not conflict with the records above.
