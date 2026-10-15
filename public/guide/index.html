@@ -3,26 +3,111 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Scope Planner — User Guide</title>
-<link rel="stylesheet" href="../style.css">
+<title>Scope Planner — User Guide | DSPlugins</title>
+<meta name="description" content="Scope Planner user guide: setup, the estimation table, drafts, Sprint Preview, publishing, licensing and troubleshooting.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#4f46e5">
+<link rel="canonical" href="https://dsplugins.dev/guide/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DSPlugins">
+<meta property="og:title" content="Scope Planner — User Guide | DSPlugins">
+<meta property="og:description" content="Scope Planner user guide: setup, the estimation table, drafts, Sprint Preview, publishing, licensing and troubleshooting.">
+<meta property="og:url" content="https://dsplugins.dev/guide/">
+<meta property="og:image" content="https://dsplugins.dev/assets/og-banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
   <header class="site">
-    <a class="brand" href="/">dsplugins</a>
-    <nav>
-        <a href="/">Home</a>
+    <div class="wrap bar">
+      <a class="brand" href="/" aria-label="DSPlugins — home">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="19" fill="#FBBF24" opacity=".2"/>
+        <g fill="#FBBF24"><circle cx="32" cy="32" r="11"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(0 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(45 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(90 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(135 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(180 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(225 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(270 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(315 32 32)"/></g>
+      </svg>
+        <span>DSPlugins</span>
+      </a>
+      <nav class="nav" aria-label="Site">
+        <a href="/">Scope Planner</a>
         <a href="/guide/" aria-current="page">User guide</a>
         <a href="/support/">Support</a>
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
-    </nav>
+      </nav>
+      <a class="btn btn-sm header-cta" href="mailto:support@dsplugins.dev">Contact</a>
+      <details class="menu">
+        <summary aria-label="Menu"><span></span></summary>
+        <nav aria-label="Site (mobile)">
+          <a href="/">Scope Planner</a>
+          <a href="/guide/" aria-current="page">User guide</a>
+          <a href="/support/">Support</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+        </nav>
+      </details>
+    </div>
   </header>
-  <main>
-<h1>Scope Planner — User Guide</h1>
+  <main id="main">
+    <div class="doc-head">
+      <div class="wrap">
+        <p class="eyebrow">Scope Planner &middot; Documentation</p>
+        <h1>Scope Planner — User Guide</h1>
+      </div>
+    </div>
+    <div class="wrap doc">
+      <aside class="toc" aria-label="On this page">
+        <nav class="toc-side">
+          <p class="toc-title">On this page</p>
+          <ol>
+            <li><a href="#1-what-scope-planner-does">1. What Scope Planner does</a></li>
+            <li><a href="#2-opening-the-app">2. Opening the app</a></li>
+            <li><a href="#3-first-time-setup-jira-admins">3. First-time setup (Jira admins)</a></li>
+            <li><a href="#4-choosing-your-scope">4. Choosing your scope</a></li>
+            <li><a href="#5-the-estimation-table">5. The estimation table</a></li>
+            <li><a href="#6-bulk-actions">6. Bulk actions</a></li>
+            <li><a href="#7-totals--breakdown">7. Totals &amp; breakdown</a></li>
+            <li><a href="#8-column-visibility--csv-columns">8. Column visibility &amp; CSV columns</a></li>
+            <li><a href="#9-drafts-private-team-and-the-lifecycle-between-them">9. Drafts: private, team, and the lifecycle between them</a></li>
+            <li><a href="#10-preferences-per-user">10. Preferences (per user)</a></li>
+            <li><a href="#11-sprint-preview--publishing">11. Sprint Preview &amp; publishing</a></li>
+            <li><a href="#12-csv-export-pro">12. CSV export (Pro)</a></li>
+            <li><a href="#13-licensing">13. Licensing</a></li>
+            <li><a href="#14-data-privacy--gdpr">14. Data, privacy &amp; GDPR</a></li>
+            <li><a href="#15-troubleshooting">15. Troubleshooting</a></li>
+            <li><a href="#16-getting-help">16. Getting help</a></li>
+          </ol>
+        </nav>
+        <details class="toc-fold">
+          <summary>On this page</summary>
+          <ol>
+            <li><a href="#1-what-scope-planner-does">1. What Scope Planner does</a></li>
+            <li><a href="#2-opening-the-app">2. Opening the app</a></li>
+            <li><a href="#3-first-time-setup-jira-admins">3. First-time setup (Jira admins)</a></li>
+            <li><a href="#4-choosing-your-scope">4. Choosing your scope</a></li>
+            <li><a href="#5-the-estimation-table">5. The estimation table</a></li>
+            <li><a href="#6-bulk-actions">6. Bulk actions</a></li>
+            <li><a href="#7-totals--breakdown">7. Totals &amp; breakdown</a></li>
+            <li><a href="#8-column-visibility--csv-columns">8. Column visibility &amp; CSV columns</a></li>
+            <li><a href="#9-drafts-private-team-and-the-lifecycle-between-them">9. Drafts: private, team, and the lifecycle between them</a></li>
+            <li><a href="#10-preferences-per-user">10. Preferences (per user)</a></li>
+            <li><a href="#11-sprint-preview--publishing">11. Sprint Preview &amp; publishing</a></li>
+            <li><a href="#12-csv-export-pro">12. CSV export (Pro)</a></li>
+            <li><a href="#13-licensing">13. Licensing</a></li>
+            <li><a href="#14-data-privacy--gdpr">14. Data, privacy &amp; GDPR</a></li>
+            <li><a href="#15-troubleshooting">15. Troubleshooting</a></li>
+            <li><a href="#16-getting-help">16. Getting help</a></li>
+          </ol>
+        </details>
+      </aside>
+      <article class="prose">
 <p>This guide explains every feature of Scope Planner from an end-user perspective. It covers the
 free (Basic) features, the Pro features, and the one-time admin setup.</p>
 <hr>
-<h2>1. What Scope Planner does</h2>
+<h2 id="1-what-scope-planner-does">1. What Scope Planner does<a class="anchor" href="#1-what-scope-planner-does" aria-label="Link to this section">#</a></h2>
 <p>Scope Planner turns sprint estimation into a single-screen, spreadsheet-style workflow:</p>
 <ol>
 <li><strong>Load a scope</strong> — a sprint, a backlog, or any JQL query.</li>
@@ -43,9 +128,9 @@ the draft with the team.</li>
 <li><strong>✅ Apply Estimates to Jira</strong> <em>(Pro, or during the free trial)</em>.</li>
 </ol>
 <hr>
-<h2>2. Opening the app</h2>
+<h2 id="2-opening-the-app">2. Opening the app<a class="anchor" href="#2-opening-the-app" aria-label="Link to this section">#</a></h2>
 <p>Scope Planner appears in three places inside Jira:</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th style="text-align:left">Entry point</th>
@@ -70,11 +155,11 @@ the draft with the team.</li>
 <td style="text-align:left">The project’s open sprints</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>In each case the app pre-fills a matching JQL query and loads the issues immediately. There is
 also a separate <strong>admin configuration page</strong> (see §3) for Jira administrators.</p>
 <hr>
-<h2>3. First-time setup (Jira admins)</h2>
+<h2 id="3-first-time-setup-jira-admins">3. First-time setup (Jira admins)<a class="anchor" href="#3-first-time-setup-jira-admins" aria-label="Link to this section">#</a></h2>
 <p>Until a Story Points field is configured, every user sees an <strong>onboarding banner</strong> explaining
 that setup is needed (admins see inline steps; other users are told to ask an admin).</p>
 <p>If the app cannot load its settings at all — a network or service hiccup — it says exactly that on
@@ -123,7 +208,7 @@ missing from the issue type’s <strong>edit screen</strong> stays editable here
 cannot be edited from the issue view. Either way a banner above the table names the issue types.</p>
 </blockquote>
 <hr>
-<h2>4. Choosing your scope</h2>
+<h2 id="4-choosing-your-scope">4. Choosing your scope<a class="anchor" href="#4-choosing-your-scope" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><strong>JQL bar</strong> — type any JQL and press Enter. Errors from Jira are shown inline.</li>
 <li><strong>🗂️ Scope Builder</strong> — a JQL-free picker: choose a project, then either a specific sprint
@@ -138,11 +223,11 @@ totals, select-all, CSV export, and the Sprint Preview always cover the full sco
 shows progress (“Loading N of ~M…”). For safety the auto-load stops at <strong>1,000 issues</strong> with a
 warning to narrow your JQL — estimation scopes are meant to be sprint-sized.</p>
 <hr>
-<h2>5. The estimation table</h2>
+<h2 id="5-the-estimation-table">5. The estimation table<a class="anchor" href="#5-the-estimation-table" aria-label="Link to this section">#</a></h2>
 <p>Each issue is one row. Columns include Issue key (clickable link), Priority, Summary, Assignee,
 Status, and the estimation columns; more columns (Epic, Parent, Labels, Components, Due/Start
 date, Team, Sprint) can be toggled via the <strong>⚙️ Columns</strong> menu (§8).</p>
-<h3>Editing Story Points (numeric scales)</h3>
+<h3 id="editing-story-points-numeric-scales">Editing Story Points (numeric scales)<a class="anchor" href="#editing-story-points-numeric-scales" aria-label="Link to this section">#</a></h3>
 <ul>
 <li><strong>Click the value</strong> → an input opens, together with a row of preset chips for your scale
 (e.g. Fibonacci). Type a number and press <strong>Enter</strong> to commit, click a chip to set it
@@ -153,7 +238,7 @@ below. Picked the wrong one? Click back into the field to bring the chips up aga
 up to 8 and down to 5 — not ±1). At the top of a scale, stepping up leaves the value where it
 is rather than inventing one.</li>
 </ul>
-<h3>Editing Story Points (T-Shirt scale)</h3>
+<h3 id="editing-story-points-t-shirt-scale">Editing Story Points (T-Shirt scale)<a class="anchor" href="#editing-story-points-t-shirt-scale" aria-label="Link to this section">#</a></h3>
 <p>With the T-Shirt scale selected (§10), SP cells show <strong>XS S M L XL XXL</strong> chips instead — click
 to select. Requires the admin-configured T-shirt field.</p>
 <p>⚠️ <strong>Sizes and points are two different Jira fields</strong>, and the scale chooses which one the column
@@ -163,7 +248,7 @@ hover the cell and it tells you what the draft holds, the Story Points total sti
 Sprint Preview still lists it as a change to publish. Switch back to a numeric scale to see or
 change it. The reverse is not true: a size shows up as <code>M</code> in a numeric cell, because a numeric
 cell can display any text.</p>
-<h3>Editing time estimates (Original / Remaining)</h3>
+<h3 id="editing-time-estimates-original--remaining">Editing time estimates (Original / Remaining)<a class="anchor" href="#editing-time-estimates-original--remaining" aria-label="Link to this section">#</a></h3>
 <ul>
 <li>Type a <strong>bare number</strong> — it’s interpreted in your chosen time unit (hours by default, see
 §10), e.g. <code>4</code> → 4 hours.</li>
@@ -171,7 +256,7 @@ cell can display any text.</p>
 standard workday: <strong>1d = 8h, 1w = 5d</strong>.</li>
 <li>The stepper steps by your chosen unit (15m / 1h / 1d).</li>
 </ul>
-<h3>Draft values vs. current values</h3>
+<h3 id="draft-values-vs-current-values">Draft values vs. current values<a class="anchor" href="#draft-values-vs-current-values" aria-label="Link to this section">#</a></h3>
 <p>A cell you typed shows <strong>your value</strong>; every other cell shows <strong>what Jira holds now</strong>. Your edits
 never change Jira until you publish.</p>
 <p>The app re-reads Jira every 30 seconds while the table is open. When a colleague changes an estimate
@@ -201,13 +286,13 @@ does exactly the same thing to every selected row.</p>
 would write. The highlight tracks the <em>value</em>, not the act of typing: set a cell back to the
 number Jira already holds and the highlight clears, because publishing it would change nothing.
 Sprint Preview marks the same rows the same way.</p>
-<h3>Estimation history <em>(Pro)</em></h3>
+<h3 id="estimation-history-pro">Estimation history <em>(Pro)</em><a class="anchor" href="#estimation-history-pro" aria-label="Link to this section">#</a></h3>
 <p>Every numeric SP cell carries a faint <strong>⏱</strong> button next to the value (it brightens when you point
 at it). Click it to see who changed the issue’s estimates, when, and from/to what — sourced from
 the Jira changelog. One history popover is open at a time; press <strong>Esc</strong> or click anywhere outside
 it to dismiss. The T-shirt scale has no ⏱: its cell is six chips wide with no room for one.</p>
 <hr>
-<h2>6. Bulk actions</h2>
+<h2 id="6-bulk-actions">6. Bulk actions<a class="anchor" href="#6-bulk-actions" aria-label="Link to this section">#</a></h2>
 <p>Tick the checkbox of <strong>one or more rows</strong> (or use the header select-all) and the bulk action bar
 appears above the table. For each of SP / Original / Remaining you can:</p>
 <ul>
@@ -219,7 +304,7 @@ again, exactly as ↺ does for one cell (§5).</li>
 <p>Each bulk action asks for confirmation before applying. Bulk-apply also works on rows whose
 inline cell is disabled (e.g. issue types without the SP field) — useful for pre-staging values.</p>
 <hr>
-<h2>7. Totals &amp; breakdown</h2>
+<h2 id="7-totals--breakdown">7. Totals &amp; breakdown<a class="anchor" href="#7-totals--breakdown" aria-label="Link to this section">#</a></h2>
 <p>The <strong>totals bar</strong> (bottom) always shows full-scope totals: Σ Story Points, Σ Original,
 Σ Remaining, the issue count, and — when a target velocity is set (§10) — a <strong>capacity</strong>
 indicator that highlights when the draft total exceeds it.</p>
@@ -240,7 +325,7 @@ Workload adds the bar, the avatar and the overload comparison.</p>
 </li>
 </ul>
 <hr>
-<h2>8. Column visibility &amp; CSV columns</h2>
+<h2 id="8-column-visibility--csv-columns">8. Column visibility &amp; CSV columns<a class="anchor" href="#8-column-visibility--csv-columns" aria-label="Link to this section">#</a></h2>
 <p>The <strong>⚙️ Columns</strong> menu has two independent checkboxes per column:</p>
 <ul>
 <li><strong>Visible</strong> — show/hide the column in the table.</li>
@@ -250,21 +335,21 @@ Workload adds the bar, the avatar and the overload comparison.</p>
 configured (Team, Sprint, Start Date, and the estimation columns) don’t appear in the menu at
 all until an admin maps the field.</p>
 <hr>
-<h2>9. Drafts: private, team, and the lifecycle between them</h2>
+<h2 id="9-drafts-private-team-and-the-lifecycle-between-them">9. Drafts: private, team, and the lifecycle between them<a class="anchor" href="#9-drafts-private-team-and-the-lifecycle-between-them" aria-label="Link to this section">#</a></h2>
 <p><strong>Two sentences, and the rest of this section follows from them:</strong></p>
 <blockquote>
 <p>Your <strong>private draft</strong> is visible only to you. The <strong>team draft</strong> is visible to everyone who can
 browse the projects your scope touches. Only the private draft can be edited — changes reach the
 team draft whole, through a review screen.</p>
 </blockquote>
-<h3>9.1 A draft has a status, and it changes</h3>
+<h3 id="91-a-draft-has-a-status-and-it-changes">9.1 A draft has a status, and it changes<a class="anchor" href="#91-a-draft-has-a-status-and-it-changes" aria-label="Link to this section">#</a></h3>
 <p><code>private → team → published</code>. Each step is the <em>same draft</em> moving on, not a copy left behind. When
 you share a draft it <strong>becomes</strong> the team draft; when you publish, it <strong>becomes</strong> published. That is
 why nothing here talks about your draft being deleted: the numbers went somewhere, they were not
 thrown away.</p>
-<h3>9.2 The status bar</h3>
+<h3 id="92-the-status-bar">9.2 The status bar<a class="anchor" href="#92-the-status-bar" aria-label="Link to this section">#</a></h3>
 <p>The badge names <strong>the copy you are looking at</strong>:</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th style="text-align:left">Badge</th>
@@ -285,9 +370,9 @@ thrown away.</p>
 <td style="text-align:left">The table is showing the <strong>team draft</strong>, read-only</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Beside it, the toolbar describes <strong>only the copy on screen</strong>:</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th style="text-align:left">Chip</th>
@@ -304,7 +389,7 @@ thrown away.</p>
 <td style="text-align:left"><em>(while reading the team draft)</em> who last wrote it, and when — <em>Updated by you</em> if it was you</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>The <strong>other</strong> copy is announced by the buttons that act on it, not by a chip:</p>
 <ul>
 <li><strong>◈ View Team Draft</strong> appears once a team draft exists; <strong>● Back to My Draft</strong> takes you home.</li>
@@ -322,7 +407,7 @@ different one makes it differ. That is the point: it says what publishing this c
 highlighted. With <em>Publish and delete this draft</em> ticked — the default — the draft goes and its
 <em>rows differ from Jira</em> chip with it, so the draft going away is expected and tells you nothing on
 its own. Left unticked, the draft stays and reads <strong>0 rows differ from Jira</strong> (§11).</p>
-<h3>9.3 Reading the team draft</h3>
+<h3 id="93-reading-the-team-draft">9.3 Reading the team draft<a class="anchor" href="#93-reading-the-team-draft" aria-label="Link to this section">#</a></h3>
 <p><strong>◈ View Team Draft</strong> shows it in the same table you estimate in — read-only. Nothing you type there
 goes anywhere, because the team draft is read-only for <em>everyone</em>, including whoever shared it: the
 only way it changes is somebody merging into it, or deleting it and sharing anew. Rows the team draft does not estimate show Jira’s
@@ -338,7 +423,7 @@ Nothing of yours is in it, so there is nothing to lose by it moving.</p>
 read-only mode on its own within half a minute — the copy you were reading no longer exists. Every
 cell you have not typed shows what Jira holds now, including what was just published; your own
 values stay exactly as you typed them.</p>
-<h3>9.4 ⚠️ Who can see a team draft</h3>
+<h3 id="94--who-can-see-a-team-draft">9.4 ⚠️ Who can see a team draft<a class="anchor" href="#94--who-can-see-a-team-draft" aria-label="Link to this section">#</a></h3>
 <p><strong>Everyone who can browse every project your scope touches.</strong> They do not need to have opened the
 scope, and they do not need a draft of their own — that is the point, and it is what makes sharing
 with a colleague possible at all.</p>
@@ -354,7 +439,7 @@ API exists, to someone who cannot see API. If you want a draft a WEB-only collea
 it a WEB-only scope.</li>
 </ul>
 <p>Your <strong>private</strong> draft is unaffected by any of this. Nobody else can see it, ever.</p>
-<h3>9.5 Sharing, and merging</h3>
+<h3 id="95-sharing-and-merging">9.5 Sharing, and merging<a class="anchor" href="#95-sharing-and-merging" aria-label="Link to this section">#</a></h3>
 <p><strong>↑ Share with Team</strong> turns your private draft into the team draft. If nobody has shared one for
 this scope yet, it happens immediately — there is nothing to review.</p>
 <p>⚠️ <strong>Sharing MOVES your draft — it does not copy it.</strong> The moment you share, your draft <em>becomes</em>
@@ -379,12 +464,12 @@ that happens you can look again, or <strong>Merge Anyway</strong> now that you h
 <p>While the team draft already has every value you typed, <strong>↑ Merge into Team Draft…</strong> is greyed out:
 there is nothing to hand over. Change an estimate and it becomes available; change it back and it
 greys out again.</p>
-<h3>9.6 Copying the team draft into yours</h3>
+<h3 id="96-copying-the-team-draft-into-yours">9.6 Copying the team draft into yours<a class="anchor" href="#96-copying-the-team-draft-into-yours" aria-label="Link to this section">#</a></h3>
 <p><strong>Manage ▾ → ⤓ Copy Team Draft to Mine</strong> lists the estimates <strong>the team draft has</strong>, row by row,
 against what <strong>your table shows</strong> on the same rows — your value, or Jira’s where you have none.
 (While you are <em>reading</em> the team draft, the same act is the <strong>📋 Copy to My Private Draft</strong> button
 on the toolbar itself.) If your draft is empty there is nothing to review, so it just copies.</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th style="text-align:left">Row</th>
@@ -401,7 +486,7 @@ on the toolbar itself.) If your draft is empty there is nothing to review, so it
 <td style="text-align:left">Your table shows nothing there — you have no value, and neither does Jira</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Rows where both already agree are hidden by default (toggle <strong>Unchanged</strong> to see them) and have no
 checkbox. Every other row starts <strong>checked</strong>; untick anything you don’t want. A ticked row takes
 only the fields the team estimated — your other fields on that row stay. <strong>Copying never removes
@@ -411,7 +496,7 @@ the team draft away from anyone. There is a box offering to delete it afterwards
 default, because wanting your own copy does not imply wanting to remove everyone else’s.</p>
 <p>Who shared it is shown on this screen (“Shared by <em>name</em>” / “Shared by you”). While you read the
 team draft, the status bar names who last updated it (<em>Updated by name · 2m ago</em>).</p>
-<h3>9.7 Staying in sync</h3>
+<h3 id="97-staying-in-sync">9.7 Staying in sync<a class="anchor" href="#97-staying-in-sync" aria-label="Link to this section">#</a></h3>
 <p>The app checks every 30 seconds while the main screen or the copy screen is open.</p>
 <ul>
 <li><strong>On the main screen</strong>, a newer team draft simply appears — the cells that changed flash, and
@@ -427,7 +512,7 @@ shows the newer version; only then does <strong>↑ Merge Anyway</strong> appear
 </ul>
 <p>If a teammate <strong>publishes</strong> the scope after your last edit, a banner tells you your draft predates
 their publish, with <strong>Compare in Preview</strong>, <strong>Discard my draft</strong> and <strong>Keep editing</strong>.</p>
-<h3>9.8 Deleting</h3>
+<h3 id="98-deleting">9.8 Deleting<a class="anchor" href="#98-deleting" aria-label="Link to this section">#</a></h3>
 <p>Delete lives in the toolbar’s <strong>Manage ▾</strong> menu and deletes <strong>whichever copy you are looking at</strong> —
 and it <strong>says which on its face</strong>: <strong>🗑 Delete My Draft</strong> on your own copy, <strong>🗑 Delete Team Draft</strong>
 while you are reading the team’s. The confirmation repeats it:</p>
@@ -441,7 +526,7 @@ button is available from Sprint Preview and from the copy screen, so you can dec
 from wherever you happened to be looking at it.</p>
 <p>Retention: drafts expire after the admin-configured period (default 30 days). <strong>Renew</strong> in the
 Drafts list resets that clock.</p>
-<h3>9.9 Finding drafts again — the <strong>🗂 Drafts</strong> screen</h3>
+<h3 id="99-finding-drafts-again--the--drafts-screen">9.9 Finding drafts again — the <strong>🗂 Drafts</strong> screen<a class="anchor" href="#99-finding-drafts-again--the--drafts-screen" aria-label="Link to this section">#</a></h3>
 <p>Lists your private drafts across every scope, plus every team draft you can see (§9.4). Each team row
 shows the projects that decide its visibility. From here you can <strong>Open</strong> (a team row opens read-only),
 <strong>Rename</strong>, <strong>Renew</strong> and <strong>Delete</strong>.</p>
@@ -451,14 +536,14 @@ numbers follow Jira; it waits while you are typing a new name or answering a del
 <p><strong>📋 Copy Last Published:</strong> if a scope was published before, Sprint Preview can start a new draft
 from the last published values instead of from scratch.</p>
 <hr>
-<h2>10. Preferences (per user)</h2>
+<h2 id="10-preferences-per-user">10. Preferences (per user)<a class="anchor" href="#10-preferences-per-user" aria-label="Link to this section">#</a></h2>
 <p>These start from whatever the admin set as the site default (§3) and become yours the moment you
 change one — after that the site default no longer reaches you, even if an admin changes it.</p>
 <p>The ⚙️ button next to the title opens <strong>Preferences</strong>:</p>
 <ul>
 <li>
 <p><strong>🎯 Story Points Scale</strong> — controls the preset chips and stepper behavior:</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th style="text-align:left">Scale</th>
@@ -487,7 +572,7 @@ change one — after that the site default no longer reaches you, even if an adm
 <td style="text-align:left"><code>XS, S, M, L, XL, XXL</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Modified Fibonacci is the standard Planning Poker deck: it adds fractions at the bottom for
 trivial work, and deliberately <em>rounds</em> at the top (20, 40, 100 rather than 21, 34, 55, 89)
 because that precision is not meaningful on large items. T-Shirt requires the admin field
@@ -505,7 +590,7 @@ sprint, since that’s what identifies the board).</p>
 </li>
 </ul>
 <hr>
-<h2>11. Sprint Preview &amp; publishing</h2>
+<h2 id="11-sprint-preview--publishing">11. Sprint Preview &amp; publishing<a class="anchor" href="#11-sprint-preview--publishing" aria-label="Link to this section">#</a></h2>
 <p>Scope Planner has three review screens that share the same table shape. <strong>Sprint Preview</strong>,
 below, compares a draft <strong>against Jira</strong> and is the only one that writes to Jira. <strong>⤓ Copy Team
 Draft</strong> (§9.6) compares the <strong>team draft against your table</strong> and writes only to your own draft.
@@ -569,7 +654,7 @@ change to it.</p>
 <p>A teammate’s private drafts are <strong>never</strong> touched by your publish — they get the “superseded”
 banner instead (§9).</p>
 <hr>
-<h2>12. CSV export <em>(Pro)</em></h2>
+<h2 id="12-csv-export-pro">12. CSV export <em>(Pro)</em><a class="anchor" href="#12-csv-export-pro" aria-label="Link to this section">#</a></h2>
 <p>The <strong>Export CSV</strong> button in the totals bar downloads the full loaded scope (not just the
 visible page) as <code>scope-planner-export-YYYY-MM-DD.csv</code>. Estimation columns export both
 <em>Current</em> and <em>Draft</em> values. Which columns are included is controlled per user via the Columns
@@ -577,8 +662,8 @@ menu (§8). Exports are hardened against spreadsheet formula injection (cells st
 <code>+</code>, <code>-</code>, <code>@</code> are neutralized). The button is disabled while pages are still loading, so an
 export is always full-scope.</p>
 <hr>
-<h2>13. Licensing</h2>
-<table>
+<h2 id="13-licensing">13. Licensing<a class="anchor" href="#13-licensing" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th style="text-align:left">State</th>
@@ -599,7 +684,7 @@ export is always full-scope.</p>
 <td style="text-align:left">Banner shown; Pro features locked. Estimating, drafts, shared drafts, Sprint Preview and totals keep working — your drafts are never lost</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Pro features are: publishing to Jira (and retrying failed publishes), CSV export, the per-assignee
 workload view, estimation history, and auto-calculated target velocity.</p>
 <p>Locked Pro features show an upgrade dialog explaining which feature needs a license — including
@@ -610,7 +695,7 @@ security boundary. <strong>CSV export and the workload view are UI-gated only</s
 computed in your browser from issues the app has already loaded for you: there is no separate
 server call to withhold, and the underlying data is issue data you can already see in Jira.</p>
 <hr>
-<h2>14. Data, privacy &amp; GDPR</h2>
+<h2 id="14-data-privacy--gdpr">14. Data, privacy &amp; GDPR<a class="anchor" href="#14-data-privacy--gdpr" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>Drafts, preferences, and publish records live in <strong>Atlassian Forge storage inside your Jira
 site</strong> — no external servers, no data egress (see <a href="/privacy/">PRIVACY.md</a>). Drafts <em>and</em>
@@ -624,8 +709,8 @@ automatically; their attribution on shared/published records is anonymized. User
 anonymization in Jira triggers the same reference cleanup.</li>
 </ul>
 <hr>
-<h2>15. Troubleshooting</h2>
-<table>
+<h2 id="15-troubleshooting">15. Troubleshooting<a class="anchor" href="#15-troubleshooting" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th style="text-align:left">Symptom</th>
@@ -678,9 +763,9 @@ anonymization in Jira triggers the same reference cleanup.</li>
 <td style="text-align:left">No active license — publishing is a Pro feature. A <em>trial</em> publishes normally; if you’re on a trial and still see this, the license state didn’t reach the app — reload</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
-<h2>16. Getting help</h2>
+<h2 id="16-getting-help">16. Getting help<a class="anchor" href="#16-getting-help" aria-label="Link to this section">#</a></h2>
 <p>Write to <strong>support@dsplugins.dev</strong>. To get an answer in one round, include:</p>
 <ul>
 <li>what you did, what you expected, and what happened instead — a screenshot helps most;</li>
@@ -693,14 +778,50 @@ description of the problem is almost always enough. Support is provided on a rea
 basis (see the <a href="/terms/">terms of use</a>); support hours and the first-reply target are on the
 <a href="https://dsplugins.dev/support/">support page</a>.</p>
 
+        <p class="to-top"><a href="#main">Back to top ↑</a></p>
+      </article>
+    </div>
   </main>
   <footer class="site">
-    <p>&copy; 2026 dsplugins &middot; <a href="/privacy/">Privacy</a> &middot;
-       <a href="/terms/">Terms</a> &middot;
-       <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a></p>
-    <p class="fineprint">Scope Planner is a Jira Cloud app built on Atlassian Forge. Jira and
-       Atlassian are trademarks of Atlassian Pty Ltd, used here only to identify the platform the
-       app runs on.</p>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="/">
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="19" fill="#FBBF24" opacity=".2"/>
+        <g fill="#FBBF24"><circle cx="32" cy="32" r="11"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(0 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(45 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(90 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(135 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(180 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(225 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(270 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(315 32 32)"/></g>
+      </svg>
+            <span>DSPlugins</span>
+          </a>
+          <p>Focused apps for Jira Cloud that keep your data where it already lives. Built on
+             Atlassian Forge — no external servers, no data egress, no tracking.</p>
+        </div>
+        <div>
+          <h2>Product</h2>
+          <a href="/">Scope Planner</a>
+          <a href="/guide/">User guide</a>
+          <a href="/#pricing">Free and Pro</a>
+        </div>
+        <div>
+          <h2>Help</h2>
+          <a href="/support/">Support</a>
+          <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+        </div>
+        <div>
+          <h2>Legal</h2>
+          <a href="/privacy/">Privacy policy</a>
+          <a href="/terms/">Terms of use</a>
+        </div>
+      </div>
+      <div class="foot-base">
+        <p>&copy; 2026 DSPlugins &middot; This site sets no cookies and loads nothing from
+           anywhere else.</p>
+        <p class="fineprint">Scope Planner is a Jira Cloud app built on Atlassian Forge. Jira and
+           Atlassian are trademarks of Atlassian Pty Ltd, used here only to identify the platform the
+           app runs on.</p>
+      </div>
+    </div>
   </footer>
 </body>
 </html>
