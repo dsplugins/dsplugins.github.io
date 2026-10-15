@@ -82,9 +82,26 @@ claim a shipped feature, named as on screen.
 `badge-pro`. It must match `TERMS.md` §2 and what the app actually gates server-side. Getting this
 wrong tells buyers a paid feature is free; it happened once already and was caught before listing.
 
-The product pictures on the landing page are **drawn in HTML/CSS**, not screenshots. The listing
-screenshots show the demo teammates' photo avatars, and the app repo deliberately keeps those out of
-git (its `.gitignore` explains why); this repo is public, so the same applies with more force.
+## Screenshots
+
+The hero's product picture is drawn in HTML/CSS. Everything below it — the three feature rows and
+the *See it in Jira* gallery — is **real screenshots** in `assets/static/shots/`, cut by
+`shots.mjs` from the app repo's raw listing captures (`scripts/listing-assets/.work/raw/`, using
+the regions in its `specs.json`), without the listing's framing:
+
+```bash
+node shots.mjs /path/to/scope-planner   # → assets/static/shots/*.webp (lossless, 2×)
+npm run build
+```
+
+Re-run after the listing is re-captured. The gallery's captions are `listing-copy.md` §3, verbatim.
+
+**These captures show the demo teammates' avatars — Unsplash portraits of real people** (the app
+repo's `docs/MARKETPLACE.md` §6a has their provenance). The app repo keeps them out of its own git
+on purpose; publishing them here, in a public repo, was **the owner's decision on 2026-10-16**:
+the Unsplash License covers the use, the faces render at ~24 px, and the same images are public in
+the Marketplace listing anyway. If that changes, swapping the avatars for generated portraits and
+re-capturing (§6a, option 3) cleans the listing and this site together.
 
 ## How the build works
 

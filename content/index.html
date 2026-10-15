@@ -6,9 +6,10 @@
       free here and refused after install is the worst review a Marketplace app can get.
 
       Every claim on this page is a shipped feature, worded as in the app repo's
-      docs/branding/listing-copy.md, USER_GUIDE.md and PRIVACY.md. The product pictures are drawn
-      in HTML and CSS from the real screens — no screenshots, because those carry the demo
-      teammates' photo avatars (see the app repo's .gitignore).
+      docs/branding/listing-copy.md, USER_GUIDE.md and PRIVACY.md. The hero's product picture is
+      drawn in HTML and CSS; everything below it is a real screenshot (assets/static/shots/, cut
+      from the app repo's listing captures by shots.mjs — see README "Screenshots"). Captions are
+      listing-copy.md §3, verbatim.
     -->
     <section class="hero">
       <div class="wrap hero-grid">
@@ -146,27 +147,10 @@
               <li>Totals update as you type and break down by epic, assignee, label or type.</li>
             </ul>
           </div>
-          <div class="feature-art" aria-hidden="true">
-            <div class="card card-stack">
-              <p class="card-label">Story Points scale</p>
-              <div class="scales">
-                <span class="on">Fibonacci</span><span>Modified Fibonacci</span><span>Powers of 2</span><span>Linear</span><span>T-shirt</span>
-              </div>
-              <div class="picker picker-static"><i>0</i><i>1</i><i>2</i><i>3</i><i class="on">5</i><i>8</i><i>13</i><i>21</i></div>
-            </div>
-            <div class="card card-stack bulk">
-              <p class="card-label"><b>3</b> rows selected</p>
-              <div class="bulk-row">
-                <span class="bulk-field">🎯 Story Points</span><span class="bulk-input">5</span><span class="app-btn app-btn-go">Apply</span>
-              </div>
-            </div>
-            <div class="card card-stack">
-              <p class="card-label">Breakdown by epic</p>
-              <div class="bd"><span>Wallet payments</span><span class="wl-bar"><i style="--w:88%"></i></span><b>34</b></div>
-              <div class="bd"><span>Checkout</span><span class="wl-bar"><i style="--w:62%"></i></span><b>24</b></div>
-              <div class="bd"><span>Merchant onboarding</span><span class="wl-bar"><i style="--w:47%"></i></span><b>18</b></div>
-            </div>
-          </div>
+          <figure class="feature-art">
+            <img src="/assets/shots/highlight-1-whole-sprint.webp" width="1120" height="765" loading="lazy" decoding="async"
+                 alt="Scope Planner showing a sprint of 22 issues in one table, with story point, original and remaining estimates per row, live totals above, and the story point scale open on one row.">
+          </figure>
         </div>
 
         <div class="feature feature-flip">
@@ -185,25 +169,10 @@
                 the failures.</li>
             </ul>
           </div>
-          <div class="feature-art" aria-hidden="true">
-            <div class="card preview">
-              <div class="preview-head">
-                <b>🚀 Sprint Preview</b>
-                <span class="app-btn app-btn-go">✓ Apply Estimates to Jira</span>
-              </div>
-              <div class="preview-filters">
-                <span class="chip chip-ok">Changed (2)</span><span class="chip chip-ok">New (6)</span><span class="chip">Unchanged (14)</span>
-              </div>
-              <div class="ptable">
-                <div class="pr ph"><span></span><span>Issue</span><span>My draft</span><span>In Jira</span><span>Effect</span></div>
-                <div class="pr"><span class="tick">✓</span><span class="key">PAY-385</span><span class="v">5</span><span class="v v-empty">—</span><span class="effect effect-add">+ Adds</span></div>
-                <div class="pr"><span class="tick">✓</span><span class="key">PAY-388</span><span class="v">3</span><span class="v v-empty">—</span><span class="effect effect-add">+ Adds</span></div>
-                <div class="pr pr-hl"><span class="tick">✓</span><span class="key">PAY-395</span><span class="v">3</span><span class="v">5</span><span class="effect effect-over">⇄ Overwrites</span></div>
-                <div class="pr"><span class="tick">✓</span><span class="key">PAY-397</span><span class="v">3</span><span class="v v-empty">—</span><span class="effect effect-add">+ Adds</span></div>
-                <div class="pr pr-off"><span class="tick tick-off"></span><span class="key">PAY-404</span><span class="v">5</span><span class="v">3</span><span class="v v-empty">—</span></div>
-              </div>
-            </div>
-          </div>
+          <figure class="feature-art">
+            <img src="/assets/shots/highlight-2-review-before-jira.webp" width="1120" height="650" loading="lazy" decoding="async"
+                 alt="Sprint Preview: each issue with the draft value, the value currently in Jira, and what Jira will hold after applying, marked Adds to Jira or Overwrites Jira.">
+          </figure>
         </div>
 
         <div class="feature">
@@ -221,21 +190,160 @@
               <li>Export the table to CSV with the columns you choose.</li>
             </ul>
           </div>
-          <div class="feature-art" aria-hidden="true">
-            <div class="card workload">
-              <div class="velocity">
-                <div><span class="card-label">Story Points</span><b class="over">90</b></div>
-                <div><span class="card-label">Target velocity</span><b>83.4</b></div>
-                <div><span class="card-label">Estimated</span><b>20 / 22</b></div>
-              </div>
-              <p class="card-label">SP per assignee — ⚠ marks anyone above 1.5× the team average</p>
-              <div class="wl wl-lg"><span class="av av1">MR</span><span>Maya Rodrigues</span><span class="wl-bar"><i class="hot" style="--w:100%"></i></span><b class="warn">⚠ 34</b></div>
-              <div class="wl wl-lg"><span class="av av2">TO</span><span>Tom Okafor</span><span class="wl-bar"><i style="--w:59%"></i></span><b>20</b></div>
-              <div class="wl wl-lg"><span class="av av4">LA</span><span>Lars Andersen</span><span class="wl-bar"><i style="--w:47%"></i></span><b>16</b></div>
-              <div class="wl wl-lg"><span class="av av3">PR</span><span>Priya Raghavan</span><span class="wl-bar"><i style="--w:41%"></i></span><b>14</b></div>
-            </div>
-          </div>
+          <figure class="feature-art">
+            <img src="/assets/shots/highlight-3-spot-overload.webp" width="1120" height="560" loading="lazy" decoding="async"
+                 alt="The totals panel with the Workload tab open: story points per assignee, with the most loaded teammate flagged above 1.5 times the team average.">
+          </figure>
         </div>
+      </div>
+    </section>
+
+    <section id="screenshots" class="section">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Screenshots</p>
+          <h2>See it in Jira</h2>
+          <p>Real screens from the app, on a demo sprint. Select one to see it full size.</p>
+        </header>
+        <ul class="shots">
+          <li id="g-1b">
+            <a class="shot-card" href="#view-1b">
+              <span class="shot-frame"><img src="/assets/shots/screenshot-1b-scales.webp" width="480" height="470" loading="lazy" decoding="async"
+                 alt=""></span>
+              <b>Use the scale your team knows</b>
+              <span>Pick the scale your team already uses: Fibonacci, Modified Fibonacci, Powers of 2, Linear or T-shirt sizes. Values snap to the scale, so nobody types 7.</span>
+            </a>
+          </li>
+          <li id="g-1c">
+            <a class="shot-card" href="#view-1c">
+              <span class="shot-frame"><img src="/assets/shots/screenshot-1c-bulk.webp" width="1120" height="560" loading="lazy" decoding="async"
+                 alt=""></span>
+              <b>Apply one value to many issues</b>
+              <span>Select several issues and apply one value to all of them, or clear a batch, without leaving the table.</span>
+            </a>
+          </li>
+          <li id="g-1d">
+            <a class="shot-card" href="#view-1d">
+              <span class="shot-frame"><img src="/assets/shots/screenshot-1d-breakdown.webp" width="1120" height="560" loading="lazy" decoding="async"
+                 alt=""></span>
+              <b>Totals by assignee, epic or label</b>
+              <span>Totals update as you type and break down by epic, assignee, label or type, so you see where the sprint is heavy before you commit to it.</span>
+            </a>
+          </li>
+          <li id="g-2c">
+            <a class="shot-card" href="#view-2c">
+              <span class="shot-frame"><img src="/assets/shots/screenshot-2c-team-draft.webp" width="1120" height="355" loading="lazy" decoding="async"
+                 alt=""></span>
+              <b>Share once. One team draft</b>
+              <span>Share once and your draft becomes the team draft. Teammates merge their numbers into it through a row-by-row review, so nobody overwrites anyone by accident.</span>
+            </a>
+          </li>
+          <li id="g-2d">
+            <a class="shot-card" href="#view-2d">
+              <span class="shot-frame"><img src="/assets/shots/screenshot-2d-publish.webp" width="1120" height="560" loading="lazy" decoding="async"
+                 alt=""></span>
+              <b>Publish in one pass <span class="badge badge-pro">Pro</span></b>
+              <span>Publish writes to your Jira estimate fields with your own Jira permissions. If an issue fails, the rest still land, the reason is shown, and Retry repeats only the failures.</span>
+            </a>
+          </li>
+          <li id="g-3b">
+            <a class="shot-card" href="#view-3b">
+              <span class="shot-frame"><img src="/assets/shots/screenshot-3b-velocity.webp" width="480" height="200" loading="lazy" decoding="async"
+                 alt=""></span>
+              <b>Velocity from your last five sprints <span class="badge badge-pro">Pro</span></b>
+              <span>Target velocity is calculated from the average of the board&#39;s last five completed sprints. No number to maintain by hand.</span>
+            </a>
+          </li>
+          <li id="g-3c">
+            <a class="shot-card" href="#view-3c">
+              <span class="shot-frame"><img src="/assets/shots/screenshot-3c-history.webp" width="660" height="380" loading="lazy" decoding="async"
+                 alt=""></span>
+              <b>See how every estimate changed <span class="badge badge-pro">Pro</span></b>
+              <span>Estimation history for any issue, read from the Jira changelog: what the estimate was, what it became, who changed it and when.</span>
+            </a>
+          </li>
+          <li id="g-3d">
+            <a class="shot-card" href="#view-3d">
+              <span class="shot-frame"><img src="/assets/shots/screenshot-3d-csv-columns.webp" width="450" height="420" loading="lazy" decoding="async"
+                 alt=""></span>
+              <b>Export exactly the columns you need <span class="badge badge-pro">Pro</span></b>
+              <span>Export the table to CSV with the columns you choose, safe to open in Excel or Google Sheets.</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- Full-size views: CSS :target, no script. Closing returns to the card it came from. -->
+      <div class="lightbox" id="view-1b" role="dialog" aria-label="Use the scale your team knows">
+        <a class="lb-backdrop" href="#g-1b" tabindex="-1" aria-hidden="true"></a>
+        <figure>
+          <img src="/assets/shots/screenshot-1b-scales.webp" width="480" height="470" loading="lazy" decoding="async"
+                 alt="Pick the scale your team already uses: Fibonacci, Modified Fibonacci, Powers of 2, Linear or T-shirt sizes. Values snap to the scale, so nobody types 7.">
+          <figcaption><b>Use the scale your team knows</b> Pick the scale your team already uses: Fibonacci, Modified Fibonacci, Powers of 2, Linear or T-shirt sizes. Values snap to the scale, so nobody types 7.</figcaption>
+          <a class="lb-close" href="#g-1b" aria-label="Close">×</a>
+        </figure>
+      </div>
+      <div class="lightbox" id="view-1c" role="dialog" aria-label="Apply one value to many issues">
+        <a class="lb-backdrop" href="#g-1c" tabindex="-1" aria-hidden="true"></a>
+        <figure>
+          <img src="/assets/shots/screenshot-1c-bulk.webp" width="1120" height="560" loading="lazy" decoding="async"
+                 alt="Select several issues and apply one value to all of them, or clear a batch, without leaving the table.">
+          <figcaption><b>Apply one value to many issues</b> Select several issues and apply one value to all of them, or clear a batch, without leaving the table.</figcaption>
+          <a class="lb-close" href="#g-1c" aria-label="Close">×</a>
+        </figure>
+      </div>
+      <div class="lightbox" id="view-1d" role="dialog" aria-label="Totals by assignee, epic or label">
+        <a class="lb-backdrop" href="#g-1d" tabindex="-1" aria-hidden="true"></a>
+        <figure>
+          <img src="/assets/shots/screenshot-1d-breakdown.webp" width="1120" height="560" loading="lazy" decoding="async"
+                 alt="Totals update as you type and break down by epic, assignee, label or type, so you see where the sprint is heavy before you commit to it.">
+          <figcaption><b>Totals by assignee, epic or label</b> Totals update as you type and break down by epic, assignee, label or type, so you see where the sprint is heavy before you commit to it.</figcaption>
+          <a class="lb-close" href="#g-1d" aria-label="Close">×</a>
+        </figure>
+      </div>
+      <div class="lightbox" id="view-2c" role="dialog" aria-label="Share once. One team draft">
+        <a class="lb-backdrop" href="#g-2c" tabindex="-1" aria-hidden="true"></a>
+        <figure>
+          <img src="/assets/shots/screenshot-2c-team-draft.webp" width="1120" height="355" loading="lazy" decoding="async"
+                 alt="Share once and your draft becomes the team draft. Teammates merge their numbers into it through a row-by-row review, so nobody overwrites anyone by accident.">
+          <figcaption><b>Share once. One team draft</b> Share once and your draft becomes the team draft. Teammates merge their numbers into it through a row-by-row review, so nobody overwrites anyone by accident.</figcaption>
+          <a class="lb-close" href="#g-2c" aria-label="Close">×</a>
+        </figure>
+      </div>
+      <div class="lightbox" id="view-2d" role="dialog" aria-label="Publish in one pass">
+        <a class="lb-backdrop" href="#g-2d" tabindex="-1" aria-hidden="true"></a>
+        <figure>
+          <img src="/assets/shots/screenshot-2d-publish.webp" width="1120" height="560" loading="lazy" decoding="async"
+                 alt="Publish writes to your Jira estimate fields with your own Jira permissions. If an issue fails, the rest still land, the reason is shown, and Retry repeats only the failures.">
+          <figcaption><b>Publish in one pass <span class="badge badge-pro">Pro</span></b> Publish writes to your Jira estimate fields with your own Jira permissions. If an issue fails, the rest still land, the reason is shown, and Retry repeats only the failures.</figcaption>
+          <a class="lb-close" href="#g-2d" aria-label="Close">×</a>
+        </figure>
+      </div>
+      <div class="lightbox" id="view-3b" role="dialog" aria-label="Velocity from your last five sprints">
+        <a class="lb-backdrop" href="#g-3b" tabindex="-1" aria-hidden="true"></a>
+        <figure>
+          <img src="/assets/shots/screenshot-3b-velocity.webp" width="480" height="200" loading="lazy" decoding="async"
+                 alt="Target velocity is calculated from the average of the board&#39;s last five completed sprints. No number to maintain by hand.">
+          <figcaption><b>Velocity from your last five sprints <span class="badge badge-pro">Pro</span></b> Target velocity is calculated from the average of the board&#39;s last five completed sprints. No number to maintain by hand.</figcaption>
+          <a class="lb-close" href="#g-3b" aria-label="Close">×</a>
+        </figure>
+      </div>
+      <div class="lightbox" id="view-3c" role="dialog" aria-label="See how every estimate changed">
+        <a class="lb-backdrop" href="#g-3c" tabindex="-1" aria-hidden="true"></a>
+        <figure>
+          <img src="/assets/shots/screenshot-3c-history.webp" width="660" height="380" loading="lazy" decoding="async"
+                 alt="Estimation history for any issue, read from the Jira changelog: what the estimate was, what it became, who changed it and when.">
+          <figcaption><b>See how every estimate changed <span class="badge badge-pro">Pro</span></b> Estimation history for any issue, read from the Jira changelog: what the estimate was, what it became, who changed it and when.</figcaption>
+          <a class="lb-close" href="#g-3c" aria-label="Close">×</a>
+        </figure>
+      </div>
+      <div class="lightbox" id="view-3d" role="dialog" aria-label="Export exactly the columns you need">
+        <a class="lb-backdrop" href="#g-3d" tabindex="-1" aria-hidden="true"></a>
+        <figure>
+          <img src="/assets/shots/screenshot-3d-csv-columns.webp" width="450" height="420" loading="lazy" decoding="async"
+                 alt="Export the table to CSV with the columns you choose, safe to open in Excel or Google Sheets.">
+          <figcaption><b>Export exactly the columns you need <span class="badge badge-pro">Pro</span></b> Export the table to CSV with the columns you choose, safe to open in Excel or Google Sheets.</figcaption>
+          <a class="lb-close" href="#g-3d" aria-label="Close">×</a>
+        </figure>
       </div>
     </section>
 
