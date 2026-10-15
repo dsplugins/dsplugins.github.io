@@ -18,6 +18,7 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync, cpSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import MarkdownIt from 'markdown-it';
 
@@ -26,6 +27,15 @@ const CONTENT = join(ROOT, 'content');
 const ASSETS = join(ROOT, 'assets');
 const OUT = join(ROOT, 'public');
 const ORIGIN = 'https://dsplugins.dev';
+
+/**
+ * The stylesheet's URL carries a hash of its content. Pages serves everything with
+ * `max-age=600`, so after a deploy a returning browser fetched the new HTML but kept the cached
+ * old CSS for up to ten minutes — new markup with no styles for it (seen 2026-10-16: the demo
+ * link rendered as a bare indigo link on the dark hero). A new hash is a new URL, never cached.
+ */
+const CSS = readFileSync(join(ASSETS, 'style.css'));
+const CSS_HREF = `/style.css?v=${createHash('sha256').update(CSS).digest('hex').slice(0, 10)}`;
 
 /** Source filename → published path. Extend when a page is added. */
 const LINK_MAP = {
@@ -206,7 +216,7 @@ ${canonical ? `<link rel="canonical" href="${canonical}">\n` : ''}<meta property
 ${canonical ? `<meta property="og:url" content="${canonical}">\n` : ''}<meta property="og:image" content="${ORIGIN}/assets/og-banner.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="${CSS_HREF}">
 </head>
 <body${here === '.' ? ' class="home"' : ''}>
   <a class="skip" href="#main">Skip to content</a>
@@ -358,7 +368,7 @@ if (unmapped.length) {
   process.exit(1);
 }
 
-writeFileSync(join(OUT, 'style.css'), readFileSync(join(ASSETS, 'style.css')));
+writeFileSync(join(OUT, 'style.css'), CSS);
 cpSync(join(ASSETS, 'static'), join(OUT, 'assets'), { recursive: true });
 // Pages serves 404.html for unknown paths, at any depth — hence absolute asset URLs everywhere.
 writeFileSync(
