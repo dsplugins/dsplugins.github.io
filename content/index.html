@@ -1,0 +1,403 @@
+    <!--
+      The landing page. Hand-written HTML: build.mjs wraps it in the site layout as is.
+
+      ⚠️ The "Free and Pro" section and the Pro badges state the free/Pro split. They must match
+      TERMS.md §2 in the app repo and the assertProLicensed call sites there — a feature shown as
+      free here and refused after install is the worst review a Marketplace app can get.
+
+      Every claim on this page is a shipped feature, worded as in the app repo's
+      docs/branding/listing-copy.md, USER_GUIDE.md and PRIVACY.md. The product pictures are drawn
+      in HTML and CSS from the real screens — no screenshots, because those carry the demo
+      teammates' photo avatars (see the app repo's .gitignore).
+    -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="pill"><span class="pill-dot"></span>Jira Cloud app &middot; built on Atlassian Forge</p>
+          <h1>Estimate the whole sprint. <span class="grad">Publish once.</span></h1>
+          <p class="lede">Scope Planner puts every issue in one editable table, keeps the numbers in
+            a draft until the team agrees, and shows exactly what will change before anything
+            reaches Jira.</p>
+          <div class="actions">
+            <a class="btn btn-light" href="#how">See how it works</a>
+            <a class="btn btn-glass" href="/guide/">Read the user guide</a>
+          </div>
+          <ul class="assurances">
+            <li>No external servers</li>
+            <li>No data egress</li>
+            <li>No tracking</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" role="img"
+             aria-label="Illustration of Scope Planner: a sprint's issues in one table with story point and time estimates, a story point picker open on one row, a Sprint Preview card and a per-assignee workload card.">
+          <div class="app" aria-hidden="true">
+            <div class="app-top">
+              <span class="app-name"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#4F46E5"/><rect x="11" y="16" width="26" height="9" rx="4.5" fill="#fff" opacity=".45"/><rect x="43" y="16" width="10" height="9" rx="3" fill="#fff"/><rect x="11" y="29" width="26" height="9" rx="4.5" fill="#fff" opacity=".45"/><rect x="43" y="29" width="10" height="9" rx="3" fill="#fff"/><rect x="11" y="42" width="26" height="9" rx="4.5" fill="#fff" opacity=".45"/><rect x="43" y="42" width="10" height="9" rx="3" fill="#fff"/></svg>Scope Planner</span>
+              <span class="app-jql"><b>JQL</b> project = PAY AND sprint in openSprints()</span>
+              <span class="app-btn app-btn-go">🚀 Sprint Preview</span>
+            </div>
+            <div class="app-status">
+              <span class="chip chip-indigo">● Private Draft</span>
+              <span class="chip chip-ok hide-sm">✓ saved just now</span>
+              <span class="app-btn app-btn-share">↑ Share with Team</span>
+            </div>
+            <div class="app-totals">
+              <span>22 issues</span>
+              <span>🎯 Story Points <b>76</b> / 83.4</span>
+              <span class="hide-sm">⏱ Original <b>8w</b></span>
+              <span class="hide-sm">⏳ Remaining <b>4w 1d</b></span>
+            </div>
+            <div class="app-table">
+              <div class="tr th"><span>Issue</span><span>Summary</span><span></span><span>SP</span><span>Orig.</span><span>Rem.</span></div>
+              <div class="tr"><span class="key">PAY-384</span><span class="sum">Apple Pay support at checkout</span><span class="av av1">MR</span><span class="v">8</span><span class="v">1w</span><span class="v">2d 4h</span></div>
+              <div class="tr"><span class="key">PAY-385</span><span class="sum">Support SEPA direct debit</span><span class="av av2">TO</span><span class="v v-draft">5</span><span class="v v-empty">—</span><span class="v v-empty">—</span></div>
+              <div class="tr"><span class="key">PAY-387</span><span class="sum">Wallet payment method selector</span><span class="av av3">PR</span><span class="v">5</span><span class="v">3d</span><span class="v v-empty">—</span></div>
+              <div class="tr tr-active"><span class="key">PAY-391</span><span class="sum">Webhook signing key rotation</span><span class="av av4">LA</span><span class="v v-edit"><i class="caret"></i></span><span class="v v-empty">—</span><span class="v v-empty">—</span>
+                <span class="picker"><i>1</i><i>2</i><i>3</i><i class="on">5</i><i>8</i><i>13</i><i>20</i></span>
+              </div>
+              <div class="tr"><span class="key">PAY-392</span><span class="sum">Validate merchant certificates</span><span class="av av2">TO</span><span class="v">3</span><span class="v">1d 4h</span><span class="v v-empty">—</span></div>
+              <div class="tr"><span class="key">PAY-393</span><span class="sum">Subscription proration</span><span class="av av1">MR</span><span class="v">8</span><span class="v">1w</span><span class="v">2d 4h</span></div>
+            </div>
+          </div>
+
+          <div class="float float-preview" aria-hidden="true">
+            <p class="float-title">🚀 Sprint Preview <span class="flow">My Draft → Jira</span></p>
+            <div class="fp-row"><span class="key">PAY-385</span><span class="fp-val">— → <b>5</b></span><span class="effect effect-add">+ Adds to Jira</span></div>
+            <div class="fp-row"><span class="key">PAY-395</span><span class="fp-val">5 → <b>3</b></span><span class="effect effect-over">⇄ Overwrites Jira</span></div>
+          </div>
+
+          <div class="float float-load" aria-hidden="true">
+            <p class="float-title">Workload <span class="badge badge-pro">Pro</span></p>
+            <div class="wl"><span>Maya R.</span><span class="wl-bar"><i class="hot" style="--w:100%"></i></span><b class="warn">⚠ 34</b></div>
+            <div class="wl"><span>Tom O.</span><span class="wl-bar"><i style="--w:59%"></i></span><b>20</b></div>
+            <div class="wl"><span>Lars A.</span><span class="wl-bar"><i style="--w:47%"></i></span><b>16</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-band" aria-label="At a glance">
+      <div class="wrap stats">
+        <div><b>1</b><span>table for the whole sprint, a backlog or any JQL</span></div>
+        <div><b>5</b><span>estimation scales, from Fibonacci to T-shirt sizes</span></div>
+        <div><b>0</b><span>writes to Jira until you review and publish</span></div>
+        <div><b>0</b><span>external servers — it runs entirely on Atlassian</span></div>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">How it works</p>
+          <h2>From scope to Jira in four steps</h2>
+          <p>Nothing touches your Jira issues until the last one — and you see exactly what it will
+            write before you take it.</p>
+        </header>
+        <ol class="steps">
+          <li>
+            <span class="step-n">1</span>
+            <h3>Choose a scope</h3>
+            <p>A board’s sprint or backlog, a project, or any JQL you write.</p>
+          </li>
+          <li>
+            <span class="step-n">2</span>
+            <h3>Estimate in one table</h3>
+            <p>Story points on a numeric or T-shirt scale, original and remaining time. Inline
+              edits, bulk fill and running totals as you go.</p>
+          </li>
+          <li>
+            <span class="step-n">3</span>
+            <h3>Draft, then share</h3>
+            <p>Your work auto-saves to a private draft. Share it and it becomes the team draft;
+              teammates merge their numbers in through a row-by-row review.</p>
+          </li>
+          <li>
+            <span class="step-n">4</span>
+            <h3>Review, then publish</h3>
+            <p>Sprint Preview puts your value next to Jira’s, issue by issue. Publishing
+              <span class="badge badge-pro">Pro</span> writes them in one pass, with your own Jira
+              permissions.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="features" class="section section-soft">
+      <div class="wrap">
+        <div class="feature">
+          <div class="feature-copy">
+            <p class="eyebrow">Estimate</p>
+            <h2>The whole sprint on one screen</h2>
+            <p>Stop opening issues one at a time. Load a sprint, a backlog or any JQL into a
+              spreadsheet-style table and estimate every issue right where you see it.</p>
+            <ul class="checks">
+              <li>Story points, original and remaining estimate — inline, or one value applied to a
+                whole selection at once.</li>
+              <li>Five scales: Fibonacci, Modified Fibonacci, Powers of 2, Linear and T-shirt sizes.
+                Values snap to the scale, so nobody types 7.</li>
+              <li>Totals update as you type and break down by epic, assignee, label or type.</li>
+            </ul>
+          </div>
+          <div class="feature-art" aria-hidden="true">
+            <div class="card card-stack">
+              <p class="card-label">Story Points scale</p>
+              <div class="scales">
+                <span class="on">Fibonacci</span><span>Modified Fibonacci</span><span>Powers of 2</span><span>Linear</span><span>T-shirt</span>
+              </div>
+              <div class="picker picker-static"><i>0</i><i>1</i><i>2</i><i>3</i><i class="on">5</i><i>8</i><i>13</i><i>21</i></div>
+            </div>
+            <div class="card card-stack bulk">
+              <p class="card-label"><b>3</b> rows selected</p>
+              <div class="bulk-row">
+                <span class="bulk-field">🎯 Story Points</span><span class="bulk-input">5</span><span class="app-btn app-btn-go">Apply</span>
+              </div>
+            </div>
+            <div class="card card-stack">
+              <p class="card-label">Breakdown by epic</p>
+              <div class="bd"><span>Wallet payments</span><span class="wl-bar"><i style="--w:88%"></i></span><b>34</b></div>
+              <div class="bd"><span>Checkout</span><span class="wl-bar"><i style="--w:62%"></i></span><b>24</b></div>
+              <div class="bd"><span>Merchant onboarding</span><span class="wl-bar"><i style="--w:47%"></i></span><b>18</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature feature-flip">
+          <div class="feature-copy">
+            <p class="eyebrow">Review</p>
+            <h2>Every change, before Jira sees it</h2>
+            <p>Estimates stay in a draft until you decide. Sprint Preview lists exactly what will
+              change, issue by issue: your value next to what Jira holds now.</p>
+            <ul class="checks">
+              <li>Every edit lands in a private draft only you can see.</li>
+              <li>Share it and it becomes the team draft. Teammates merge their numbers in through a
+                row-by-row review, so nobody overwrites anyone by accident.</li>
+              <li>Untick anything you want to leave alone, then publish
+                <span class="badge badge-pro">Pro</span> — with your own Jira permissions.</li>
+              <li>If an issue fails, the rest still land, the reason is shown, and Retry repeats only
+                the failures.</li>
+            </ul>
+          </div>
+          <div class="feature-art" aria-hidden="true">
+            <div class="card preview">
+              <div class="preview-head">
+                <b>🚀 Sprint Preview</b>
+                <span class="app-btn app-btn-go">✓ Apply Estimates to Jira</span>
+              </div>
+              <div class="preview-filters">
+                <span class="chip chip-ok">Changed (2)</span><span class="chip chip-ok">New (6)</span><span class="chip">Unchanged (14)</span>
+              </div>
+              <div class="ptable">
+                <div class="pr ph"><span></span><span>Issue</span><span>My draft</span><span>In Jira</span><span>Effect</span></div>
+                <div class="pr"><span class="tick">✓</span><span class="key">PAY-385</span><span class="v">5</span><span class="v v-empty">—</span><span class="effect effect-add">+ Adds</span></div>
+                <div class="pr"><span class="tick">✓</span><span class="key">PAY-388</span><span class="v">3</span><span class="v v-empty">—</span><span class="effect effect-add">+ Adds</span></div>
+                <div class="pr pr-hl"><span class="tick">✓</span><span class="key">PAY-395</span><span class="v">3</span><span class="v">5</span><span class="effect effect-over">⇄ Overwrites</span></div>
+                <div class="pr"><span class="tick">✓</span><span class="key">PAY-397</span><span class="v">3</span><span class="v v-empty">—</span><span class="effect effect-add">+ Adds</span></div>
+                <div class="pr pr-off"><span class="tick tick-off"></span><span class="key">PAY-404</span><span class="v">5</span><span class="v">3</span><span class="v v-empty">—</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-copy">
+            <p class="eyebrow">Plan <span class="badge badge-pro">Pro</span></p>
+            <h2>Spot overload before the sprint starts</h2>
+            <p>See who carries too much — and whether the sprint fits the velocity of your last five
+              sprints — while there is still time to rebalance.</p>
+            <ul class="checks">
+              <li>Per-assignee workload flags anyone above 1.5× the team average.</li>
+              <li>Target velocity is calculated from the board’s last five completed sprints. No
+                number to maintain by hand.</li>
+              <li>Estimation history for any issue, read from the Jira changelog: what it was, what it
+                became, who changed it and when.</li>
+              <li>Export the table to CSV with the columns you choose.</li>
+            </ul>
+          </div>
+          <div class="feature-art" aria-hidden="true">
+            <div class="card workload">
+              <div class="velocity">
+                <div><span class="card-label">Story Points</span><b class="over">90</b></div>
+                <div><span class="card-label">Target velocity</span><b>83.4</b></div>
+                <div><span class="card-label">Estimated</span><b>20 / 22</b></div>
+              </div>
+              <p class="card-label">SP per assignee — ⚠ marks anyone above 1.5× the team average</p>
+              <div class="wl wl-lg"><span class="av av1">MR</span><span>Maya Rodrigues</span><span class="wl-bar"><i class="hot" style="--w:100%"></i></span><b class="warn">⚠ 34</b></div>
+              <div class="wl wl-lg"><span class="av av2">TO</span><span>Tom Okafor</span><span class="wl-bar"><i style="--w:59%"></i></span><b>20</b></div>
+              <div class="wl wl-lg"><span class="av av4">LA</span><span>Lars Andersen</span><span class="wl-bar"><i style="--w:47%"></i></span><b>16</b></div>
+              <div class="wl wl-lg"><span class="av av3">PR</span><span>Priya Raghavan</span><span class="wl-bar"><i style="--w:41%"></i></span><b>14</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy" class="section">
+      <div class="wrap">
+        <div class="trust">
+          <header class="section-head">
+            <p class="eyebrow">Privacy by architecture</p>
+            <h2>Your data never leaves Atlassian</h2>
+            <p>Scope Planner runs entirely on Atlassian Forge. Its manifest declares no external
+              network permissions, so the platform itself blocks any outbound call — enforced by
+              Atlassian, not merely promised by us.</p>
+          </header>
+          <div class="trust-grid">
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
+              <h3>No servers of ours</h3>
+              <p>Drafts and preferences live in Forge hosted storage, inside your own Atlassian
+                site. We receive no copies of your data.</p>
+            </div>
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+              <h3>Your permissions, always</h3>
+              <p>Every Jira read and write runs as you, so the app can’t see or change anything you
+                couldn’t in Jira directly.</p>
+            </div>
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+              <h3>Account IDs only</h3>
+              <p>People are identified by Atlassian account ID; names are fetched live, never
+                stored. Private data is erased automatically when an account is deleted.</p>
+            </div>
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z"/><circle cx="12" cy="12" r="2.5"/><path d="M4 4l16 16"/></svg>
+              <h3>No tracking — here either</h3>
+              <p>No analytics, cookies or advertising in the app. This website sets no cookies and
+                loads nothing from anywhere else.</p>
+            </div>
+          </div>
+          <p class="trust-link"><a href="/privacy/">Read the privacy policy →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section section-soft">
+      <div class="wrap">
+        <header class="section-head center">
+          <p class="eyebrow">Free and Pro</p>
+          <h2>Estimate for free. Publish with Pro.</h2>
+          <p>Everyone on an installed site can estimate, keep drafts and preview the change. Pro
+            writes the agreed numbers into Jira and adds the planning views.</p>
+        </header>
+        <div class="plans">
+          <div class="plan">
+            <h3>Free</h3>
+            <p class="plan-sub">Included with the app</p>
+            <ul class="checks">
+              <li>The estimation table — inline and bulk editing, numeric and T-shirt scales, time
+                estimates</li>
+              <li>Private drafts and team-shared drafts</li>
+              <li>Totals, breakdown, and column visibility</li>
+              <li>Sprint Preview — see what a publish would change</li>
+            </ul>
+          </div>
+          <div class="plan plan-pro">
+            <h3>Pro</h3>
+            <p class="plan-sub">Subscription through the Atlassian Marketplace</p>
+            <p class="plan-plus">Everything in Free, plus:</p>
+            <ul class="checks">
+              <li><strong>Publishing estimates to Jira</strong> (and retrying a failed publish)</li>
+              <li>CSV export</li>
+              <li>Per-assignee workload with capacity warnings</li>
+              <li>Estimation history per issue</li>
+              <li>Auto-calculated target velocity from closed sprints</li>
+            </ul>
+          </div>
+        </div>
+        <p class="plans-note">Pro features are unlocked by a subscription or an active evaluation
+          obtained through the Atlassian Marketplace, which handles all billing. Without one you can
+          still estimate and keep drafts — you just cannot write the estimates into Jira. Your drafts
+          are never deleted by a licence change.</p>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="wrap faq-grid">
+        <header class="section-head">
+          <p class="eyebrow">Questions</p>
+          <h2>Asked before installing</h2>
+          <p>Not here? The <a href="/guide/">user guide</a> covers every feature, or
+            <a href="mailto:support@dsplugins.dev">write to us</a>.</p>
+        </header>
+        <div class="faq">
+          <details>
+            <summary>Does anything reach Jira while we estimate?</summary>
+            <p>No. Drafts live in the app’s own storage, not in your issues. Nothing is written to
+              Jira until someone reviews the change in Sprint Preview and publishes it.</p>
+          </details>
+          <details>
+            <summary>Can a teammate overwrite my numbers?</summary>
+            <p>Not by accident. Only your private draft is edited directly; changes reach the team
+              draft whole, through a review screen that shows row by row what will change.</p>
+          </details>
+          <details>
+            <summary>What works without a Pro subscription?</summary>
+            <p>The estimation table, private and team drafts, totals and Sprint Preview. You cannot
+              publish estimates into Jira — your drafts are kept, and publishing becomes available as
+              soon as a subscription or trial is active.</p>
+          </details>
+          <details>
+            <summary>What does a Jira admin need to set up?</summary>
+            <p>Once per site: which Jira fields hold your estimates. <strong>🔍 Detect Fields</strong>
+              scans your fields and suggests the mappings; the
+              <a href="/guide/#3-first-time-setup-jira-admins">user guide</a> walks through it.</p>
+          </details>
+          <details>
+            <summary>Where is our data stored?</summary>
+            <p>In Atlassian Forge hosted storage, inside your own Atlassian site. The developer
+              operates no infrastructure of its own and receives no copies of your data. Details are
+              in the <a href="/privacy/">privacy policy</a>.</p>
+          </details>
+          <details>
+            <summary>How do we get help?</summary>
+            <p>Email <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>. Every message is
+              answered by the people who build the app; we aim to reply within one business day.
+              Hours and what to include are on the <a href="/support/">support page</a>.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="wrap">
+        <div class="docs-grid">
+          <a class="doc-card" href="/guide/">
+            <span class="doc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2z"/><path d="M4 20a2 2 0 0 0 2 2h13v-4"/><path d="M9 8h6"/></svg></span>
+            <b>User guide</b>
+            <span>Setup, every feature, and troubleshooting.</span>
+          </a>
+          <a class="doc-card" href="/support/">
+            <span class="doc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span>
+            <b>Support</b>
+            <span>Hours, the first-reply target, and what to include.</span>
+          </a>
+          <a class="doc-card" href="/privacy/">
+            <span class="doc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+            <b>Privacy policy</b>
+            <span>What the app processes, and what it deliberately does not.</span>
+          </a>
+          <a class="doc-card" href="/terms/">
+            <span class="doc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span>
+            <b>Terms of use</b>
+            <span>Licensing, responsibilities, warranty and liability.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="wrap">
+        <div class="cta-inner">
+        <div>
+          <h2>Questions before you install?</h2>
+          <p>Write to us — every message is answered by the people who build Scope Planner.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-light" href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+          <a class="btn btn-glass" href="/support/">Support hours</a>
+        </div>
+        </div>
+      </div>
+    </section>

@@ -73,11 +73,18 @@ npm run build                         # renders content/ → public/
 git add -A && git commit -m "docs: sync policies from app repo"
 ```
 
-The landing page (`content/index.md`) has no upstream — edit it here.
+The landing page (`content/index.html`) has no upstream — edit it here. It is hand-written HTML,
+a body fragment the build wraps in the site layout, because its sections (hero, feature rows, plans,
+FAQ) do not fit Markdown. Its wording follows the app repo's `docs/branding/listing-copy.md`: every
+claim a shipped feature, named as on screen.
 
-⚠️ **`content/index.md` states the free/Pro feature split.** It must match `TERMS.md` §2 and what
-the app actually gates server-side. Getting this wrong tells buyers a paid feature is free; it
-happened once already and was caught before listing.
+⚠️ **`content/index.html` states the free/Pro feature split** — the *Free and Pro* section and every
+`badge-pro`. It must match `TERMS.md` §2 and what the app actually gates server-side. Getting this
+wrong tells buyers a paid feature is free; it happened once already and was caught before listing.
+
+The product pictures on the landing page are **drawn in HTML/CSS**, not screenshots. The listing
+screenshots show the demo teammates' photo avatars, and the app repo deliberately keeps those out of
+git (its `.gitignore` explains why); this repo is public, so the same applies with more force.
 
 ## How the build works
 
@@ -87,8 +94,19 @@ The `check:site` job re-renders and diffs, so committed output cannot drift from
 
 `build.mjs` rewrites every `.md` link through `LINK_MAP` (the sources link to each other by
 filename, and those filenames do not exist here) and **fails the build** on an unmapped one rather
-than shipping a dead link. It emits no external requests — no CDN, no web fonts, no analytics.
-The privacy policy promises no tracking, so the page saying so must not load a tracker.
+than shipping a dead link. It emits no external requests — no CDN, no web fonts, no analytics, no
+scripts. The privacy policy promises no tracking, so the page saying so must not load a tracker;
+the site footer says so too.
+
+The Markdown pages are rendered unchanged; the layout only adds GitHub-compatible heading ids with
+hover anchors, an *On this page* index built from the `##` headings (a sticky sidebar on wide
+screens, a collapsed `<details>` on narrow ones), and a framed scroll box around tables. A
+`_Last updated: …_` line directly under the title moves into the page header.
+
+`assets/style.css` is the whole design: colour tokens with a dark scheme, then components. Files in
+`assets/static/` are copied to `/assets/` — the favicon (the partner mark) and `og-banner.png`, the
+social-preview image (a copy of the app repo's `docs/branding/banner-1120x548.png`). Asset URLs are
+absolute, because Pages serves `404.html` at whatever depth the missing path was.
 
 ```bash
 npm install
