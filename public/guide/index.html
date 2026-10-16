@@ -109,6 +109,10 @@ free (Basic) features, the Pro features, and the one-time admin setup.</p>
 <hr>
 <h2 id="1-what-scope-planner-does">1. What Scope Planner does<a class="anchor" href="#1-what-scope-planner-does" aria-label="Link to this section">#</a></h2>
 <p>Scope Planner turns sprint estimation into a single-screen, spreadsheet-style workflow:</p>
+<figure class="doc-fig" id="figref-overview">
+  <a href="#fig-overview" aria-label="Open full size"><img src="/assets/guide/overview.webp" width="1185" height="455" loading="lazy" decoding="async" alt="Scope Planner inside Jira: a tab on the project, the whole sprint in one table."></a>
+  <figcaption>Scope Planner inside Jira: a tab on the project, the whole sprint in one table.</figcaption>
+</figure>
 <ol>
 <li><strong>Load a scope</strong> — a sprint, a backlog, or any JQL query.</li>
 <li><strong>Estimate</strong> — type or click values for Story Points, Original Estimate, and Remaining
@@ -280,6 +284,10 @@ cell can display any text.</p>
 standard workday: <strong>1d = 8h, 1w = 5d</strong>.</li>
 <li>The stepper steps by your chosen unit (15m / 1h / 1d).</li>
 </ul>
+<figure class="doc-fig" id="figref-time-cells">
+  <a href="#fig-time-cells" aria-label="Open full size"><img src="/assets/guide/time-cells.webp" width="445" height="230" loading="lazy" decoding="async" alt="⏱ Original and ⏳ Remaining: type a value, or step with + / − by your time unit (§10)."></a>
+  <figcaption>⏱ Original and ⏳ Remaining: type a value, or step with <b>+</b> / <b>−</b> by your time unit (§10).</figcaption>
+</figure>
 <h3 id="draft-values-vs-current-values">Draft values vs. current values<a class="anchor" href="#draft-values-vs-current-values" aria-label="Link to this section">#</a></h3>
 <p>A cell you typed shows <strong>your value</strong>; every other cell shows <strong>what Jira holds now</strong>. Your edits
 never change Jira until you publish.</p>
@@ -310,6 +318,10 @@ does exactly the same thing to every selected row.</p>
 would write. The highlight tracks the <em>value</em>, not the act of typing: set a cell back to the
 number Jira already holds and the highlight clears, because publishing it would change nothing.
 Sprint Preview marks the same rows the same way.</p>
+<figure class="doc-fig" id="figref-draft-rows">
+  <a href="#fig-draft-rows" aria-label="Open full size"><img src="/assets/guide/draft-rows.webp" width="1120" height="320" loading="lazy" decoding="async" alt="Cells you changed are highlighted — the bar at their left edge, here PAY-385 and PAY-388 — so you see at a glance what a publish would write."></a>
+  <figcaption>Cells you changed are highlighted — the bar at their left edge, here PAY-385 and PAY-388 — so you see at a glance what a publish would write.</figcaption>
+</figure>
 <h3 id="estimation-history-pro">Estimation history <em>(Pro)</em><a class="anchor" href="#estimation-history-pro" aria-label="Link to this section">#</a></h3>
 <p>Every numeric SP cell carries a faint <strong>⏱</strong> button next to the value (it brightens when you point
 at it). Click it to see who changed the issue’s estimates, when, and from/to what — sourced from
@@ -386,11 +398,19 @@ all until an admin maps the field.</p>
 browse the projects your scope touches. Only the private draft can be edited — changes reach the
 team draft whole, through a review screen.</p>
 </blockquote>
+<figure class="doc-fig" id="figref-private-vs-team">
+  <a href="#fig-private-vs-team" aria-label="Open full size"><img src="/assets/guide/private-vs-team.webp" width="1120" height="214" loading="lazy" decoding="async" alt="The same toolbar on your private draft (● Private Draft, ↑ Share with Team) and on the team draft (◈ Shared Draft, read-only, 📋 Copy to My Private Draft)."></a>
+  <figcaption>The same toolbar on your private draft (<b>● Private Draft</b>, <b>↑ Share with Team</b>) and on the team draft (<b>◈ Shared Draft</b>, read-only, <b>📋 Copy to My Private Draft</b>).</figcaption>
+</figure>
 <h3 id="91-a-draft-has-a-status-and-it-changes">9.1 A draft has a status, and it changes<a class="anchor" href="#91-a-draft-has-a-status-and-it-changes" aria-label="Link to this section">#</a></h3>
 <p><code>private → team → published</code>. Each step is the <em>same draft</em> moving on, not a copy left behind. When
 you share a draft it <strong>becomes</strong> the team draft; when you publish, it <strong>becomes</strong> published. That is
 why nothing here talks about your draft being deleted: the numbers went somewhere, they were not
 thrown away.</p>
+<figure class="doc-fig" id="figref-publish-flow">
+  <a href="#fig-publish-flow" aria-label="Open full size"><img src="/assets/guide/publish-flow.webp" width="1120" height="100" loading="lazy" decoding="async" alt="The last step names the copy it writes: Sprint Preview from ● My Draft → Jira."></a>
+  <figcaption>The last step names the copy it writes: Sprint Preview from <b>● My Draft</b> → Jira.</figcaption>
+</figure>
 <h3 id="92-the-status-bar">9.2 The status bar<a class="anchor" href="#92-the-status-bar" aria-label="Link to this section">#</a></h3>
 <p>The badge names <strong>the copy you are looking at</strong>:</p>
 <div class="table-wrap"><table>
@@ -479,6 +499,10 @@ values stay exactly as you typed them.</p>
 <p><strong>Everyone who can browse every project your scope touches.</strong> They do not need to have opened the
 scope, and they do not need a draft of their own — that is the point, and it is what makes sharing
 with a colleague possible at all.</p>
+<figure class="doc-fig" id="figref-drafts-visibility">
+  <a href="#fig-drafts-visibility" aria-label="Open full size"><img src="/assets/guide/drafts-visibility.webp" width="1120" height="105" loading="lazy" decoding="async" alt="The 🗂 Drafts screen states the rule: your private drafts, plus every team draft on a scope whose projects you can browse — all of them."></a>
+  <figcaption>The <b>🗂 Drafts</b> screen states the rule: your private drafts, plus every team draft on a scope whose projects you can browse — all of them.</figcaption>
+</figure>
 <p>Two consequences worth stating plainly:</p>
 <ul>
 <li><strong>Your scope’s name and its JQL text become visible to those people.</strong> Not just the numbers: the
@@ -494,6 +518,10 @@ it a WEB-only scope.</li>
 <h3 id="95-sharing-and-merging">9.5 Sharing, and merging<a class="anchor" href="#95-sharing-and-merging" aria-label="Link to this section">#</a></h3>
 <p><strong>↑ Share with Team</strong> turns your private draft into the team draft. If nobody has shared one for
 this scope yet, it happens immediately — there is nothing to review.</p>
+<figure class="doc-fig" id="figref-share-button">
+  <a href="#fig-share-button" aria-label="Open full size"><img src="/assets/guide/share-button.webp" width="360" height="100" loading="lazy" decoding="async" alt="↑ Share with Team, in the draft toolbar."></a>
+  <figcaption><b>↑ Share with Team</b>, in the draft toolbar.</figcaption>
+</figure>
 <p>⚠️ <strong>Sharing MOVES your draft — it does not copy it.</strong> The moment you share, your draft <em>becomes</em>
 the team draft: the table switches to it, read-only, and your own side is empty again (<strong>○
 Unsaved</strong>). Nothing is lost and nothing is published; the numbers are the ones everyone is now
@@ -521,6 +549,10 @@ greys out again.</p>
 against what <strong>your table shows</strong> on the same rows — your value, or Jira’s where you have none.
 (While you are <em>reading</em> the team draft, the same act is the <strong>📋 Copy to My Private Draft</strong> button
 on the toolbar itself.) If your draft is empty there is nothing to review, so it just copies.</p>
+<figure class="doc-fig" id="figref-copy-team">
+  <a href="#fig-copy-team" aria-label="Open full size"><img src="/assets/guide/copy-team.webp" width="1120" height="150" loading="lazy" decoding="async" alt="Reading the team draft, 📋 Copy to My Private Draft starts the copy into yours — the banner says so too."></a>
+  <figcaption>Reading the team draft, <b>📋 Copy to My Private Draft</b> starts the copy into yours — the banner says so too.</figcaption>
+</figure>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -550,6 +582,10 @@ default, because wanting your own copy does not imply wanting to remove everyone
 team draft, the status bar names who last updated it (<em>Updated by name · 2m ago</em>).</p>
 <h3 id="97-staying-in-sync">9.7 Staying in sync<a class="anchor" href="#97-staying-in-sync" aria-label="Link to this section">#</a></h3>
 <p>The app checks every 30 seconds while the main screen or the copy screen is open.</p>
+<figure class="doc-fig" id="figref-team-updated">
+  <a href="#fig-team-updated" aria-label="Open full size"><img src="/assets/guide/team-updated.webp" width="480" height="45" loading="lazy" decoding="async" alt="The team draft’s toolbar says who updated it and when; the app checks for a newer one every 30 seconds."></a>
+  <figcaption>The team draft’s toolbar says who updated it and when; the app checks for a newer one every 30 seconds.</figcaption>
+</figure>
 <ul>
 <li><strong>On the main screen</strong>, a newer team draft simply appears — the cells that changed flash, and
 <em>Updated by</em> names the new writer. There is nothing of yours in it to protect, so there is nothing
@@ -568,6 +604,10 @@ their publish, with <strong>Compare in Preview</strong>, <strong>Discard my draf
 <p>Delete lives in the toolbar’s <strong>Manage ▾</strong> menu and deletes <strong>whichever copy you are looking at</strong> —
 and it <strong>says which on its face</strong>: <strong>🗑 Delete My Draft</strong> on your own copy, <strong>🗑 Delete Team Draft</strong>
 while you are reading the team’s. The confirmation repeats it:</p>
+<figure class="doc-fig" id="figref-delete-faces">
+  <a href="#fig-delete-faces" aria-label="Open full size"><img src="/assets/guide/delete-faces.webp" width="680" height="124" loading="lazy" decoding="async" alt="Delete names the copy it deletes: 🗑 Delete My Draft on yours, 🗑 Delete Team Draft on the team draft — shown here on the Sprint Preview screen, which offers it too."></a>
+  <figcaption>Delete names the copy it deletes: <b>🗑 Delete My Draft</b> on yours, <b>🗑 Delete Team Draft</b> on the team draft — shown here on the Sprint Preview screen, which offers it too.</figcaption>
+</figure>
 <ul>
 <li>On your own draft: only yours goes. Nobody can delete anyone else’s private draft.</li>
 <li>On the team draft: it goes <strong>for everyone</strong>, and the dialog says so. Private drafts — yours and
@@ -737,6 +777,10 @@ visible page) as <code>scope-planner-export-YYYY-MM-DD.csv</code>. Estimation co
 menu (§8). Exports are hardened against spreadsheet formula injection (cells starting with <code>=</code>,
 <code>+</code>, <code>-</code>, <code>@</code> are neutralized). The button is disabled while pages are still loading, so an
 export is always full-scope.</p>
+<figure class="doc-fig" id="figref-export-csv">
+  <a href="#fig-export-csv" aria-label="Open full size"><img src="/assets/guide/export-csv.webp" width="680" height="45" loading="lazy" decoding="async" alt="📥 Export CSV (Pro), at the left of the totals bar."></a>
+  <figcaption><b>📥 Export CSV</b> <i>(Pro)</i>, at the left of the totals bar.</figcaption>
+</figure>
 <hr>
 <h2 id="13-licensing">13. Licensing<a class="anchor" href="#13-licensing" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
@@ -761,6 +805,10 @@ export is always full-scope.</p>
 </tr>
 </tbody>
 </table></div>
+<figure class="doc-fig" id="figref-pro-badges">
+  <a href="#fig-pro-badges" aria-label="Open full size"><img src="/assets/guide/pro-badges.webp" width="1120" height="235" loading="lazy" decoding="async" alt="Pro features carry a PRO badge — here 📥 Export CSV and the Workload tab. Without a subscription or trial they are locked; estimating, drafts and Sprint Preview keep working."></a>
+  <figcaption>Pro features carry a <b>PRO</b> badge — here 📥 Export CSV and the Workload tab. Without a subscription or trial they are locked; estimating, drafts and Sprint Preview keep working.</figcaption>
+</figure>
 <p>Pro features are: publishing to Jira (and retrying failed publishes), CSV export, the per-assignee
 workload view, estimation history, and auto-calculated target velocity.</p>
 <p>Locked Pro features show an upgrade dialog explaining which feature needs a license — including
@@ -784,6 +832,10 @@ expires.</li>
 automatically; their attribution on shared/published records is anonymized. User
 anonymization in Jira triggers the same reference cleanup.</li>
 </ul>
+<figure class="doc-fig" id="figref-retention">
+  <a href="#fig-retention" aria-label="Open full size"><img src="/assets/guide/retention.webp" width="790" height="170" loading="lazy" decoding="async" alt="Draft Retention Policy on the admin page: drafts and publish records expire after this many days — 30 by default."></a>
+  <figcaption><b>Draft Retention Policy</b> on the admin page: drafts and publish records expire after this many days — 30 by default.</figcaption>
+</figure>
 <hr>
 <h2 id="15-troubleshooting">15. Troubleshooting<a class="anchor" href="#15-troubleshooting" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
@@ -840,6 +892,10 @@ anonymization in Jira triggers the same reference cleanup.</li>
 </tr>
 </tbody>
 </table></div>
+<figure class="doc-fig" id="figref-on-no-screen">
+  <a href="#fig-on-no-screen" aria-label="Open full size"><img src="/assets/guide/on-no-screen.webp" width="700" height="370" loading="lazy" decoding="async" alt="One cause from this table, seen on the admin page: Detect Fields flags the T-shirt field ⚠ On no screen — Jira will not accept T-shirt values until an admin adds it to the edit screens."></a>
+  <figcaption>One cause from this table, seen on the admin page: Detect Fields flags the T-shirt field <i>⚠ On no screen</i> — Jira will not accept T-shirt values until an admin adds it to the edit screens.</figcaption>
+</figure>
 <hr>
 <h2 id="16-getting-help">16. Getting help<a class="anchor" href="#16-getting-help" aria-label="Link to this section">#</a></h2>
 <p>Write to <strong>support@dsplugins.dev</strong>. To get an answer in one round, include:</p>
@@ -856,6 +912,118 @@ basis (see the <a href="/terms/">terms of use</a>); support hours and the first-
 
         <p class="to-top"><a href="#main">Back to top ↑</a></p>
       </article>
+    </div>
+    <div class="lightbox" id="fig-overview" role="dialog" aria-label="Scope Planner inside Jira: a tab on the project, the whole sprint in one table.">
+      <a class="lb-backdrop" href="#figref-overview" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/overview.webp" width="1185" height="455" loading="lazy" decoding="async" alt="Scope Planner inside Jira: a tab on the project, the whole sprint in one table.">
+        <figcaption>Scope Planner inside Jira: a tab on the project, the whole sprint in one table.</figcaption>
+        <a class="lb-close" href="#figref-overview" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-time-cells" role="dialog" aria-label="⏱ Original and ⏳ Remaining: type a value, or step with + / − by your time unit (§10).">
+      <a class="lb-backdrop" href="#figref-time-cells" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/time-cells.webp" width="445" height="230" loading="lazy" decoding="async" alt="⏱ Original and ⏳ Remaining: type a value, or step with + / − by your time unit (§10).">
+        <figcaption>⏱ Original and ⏳ Remaining: type a value, or step with <b>+</b> / <b>−</b> by your time unit (§10).</figcaption>
+        <a class="lb-close" href="#figref-time-cells" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-draft-rows" role="dialog" aria-label="Cells you changed are highlighted — the bar at their left edge, here PAY-385 and PAY-388 — so you see at a glance what a publish would write.">
+      <a class="lb-backdrop" href="#figref-draft-rows" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/draft-rows.webp" width="1120" height="320" loading="lazy" decoding="async" alt="Cells you changed are highlighted — the bar at their left edge, here PAY-385 and PAY-388 — so you see at a glance what a publish would write.">
+        <figcaption>Cells you changed are highlighted — the bar at their left edge, here PAY-385 and PAY-388 — so you see at a glance what a publish would write.</figcaption>
+        <a class="lb-close" href="#figref-draft-rows" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-private-vs-team" role="dialog" aria-label="The same toolbar on your private draft (● Private Draft, ↑ Share with Team) and on the team draft (◈ Shared Draft, read-only, 📋 Copy to My Private Draft).">
+      <a class="lb-backdrop" href="#figref-private-vs-team" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/private-vs-team.webp" width="1120" height="214" loading="lazy" decoding="async" alt="The same toolbar on your private draft (● Private Draft, ↑ Share with Team) and on the team draft (◈ Shared Draft, read-only, 📋 Copy to My Private Draft).">
+        <figcaption>The same toolbar on your private draft (<b>● Private Draft</b>, <b>↑ Share with Team</b>) and on the team draft (<b>◈ Shared Draft</b>, read-only, <b>📋 Copy to My Private Draft</b>).</figcaption>
+        <a class="lb-close" href="#figref-private-vs-team" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-publish-flow" role="dialog" aria-label="The last step names the copy it writes: Sprint Preview from ● My Draft → Jira.">
+      <a class="lb-backdrop" href="#figref-publish-flow" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/publish-flow.webp" width="1120" height="100" loading="lazy" decoding="async" alt="The last step names the copy it writes: Sprint Preview from ● My Draft → Jira.">
+        <figcaption>The last step names the copy it writes: Sprint Preview from <b>● My Draft</b> → Jira.</figcaption>
+        <a class="lb-close" href="#figref-publish-flow" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-drafts-visibility" role="dialog" aria-label="The 🗂 Drafts screen states the rule: your private drafts, plus every team draft on a scope whose projects you can browse — all of them.">
+      <a class="lb-backdrop" href="#figref-drafts-visibility" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/drafts-visibility.webp" width="1120" height="105" loading="lazy" decoding="async" alt="The 🗂 Drafts screen states the rule: your private drafts, plus every team draft on a scope whose projects you can browse — all of them.">
+        <figcaption>The <b>🗂 Drafts</b> screen states the rule: your private drafts, plus every team draft on a scope whose projects you can browse — all of them.</figcaption>
+        <a class="lb-close" href="#figref-drafts-visibility" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-share-button" role="dialog" aria-label="↑ Share with Team, in the draft toolbar.">
+      <a class="lb-backdrop" href="#figref-share-button" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/share-button.webp" width="360" height="100" loading="lazy" decoding="async" alt="↑ Share with Team, in the draft toolbar.">
+        <figcaption><b>↑ Share with Team</b>, in the draft toolbar.</figcaption>
+        <a class="lb-close" href="#figref-share-button" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-copy-team" role="dialog" aria-label="Reading the team draft, 📋 Copy to My Private Draft starts the copy into yours — the banner says so too.">
+      <a class="lb-backdrop" href="#figref-copy-team" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/copy-team.webp" width="1120" height="150" loading="lazy" decoding="async" alt="Reading the team draft, 📋 Copy to My Private Draft starts the copy into yours — the banner says so too.">
+        <figcaption>Reading the team draft, <b>📋 Copy to My Private Draft</b> starts the copy into yours — the banner says so too.</figcaption>
+        <a class="lb-close" href="#figref-copy-team" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-team-updated" role="dialog" aria-label="The team draft’s toolbar says who updated it and when; the app checks for a newer one every 30 seconds.">
+      <a class="lb-backdrop" href="#figref-team-updated" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/team-updated.webp" width="480" height="45" loading="lazy" decoding="async" alt="The team draft’s toolbar says who updated it and when; the app checks for a newer one every 30 seconds.">
+        <figcaption>The team draft’s toolbar says who updated it and when; the app checks for a newer one every 30 seconds.</figcaption>
+        <a class="lb-close" href="#figref-team-updated" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-delete-faces" role="dialog" aria-label="Delete names the copy it deletes: 🗑 Delete My Draft on yours, 🗑 Delete Team Draft on the team draft — shown here on the Sprint Preview screen, which offers it too.">
+      <a class="lb-backdrop" href="#figref-delete-faces" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/delete-faces.webp" width="680" height="124" loading="lazy" decoding="async" alt="Delete names the copy it deletes: 🗑 Delete My Draft on yours, 🗑 Delete Team Draft on the team draft — shown here on the Sprint Preview screen, which offers it too.">
+        <figcaption>Delete names the copy it deletes: <b>🗑 Delete My Draft</b> on yours, <b>🗑 Delete Team Draft</b> on the team draft — shown here on the Sprint Preview screen, which offers it too.</figcaption>
+        <a class="lb-close" href="#figref-delete-faces" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-export-csv" role="dialog" aria-label="📥 Export CSV (Pro), at the left of the totals bar.">
+      <a class="lb-backdrop" href="#figref-export-csv" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/export-csv.webp" width="680" height="45" loading="lazy" decoding="async" alt="📥 Export CSV (Pro), at the left of the totals bar.">
+        <figcaption><b>📥 Export CSV</b> <i>(Pro)</i>, at the left of the totals bar.</figcaption>
+        <a class="lb-close" href="#figref-export-csv" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-pro-badges" role="dialog" aria-label="Pro features carry a PRO badge — here 📥 Export CSV and the Workload tab. Without a subscription or trial they are locked; estimating, drafts and Sprint Preview keep working.">
+      <a class="lb-backdrop" href="#figref-pro-badges" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/pro-badges.webp" width="1120" height="235" loading="lazy" decoding="async" alt="Pro features carry a PRO badge — here 📥 Export CSV and the Workload tab. Without a subscription or trial they are locked; estimating, drafts and Sprint Preview keep working.">
+        <figcaption>Pro features carry a <b>PRO</b> badge — here 📥 Export CSV and the Workload tab. Without a subscription or trial they are locked; estimating, drafts and Sprint Preview keep working.</figcaption>
+        <a class="lb-close" href="#figref-pro-badges" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-retention" role="dialog" aria-label="Draft Retention Policy on the admin page: drafts and publish records expire after this many days — 30 by default.">
+      <a class="lb-backdrop" href="#figref-retention" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/retention.webp" width="790" height="170" loading="lazy" decoding="async" alt="Draft Retention Policy on the admin page: drafts and publish records expire after this many days — 30 by default.">
+        <figcaption><b>Draft Retention Policy</b> on the admin page: drafts and publish records expire after this many days — 30 by default.</figcaption>
+        <a class="lb-close" href="#figref-retention" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-on-no-screen" role="dialog" aria-label="One cause from this table, seen on the admin page: Detect Fields flags the T-shirt field ⚠ On no screen — Jira will not accept T-shirt values until an admin adds it to the edit screens.">
+      <a class="lb-backdrop" href="#figref-on-no-screen" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/on-no-screen.webp" width="700" height="370" loading="lazy" decoding="async" alt="One cause from this table, seen on the admin page: Detect Fields flags the T-shirt field ⚠ On no screen — Jira will not accept T-shirt values until an admin adds it to the edit screens.">
+        <figcaption>One cause from this table, seen on the admin page: Detect Fields flags the T-shirt field <i>⚠ On no screen</i> — Jira will not accept T-shirt values until an admin adds it to the edit screens.</figcaption>
+        <a class="lb-close" href="#figref-on-no-screen" aria-label="Close">×</a>
+      </figure>
     </div>
     <div class="lightbox" id="fig-sprint-menu" role="dialog" aria-label="A sprint’s ⋯ menu → Scope Planner opens the app on that one sprint.">
       <a class="lb-backdrop" href="#figref-sprint-menu" tabindex="-1" aria-hidden="true"></a>
