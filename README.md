@@ -96,6 +96,28 @@ npm run build
 
 Re-run after the listing is re-captured. The gallery's captions are `listing-copy.md` §3, verbatim.
 
+### Screenshots in the user guide
+
+The guide's text is synced from the app repo and never edited here, so its 19 screenshots are added
+**by the build**: `GUIDE_FIGURES` in `build.mjs` names, for each image, the section's heading id
+and a phrase from the block it goes after. If a re-sync renames that section or rewords that
+block, **the build fails** and says which figure no longer fits — fix the table, never the synced
+Markdown. Each figure opens full size (CSS `:target`, no script).
+
+Images: the landing page's `shots/` where they fit, plus closer crops in `assets/static/guide/`,
+made by `shots.mjs` (the `GUIDE` table) from the listing captures and from three screens this repo
+captures itself — the admin page, its Detect Fields result and the Scope Builder:
+
+```bash
+node guide-capture.mjs ../scope-planner   # → .work/raw/ (gitignored); READ-ONLY on the live staging app
+node shots.mjs ../scope-planner           # → assets/static/{shots,guide}/
+npm run build
+```
+
+`guide-capture.mjs` clicks only *Detect Fields*, the Scope Builder button and its project list —
+never *Apply to form*, *Save* or a sprint — but it does drive the live staging app as user A, so
+not during someone's manual pass there.
+
 **These captures show the demo teammates' avatars — Unsplash portraits of real people** (the app
 repo's `docs/MARKETPLACE.md` §6a has their provenance). The app repo keeps them out of its own git
 on purpose; publishing them here, in a public repo, was **the owner's decision on 2026-10-16**:

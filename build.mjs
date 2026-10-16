@@ -99,6 +99,7 @@ const md = new MarkdownIt({ html: false, linkify: true, typographer: true });
 // Rewrite .md hrefs at the token level — safer than regexing rendered HTML, and it lets an
 // unmapped link fail loudly instead of shipping.
 const unmapped = [];
+const figureErrors = [];
 const defaultLinkOpen =
   md.renderer.rules.link_open ||
   ((tokens, idx, options, _env, self) => self.renderToken(tokens, idx, options));
@@ -168,6 +169,113 @@ md.renderer.rules.heading_close = (tokens, idx, options, _env, self) => {
 // Wide tables scroll inside their own framed box; the page body never scrolls sideways.
 md.renderer.rules.table_open = () => '<div class="table-wrap"><table>\n';
 md.renderer.rules.table_close = () => '</table></div>\n';
+
+/**
+ * Screenshots placed into the synced user guide. The guide's Markdown is the app repo's and stays
+ * exactly as synced, so each figure names its section (the heading id) and a phrase from the
+ * top-level block it goes after — omitted, the section's first block. A section or phrase that a
+ * re-sync removed FAILS the build instead of dropping the figure silently, like LINK_MAP.
+ * Images: assets/static/{guide,shots}/, made by shots.mjs. Sizes are the images' CSS px (2× files).
+ */
+const GUIDE_FIGURES = [
+  { section: '2-opening-the-app', after: 'Sprint action', img: 'guide/sprint-menu', w: 715, h: 150,
+    caption: 'A sprint’s <b>⋯</b> menu → <b>Scope Planner</b> opens the app on that one sprint.' },
+  { section: '3-first-time-setup-jira-admins', after: 'cannot load its settings', img: 'guide/admin-page', w: 790, h: 1290,
+    caption: 'The admin page: <b>✨ Auto-detect Field Mappings</b> at the top, then Field Mappings, Draft Retention Policy and Default Estimation Scales. Nothing applies until <b>💾 Save Configuration</b>.' },
+  { section: '3-first-time-setup-jira-admins', after: 'Detect Fields', img: 'guide/admin-detect', w: 790, h: 640,
+    caption: 'After <b>🔍 Detect Fields</b>: a suggestion for every role, each with a badge — <i>Detected</i>, <i>2 matches</i> where more than one field fits (pick from the dropdown), or a warning such as <i>On no screen</i>. <b>✓ Apply to form</b> copies them into the form; <b>Save</b> still has to be pressed.' },
+  { section: '4-choosing-your-scope', after: 'Scope Builder', img: 'guide/scope-builder', w: 1120, h: 360,
+    caption: '<b>🗂️ Scope Builder</b>: choose a project, then an active or future sprint — or plan the backlog. The builder writes the JQL and runs it.' },
+  { section: '5-the-estimation-table', after: 'Each issue is one row', img: 'shots/highlight-1-whole-sprint', w: 1120, h: 765,
+    caption: 'One row per issue: 🎯 Story Points, ⏱ Original and ⏳ Remaining on the right, the totals bar above the table, the status bar at the top.' },
+  { section: 'editing-story-points-numeric-scales', after: 'Click the value', img: 'guide/sp-picker', w: 1120, h: 170,
+    caption: 'Click a value: the input opens with your scale’s preset chips — here Modified Fibonacci. Click a chip, or type and press <b>Enter</b>.' },
+  { section: 'estimation-history-pro', img: 'shots/screenshot-3c-history', w: 660, h: 380,
+    caption: 'The <b>⏱</b> history <i>(Pro)</i>: who changed the issue’s estimates, when, and from/to what — read from the Jira changelog.' },
+  { section: '6-bulk-actions', after: 'asks for confirmation', img: 'shots/screenshot-1c-bulk', w: 1120, h: 560,
+    caption: 'Tick rows and the bulk bar appears above the table: apply one value to every selected issue, or clear a batch.' },
+  { section: '7-totals--breakdown', after: 'Workload tab', img: 'shots/screenshot-1d-breakdown', w: 1120, h: 560,
+    caption: '<b>Breakdown</b> tab: totals grouped by Epic, Assignee, Label or Type.' },
+  { section: '7-totals--breakdown', after: 'Workload tab', img: 'shots/highlight-3-spot-overload', w: 1120, h: 560,
+    caption: '<b>Workload</b> tab <i>(Pro)</i>: each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average.' },
+  { section: '8-column-visibility--csv-columns', after: 'show/hide', img: 'shots/screenshot-3d-csv-columns', w: 450, h: 420,
+    caption: '<b>⚙️ Columns</b>: <i>Visible</i> and <i>CSV</i> are separate checkboxes for every column.' },
+  { section: '92-the-status-bar', after: 'Private Draft', img: 'guide/status-bar', w: 1120, h: 125,
+    caption: 'The status bar describes the copy on screen: <b>● Private Draft</b>, how many rows differ from Jira, and whether it is saved.' },
+  { section: '93-reading-the-team-draft', img: 'shots/screenshot-2c-team-draft', w: 1120, h: 355,
+    caption: 'Reading the team draft: <b>◈ Shared Draft</b>, read-only, with <b>📋 Copy to My Private Draft</b> and <b>● Back to My Draft</b>.' },
+  { section: '99-finding-drafts-again--the--drafts-screen', img: 'guide/drafts-screen', w: 1120, h: 215,
+    caption: '<b>🗂 Drafts</b>: your private drafts and the team drafts you can see, each with Open, Rename, Renew and Delete.' },
+  { section: '10-preferences-per-user', after: 'Target Velocity', img: 'shots/screenshot-1b-scales', w: 480, h: 470,
+    caption: '<b>⚙️ Preferences</b>: the Story Points scale and time stepping you choose here are yours alone.' },
+  { section: '10-preferences-per-user', after: 'Target Velocity', img: 'shots/screenshot-3b-velocity', w: 480, h: 200,
+    caption: '<b>🚀 Target Velocity</b> <i>(Pro)</i>: <b>✨ Auto-calculate</b> averages the board’s last five completed sprints.' },
+  { section: '11-sprint-preview--publishing', after: 'shows every issue', img: 'shots/highlight-2-review-before-jira', w: 1120, h: 650,
+    caption: '<b>🚀 Sprint Preview</b>: your draft, what Jira holds now, and what Jira will hold after applying — each row marked <i>+ Adds to Jira</i> or <i>⇄ Overwrites Jira</i>.' },
+  { section: '11-sprint-preview--publishing', after: 'Publish Team Draft', img: 'shots/screenshot-2d-publish', w: 1120, h: 560,
+    caption: 'Publishing the team draft: the same screen, with <b>✅ Apply Team Draft to Jira</b>.' },
+  { section: '11-sprint-preview--publishing', after: 'The result screen reports', img: 'guide/publish-result', w: 1120, h: 215,
+    caption: 'After a publish: <b>✅ 8 succeeded</b>, and every row now matches Jira.' },
+];
+
+const stripTags = (s) => s.replace(/<[^>]+>/g, '');
+
+/** Top-level blocks of a token stream: [start, end] indices, the heading id, and the block's text. */
+function topBlocks(tokens) {
+  const blocks = [];
+  for (let i = 0; i < tokens.length; i += 1) {
+    const t = tokens[i];
+    if (t.level !== 0 || t.nesting === -1) continue;
+    let end = i;
+    if (t.nesting === 1) {
+      for (let depth = 0, j = i; j < tokens.length; j += 1) {
+        depth += tokens[j].nesting;
+        if (depth === 0) { end = j; break; }
+      }
+    }
+    const text = tokens.slice(i, end + 1).map((x) => x.content || '').join(' ');
+    const heading = t.type === 'heading_open' ? { id: t.attrGet('id'), level: Number(t.tag[1]) } : null;
+    blocks.push({ start: i, end, text, heading });
+    i = end;
+  }
+  return blocks;
+}
+
+// Runs after heading_ids, so sections are known by the ids the page renders.
+md.core.ruler.push('guide_figures', (state) => {
+  const figures = state.env.figures;
+  if (!figures) return;
+  const blocks = topBlocks(state.tokens);
+  const inserts = [];
+  state.env.placed = [];
+  for (const fig of figures) {
+    const h = blocks.findIndex((b) => b.heading?.id === fig.section);
+    if (h < 0) { state.env.figureErrors.push(`no section #${fig.section}`); continue; }
+    const level = blocks[h].heading.level;
+    let stop = blocks.findIndex((b, k) => k > h && b.heading && b.heading.level <= level);
+    if (stop < 0) stop = blocks.length;
+    const section = blocks.slice(h + 1, stop).filter((b) => !b.heading);
+    const target = fig.after ? section.find((b) => b.text.includes(fig.after)) : section[0];
+    if (!target) { state.env.figureErrors.push(`#${fig.section}: no block containing "${fig.after}"`); continue; }
+    const id = fig.img.split('/').pop();
+    const src = `/assets/${fig.img}.webp`;
+    const alt = escapeHtml(stripTags(fig.caption));
+    const html = `<figure class="doc-fig" id="figref-${id}">
+  <a href="#fig-${id}" aria-label="Open full size"><img src="${src}" width="${fig.w}" height="${fig.h}" loading="lazy" decoding="async" alt="${alt}"></a>
+  <figcaption>${fig.caption}</figcaption>
+</figure>\n`;
+    inserts.push({ at: target.end + 1, order: inserts.length, html });
+    state.env.placed.push({ id, src, fig, alt });
+  }
+  // Back to front, so earlier indices stay valid; equal positions keep the table's order.
+  inserts.sort((a, b) => b.at - a.at || b.order - a.order);
+  for (const ins of inserts) {
+    const tok = new state.Token('html_block', '', 0);
+    tok.content = ins.html;
+    tok.block = true;
+    state.tokens.splice(ins.at, 0, tok);
+  }
+});
 
 const escapeHtml = (s) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -286,7 +394,7 @@ ${mainHtml}
 }
 
 /** A synced Markdown document: a header band, an "On this page" index, then the prose. */
-function documentMain({ page, bodyHtml, toc }) {
+function documentMain({ page, bodyHtml, toc, placed = [] }) {
   let rest = bodyHtml;
   const h1 = rest.match(/^\s*<h1>([\s\S]*?)<\/h1>\n?/);
   const heading = h1 ? h1[1] : escapeHtml(page.label);
@@ -328,7 +436,19 @@ function documentMain({ page, bodyHtml, toc }) {
 ${rest}
         <p class="to-top"><a href="#main">Back to top ↑</a></p>
       </article>
-    </div>`;
+    </div>${placed
+      .map(
+        (p) => `
+    <div class="lightbox" id="fig-${p.id}" role="dialog" aria-label="${p.alt}">
+      <a class="lb-backdrop" href="#figref-${p.id}" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="${p.src}" width="${p.fig.w}" height="${p.fig.h}" loading="lazy" decoding="async" alt="${p.alt}">
+        <figcaption>${p.fig.caption}</figcaption>
+        <a class="lb-close" href="#figref-${p.id}" aria-label="Close">×</a>
+      </figure>
+    </div>`,
+      )
+      .join('')}`;
 }
 
 rmSync(OUT, { recursive: true, force: true });
@@ -349,10 +469,10 @@ for (const page of PAGES) {
   if (page.src.endsWith('.html')) {
     mainHtml = source;
   } else {
-    const env = { page: page.src };
+    const env = { page: page.src, figures: page.src === 'guide.md' ? GUIDE_FIGURES : null, figureErrors };
     const bodyHtml = md.render(source, env);
     title ??= `${extractTitle(source, page.label)} | DSPlugins`;
-    mainHtml = documentMain({ page, bodyHtml, toc: env.toc });
+    mainHtml = documentMain({ page, bodyHtml, toc: env.toc, placed: env.placed });
   }
   const dir = page.out === '.' ? OUT : join(OUT, page.out);
   mkdirSync(dir, { recursive: true });
@@ -360,6 +480,12 @@ for (const page of PAGES) {
     join(dir, 'index.html'),
     layout({ page, title, description: page.description, mainHtml, here: page.out }),
   );
+}
+
+if (figureErrors.length) {
+  console.error('✗ Guide figures that no longer fit the synced guide — fix GUIDE_FIGURES in build.mjs:');
+  for (const e of figureErrors) console.error(`    ${e}`);
+  process.exit(1);
 }
 
 if (unmapped.length) {
