@@ -62,6 +62,27 @@ const GUIDE = [
   { name: 'status-bar', src: 'listing:raw/2b-draft', region: { x: 360, y: 228, w: 1120, h: 125 } },
   { name: 'drafts-screen', src: 'listing:raw/2e-drafts', region: { x: 360, y: 190, w: 1120, h: 215 } },
   { name: 'publish-result', src: 'listing:raw/2d-published', region: { x: 360, y: 190, w: 1120, h: 215 } },
+  { name: 'overview', src: 'listing:raw/2b-draft', region: { x: 335, y: 55, w: 1185, h: 455 } },
+  { name: 'time-cells', src: 'listing:raw/h1-table', region: { x: 1035, y: 390, w: 445, h: 230 } },
+  { name: 'draft-rows', src: 'listing:raw/h1-table', region: { x: 360, y: 410, w: 1120, h: 320 } },
+  { name: 'publish-flow', src: 'listing:raw/h2-preview', region: { x: 360, y: 205, w: 1120, h: 100 } },
+  { name: 'drafts-visibility', src: 'listing:raw/2e-drafts', region: { x: 360, y: 190, w: 1120, h: 105 } },
+  { name: 'share-button', src: 'listing:raw/h1-table', region: { x: 1120, y: 228, w: 360, h: 100 } },
+  { name: 'copy-team', src: 'listing:raw/2c-team', region: { x: 360, y: 205, w: 1120, h: 150 } },
+  { name: 'team-updated', src: 'listing:raw/2c-team', region: { x: 360, y: 250, w: 480, h: 45 } },
+  { name: 'export-csv', src: 'listing:raw/h1-table', region: { x: 360, y: 320, w: 680, h: 45 } },
+  { name: 'pro-badges', src: 'listing:raw/h3-workload', region: { x: 360, y: 293, w: 1120, h: 235 } },
+  { name: 'retention', src: 'site:admin-page', region: { x: 360, y: 1060, w: 790, h: 170 } },
+  { name: 'on-no-screen', src: 'site:admin-detect', region: { x: 420, y: 360, w: 700, h: 370 } },
+  // Two crops stacked, to set one copy beside the other.
+  { name: 'private-vs-team', parts: [
+    { src: 'listing:raw/2b-draft', region: { x: 360, y: 228, w: 1120, h: 95 } },
+    { src: 'listing:raw/2c-team', region: { x: 360, y: 205, w: 1120, h: 95 } },
+  ] },
+  { name: 'delete-faces', parts: [
+    { src: 'listing:raw/h2-preview', region: { x: 800, y: 205, w: 680, h: 50 } },
+    { src: 'listing:raw/2d-publish', region: { x: 800, y: 205, w: 680, h: 50 } },
+  ] },
 ];
 
 if (!existsSync(SPECS) || !existsSync(RAW)) {
@@ -89,16 +110,33 @@ for (const name of WANT) {
 }
 
 mkdirSync(GUIDE_OUT, { recursive: true });
-for (const { name, src, region } of GUIDE) {
+const capture = (name, src) => {
   const [where, file] = src.split(':');
   const path = where === 'site' ? join(SITE_RAW, `${file}.png`) : join(APP, 'scripts', 'listing-assets', '.work', `${file}.png`);
   if (!existsSync(path)) {
     console.error(`✗ ${name}: no capture at ${path}` + (where === 'site' ? ' — run guide-capture.mjs first' : ''));
     process.exit(1);
   }
-  const { x, y, w, h } = region;
+  return path;
+};
+const cropArgs = (path, { x, y, w, h }) => [path, '-crop', `${w * SCALE}x${h * SCALE}+${x * SCALE}+${y * SCALE}`, '+repage'];
+const WEBP = ['-strip', '-define', 'webp:lossless=true', '-define', 'webp:method=6'];
+
+for (const { name, src, region, parts } of GUIDE) {
   const out = join(GUIDE_OUT, `${name}.webp`);
-  const crop = `${w * SCALE}x${h * SCALE}+${x * SCALE}+${y * SCALE}`;
-  execFileSync('convert', [path, '-crop', crop, '+repage', '-strip', '-define', 'webp:lossless=true', '-define', 'webp:method=6', out]);
-  console.log(`✓ guide/${name}.webp — ${w}×${h} CSS px, ${Math.round(statSync(out).size / 1024)} KB`);
+  if (parts) {
+    // Each crop in its own group, a white 24px (CSS) band between them, stacked top to bottom.
+    const w = parts[0].region.w;
+    const args = [];
+    parts.forEach((part, i) => {
+      if (i) args.push('(', '-size', `${w * SCALE}x${24 * SCALE}`, 'xc:white', ')');
+      args.push('(', ...cropArgs(capture(name, part.src), part.region), ')');
+    });
+    execFileSync('convert', [...args, '-append', ...WEBP, out]);
+    const h = parts.reduce((sum, part) => sum + part.region.h, 24 * (parts.length - 1));
+    console.log(`✓ guide/${name}.webp — ${w}×${h} CSS px (${parts.length} stacked), ${Math.round(statSync(out).size / 1024)} KB`);
+  } else {
+    execFileSync('convert', [...cropArgs(capture(name, src), region), ...WEBP, out]);
+    console.log(`✓ guide/${name}.webp — ${region.w}×${region.h} CSS px, ${Math.round(statSync(out).size / 1024)} KB`);
+  }
 }
