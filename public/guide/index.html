@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://dsplugins.dev/assets/og-banner.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css?v=ddd84fc654">
+<link rel="stylesheet" href="/style.css?v=c639a90e51">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -156,6 +156,10 @@ the draft with the team.</li>
 </tr>
 </tbody>
 </table></div>
+<figure class="doc-fig" id="figref-sprint-menu">
+  <a href="#fig-sprint-menu" aria-label="Open full size"><img src="/assets/guide/sprint-menu.webp" width="715" height="150" loading="lazy" decoding="async" alt="A sprint’s ⋯ menu → Scope Planner opens the app on that one sprint."></a>
+  <figcaption>A sprint’s <b>⋯</b> menu → <b>Scope Planner</b> opens the app on that one sprint.</figcaption>
+</figure>
 <p>In each case the app pre-fills a matching JQL query and loads the issues immediately. There is
 also a separate <strong>admin configuration page</strong> (see §3) for Jira administrators.</p>
 <hr>
@@ -165,6 +169,10 @@ that setup is needed (admins see inline steps; other users are told to ask an ad
 <p>If the app cannot load its settings at all — a network or service hiccup — it says exactly that on
 its own screen and offers <strong>Retry</strong>, instead of claiming the app is unconfigured. Your drafts and
 settings are untouched while that screen is up.</p>
+<figure class="doc-fig" id="figref-admin-page">
+  <a href="#fig-admin-page" aria-label="Open full size"><img src="/assets/guide/admin-page.webp" width="790" height="1290" loading="lazy" decoding="async" alt="The admin page: ✨ Auto-detect Field Mappings at the top, then Field Mappings, Draft Retention Policy and Default Estimation Scales. Nothing applies until 💾 Save Configuration."></a>
+  <figcaption>The admin page: <b>✨ Auto-detect Field Mappings</b> at the top, then Field Mappings, Draft Retention Policy and Default Estimation Scales. Nothing applies until <b>💾 Save Configuration</b>.</figcaption>
+</figure>
 <p>Open the admin page (the ⚙️ Preferences panel inside the app shows admins a direct link with
 step-by-step navigation), then:</p>
 <ol>
@@ -200,6 +208,10 @@ automatically.</li>
 <li><strong>Save</strong>. Only users with Jira admin permission can save this page — the server rejects
 anyone else.</li>
 </ol>
+<figure class="doc-fig" id="figref-admin-detect">
+  <a href="#fig-admin-detect" aria-label="Open full size"><img src="/assets/guide/admin-detect.webp" width="790" height="640" loading="lazy" decoding="async" alt="After 🔍 Detect Fields: a suggestion for every role, each with a badge — Detected, 2 matches where more than one field fits (pick from the dropdown), or a warning such as On no screen. ✓ Apply to form copies them into the form; Save still has to be pressed."></a>
+  <figcaption>After <b>🔍 Detect Fields</b>: a suggestion for every role, each with a badge — <i>Detected</i>, <i>2 matches</i> where more than one field fits (pick from the dropdown), or a warning such as <i>On no screen</i>. <b>✓ Apply to form</b> copies them into the form; <b>Save</b> still has to be pressed.</figcaption>
+</figure>
 <blockquote>
 <p><strong>Why some cells are disabled:</strong> a Story Points cell is disabled when that issue type is outside
 the Story Points field’s <strong>context</strong> in Jira — Jira would refuse the write, so the app does not
@@ -218,6 +230,10 @@ still plan their backlog.</li>
 <li><strong>Automatic scope</strong> — when opened from a board/sprint/project, the matching scope is
 pre-loaded (see §2).</li>
 </ul>
+<figure class="doc-fig" id="figref-scope-builder">
+  <a href="#fig-scope-builder" aria-label="Open full size"><img src="/assets/guide/scope-builder.webp" width="1120" height="360" loading="lazy" decoding="async" alt="🗂️ Scope Builder: choose a project, then an active or future sprint — or plan the backlog. The builder writes the JQL and runs it."></a>
+  <figcaption><b>🗂️ Scope Builder</b>: choose a project, then an active or future sprint — or plan the backlog. The builder writes the JQL and runs it.</figcaption>
+</figure>
 <p>After the first page of results, the app <strong>automatically loads every remaining page</strong> so
 totals, select-all, CSV export, and the Sprint Preview always cover the full scope. A counter
 shows progress (“Loading N of ~M…”). For safety the auto-load stops at <strong>1,000 issues</strong> with a
@@ -227,6 +243,10 @@ warning to narrow your JQL — estimation scopes are meant to be sprint-sized.</
 <p>Each issue is one row. Columns include Issue key (clickable link), Priority, Summary, Assignee,
 Status, and the estimation columns; more columns (Epic, Parent, Labels, Components, Due/Start
 date, Team, Sprint) can be toggled via the <strong>⚙️ Columns</strong> menu (§8).</p>
+<figure class="doc-fig" id="figref-highlight-1-whole-sprint">
+  <a href="#fig-highlight-1-whole-sprint" aria-label="Open full size"><img src="/assets/shots/highlight-1-whole-sprint.webp" width="1120" height="765" loading="lazy" decoding="async" alt="One row per issue: 🎯 Story Points, ⏱ Original and ⏳ Remaining on the right, the totals bar above the table, the status bar at the top."></a>
+  <figcaption>One row per issue: 🎯 Story Points, ⏱ Original and ⏳ Remaining on the right, the totals bar above the table, the status bar at the top.</figcaption>
+</figure>
 <h3 id="editing-story-points-numeric-scales">Editing Story Points (numeric scales)<a class="anchor" href="#editing-story-points-numeric-scales" aria-label="Link to this section">#</a></h3>
 <ul>
 <li><strong>Click the value</strong> → an input opens, together with a row of preset chips for your scale
@@ -238,6 +258,10 @@ below. Picked the wrong one? Click back into the field to bring the chips up aga
 up to 8 and down to 5 — not ±1). At the top of a scale, stepping up leaves the value where it
 is rather than inventing one.</li>
 </ul>
+<figure class="doc-fig" id="figref-sp-picker">
+  <a href="#fig-sp-picker" aria-label="Open full size"><img src="/assets/guide/sp-picker.webp" width="1120" height="170" loading="lazy" decoding="async" alt="Click a value: the input opens with your scale’s preset chips — here Modified Fibonacci. Click a chip, or type and press Enter."></a>
+  <figcaption>Click a value: the input opens with your scale’s preset chips — here Modified Fibonacci. Click a chip, or type and press <b>Enter</b>.</figcaption>
+</figure>
 <h3 id="editing-story-points-t-shirt-scale">Editing Story Points (T-Shirt scale)<a class="anchor" href="#editing-story-points-t-shirt-scale" aria-label="Link to this section">#</a></h3>
 <p>With the T-Shirt scale selected (§10), SP cells show <strong>XS S M L XL XXL</strong> chips instead — click
 to select. Requires the admin-configured T-shirt field.</p>
@@ -291,6 +315,10 @@ Sprint Preview marks the same rows the same way.</p>
 at it). Click it to see who changed the issue’s estimates, when, and from/to what — sourced from
 the Jira changelog. One history popover is open at a time; press <strong>Esc</strong> or click anywhere outside
 it to dismiss. The T-shirt scale has no ⏱: its cell is six chips wide with no room for one.</p>
+<figure class="doc-fig" id="figref-screenshot-3c-history">
+  <a href="#fig-screenshot-3c-history" aria-label="Open full size"><img src="/assets/shots/screenshot-3c-history.webp" width="660" height="380" loading="lazy" decoding="async" alt="The ⏱ history (Pro): who changed the issue’s estimates, when, and from/to what — read from the Jira changelog."></a>
+  <figcaption>The <b>⏱</b> history <i>(Pro)</i>: who changed the issue’s estimates, when, and from/to what — read from the Jira changelog.</figcaption>
+</figure>
 <hr>
 <h2 id="6-bulk-actions">6. Bulk actions<a class="anchor" href="#6-bulk-actions" aria-label="Link to this section">#</a></h2>
 <p>Tick the checkbox of <strong>one or more rows</strong> (or use the header select-all) and the bulk action bar
@@ -303,6 +331,10 @@ again, exactly as ↺ does for one cell (§5).</li>
 </ul>
 <p>Each bulk action asks for confirmation before applying. Bulk-apply also works on rows whose
 inline cell is disabled (e.g. issue types without the SP field) — useful for pre-staging values.</p>
+<figure class="doc-fig" id="figref-screenshot-1c-bulk">
+  <a href="#fig-screenshot-1c-bulk" aria-label="Open full size"><img src="/assets/shots/screenshot-1c-bulk.webp" width="1120" height="560" loading="lazy" decoding="async" alt="Tick rows and the bulk bar appears above the table: apply one value to every selected issue, or clear a batch."></a>
+  <figcaption>Tick rows and the bulk bar appears above the table: apply one value to every selected issue, or clear a batch.</figcaption>
+</figure>
 <hr>
 <h2 id="7-totals--breakdown">7. Totals &amp; breakdown<a class="anchor" href="#7-totals--breakdown" aria-label="Link to this section">#</a></h2>
 <p>The <strong>totals bar</strong> (bottom) always shows full-scope totals: Σ Story Points, Σ Original,
@@ -324,6 +356,14 @@ listed but never flagged and never skews the average.</p>
 Workload adds the bar, the avatar and the overload comparison.</p>
 </li>
 </ul>
+<figure class="doc-fig" id="figref-screenshot-1d-breakdown">
+  <a href="#fig-screenshot-1d-breakdown" aria-label="Open full size"><img src="/assets/shots/screenshot-1d-breakdown.webp" width="1120" height="560" loading="lazy" decoding="async" alt="Breakdown tab: totals grouped by Epic, Assignee, Label or Type."></a>
+  <figcaption><b>Breakdown</b> tab: totals grouped by Epic, Assignee, Label or Type.</figcaption>
+</figure>
+<figure class="doc-fig" id="figref-highlight-3-spot-overload">
+  <a href="#fig-highlight-3-spot-overload" aria-label="Open full size"><img src="/assets/shots/highlight-3-spot-overload.webp" width="1120" height="560" loading="lazy" decoding="async" alt="Workload tab (Pro): each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average."></a>
+  <figcaption><b>Workload</b> tab <i>(Pro)</i>: each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average.</figcaption>
+</figure>
 <hr>
 <h2 id="8-column-visibility--csv-columns">8. Column visibility &amp; CSV columns<a class="anchor" href="#8-column-visibility--csv-columns" aria-label="Link to this section">#</a></h2>
 <p>The <strong>⚙️ Columns</strong> menu has two independent checkboxes per column:</p>
@@ -331,6 +371,10 @@ Workload adds the bar, the avatar and the overload comparison.</p>
 <li><strong>Visible</strong> — show/hide the column in the table.</li>
 <li><strong>CSV</strong> — include/exclude the column in CSV exports.</li>
 </ul>
+<figure class="doc-fig" id="figref-screenshot-3d-csv-columns">
+  <a href="#fig-screenshot-3d-csv-columns" aria-label="Open full size"><img src="/assets/shots/screenshot-3d-csv-columns.webp" width="450" height="420" loading="lazy" decoding="async" alt="⚙️ Columns: Visible and CSV are separate checkboxes for every column."></a>
+  <figcaption><b>⚙️ Columns</b>: <i>Visible</i> and <i>CSV</i> are separate checkboxes for every column.</figcaption>
+</figure>
 <p>Choices are saved <strong>per user</strong> and persist across sessions. Columns whose Jira field isn’t
 configured (Team, Sprint, Start Date, and the estimation columns) don’t appear in the menu at
 all until an admin maps the field.</p>
@@ -371,6 +415,10 @@ thrown away.</p>
 </tr>
 </tbody>
 </table></div>
+<figure class="doc-fig" id="figref-status-bar">
+  <a href="#fig-status-bar" aria-label="Open full size"><img src="/assets/guide/status-bar.webp" width="1120" height="125" loading="lazy" decoding="async" alt="The status bar describes the copy on screen: ● Private Draft, how many rows differ from Jira, and whether it is saved."></a>
+  <figcaption>The status bar describes the copy on screen: <b>● Private Draft</b>, how many rows differ from Jira, and whether it is saved.</figcaption>
+</figure>
 <p>Beside it, the toolbar describes <strong>only the copy on screen</strong>:</p>
 <div class="table-wrap"><table>
 <thead>
@@ -412,6 +460,10 @@ its own. Left unticked, the draft stays and reads <strong>0 rows differ from Jir
 goes anywhere, because the team draft is read-only for <em>everyone</em>, including whoever shared it: the
 only way it changes is somebody merging into it, or deleting it and sharing anew. Rows the team draft does not estimate show Jira’s
 values, just as in your own copy.</p>
+<figure class="doc-fig" id="figref-screenshot-2c-team-draft">
+  <a href="#fig-screenshot-2c-team-draft" aria-label="Open full size"><img src="/assets/shots/screenshot-2c-team-draft.webp" width="1120" height="355" loading="lazy" decoding="async" alt="Reading the team draft: ◈ Shared Draft, read-only, with 📋 Copy to My Private Draft and ● Back to My Draft."></a>
+  <figcaption>Reading the team draft: <b>◈ Shared Draft</b>, read-only, with <b>📋 Copy to My Private Draft</b> and <b>● Back to My Draft</b>.</figcaption>
+</figure>
 <p>To change it, use <strong>📋 Copy to My Private Draft</strong>, edit your own copy, and push your changes back
 with <strong>↑ Merge into Team Draft…</strong>.</p>
 <p>While you are reading it, the totals, the workload panel and a CSV export all describe <strong>the team
@@ -530,6 +582,10 @@ Drafts list resets that clock.</p>
 <p>Lists your private drafts across every scope, plus every team draft you can see (§9.4). Each team row
 shows the projects that decide its visibility. From here you can <strong>Open</strong> (a team row opens read-only),
 <strong>Rename</strong>, <strong>Renew</strong> and <strong>Delete</strong>.</p>
+<figure class="doc-fig" id="figref-drafts-screen">
+  <a href="#fig-drafts-screen" aria-label="Open full size"><img src="/assets/guide/drafts-screen.webp" width="1120" height="215" loading="lazy" decoding="async" alt="🗂 Drafts: your private drafts and the team drafts you can see, each with Open, Rename, Renew and Delete."></a>
+  <figcaption><b>🗂 Drafts</b>: your private drafts and the team drafts you can see, each with Open, Rename, Renew and Delete.</figcaption>
+</figure>
 <p>Each row says how far that draft is from Jira <em>now</em> — <em>N rows · M values differ from Jira</em>, the
 same words as the status bar. The list refreshes itself every 30 seconds while it is open, so the
 numbers follow Jira; it waits while you are typing a new name or answering a delete prompt.</p>
@@ -589,6 +645,14 @@ the board’s last 5 completed sprints (only available when the app was opened f
 sprint, since that’s what identifies the board).</p>
 </li>
 </ul>
+<figure class="doc-fig" id="figref-screenshot-1b-scales">
+  <a href="#fig-screenshot-1b-scales" aria-label="Open full size"><img src="/assets/shots/screenshot-1b-scales.webp" width="480" height="470" loading="lazy" decoding="async" alt="⚙️ Preferences: the Story Points scale and time stepping you choose here are yours alone."></a>
+  <figcaption><b>⚙️ Preferences</b>: the Story Points scale and time stepping you choose here are yours alone.</figcaption>
+</figure>
+<figure class="doc-fig" id="figref-screenshot-3b-velocity">
+  <a href="#fig-screenshot-3b-velocity" aria-label="Open full size"><img src="/assets/shots/screenshot-3b-velocity.webp" width="480" height="200" loading="lazy" decoding="async" alt="🚀 Target Velocity (Pro): ✨ Auto-calculate averages the board’s last five completed sprints."></a>
+  <figcaption><b>🚀 Target Velocity</b> <i>(Pro)</i>: <b>✨ Auto-calculate</b> averages the board’s last five completed sprints.</figcaption>
+</figure>
 <hr>
 <h2 id="11-sprint-preview--publishing">11. Sprint Preview &amp; publishing<a class="anchor" href="#11-sprint-preview--publishing" aria-label="Link to this section">#</a></h2>
 <p>Scope Planner has three review screens that share the same table shape. <strong>Sprint Preview</strong>,
@@ -607,6 +671,10 @@ existing Story Points and the total keeps matching what a publish will actually 
 estimated them (marked “not in current scope results”) — so nothing is silently dropped or
 silently published. Like every differing row they start ticked, and a publish writes them to
 those issues; untick one to leave that issue alone.</p>
+<figure class="doc-fig" id="figref-highlight-2-review-before-jira">
+  <a href="#fig-highlight-2-review-before-jira" aria-label="Open full size"><img src="/assets/shots/highlight-2-review-before-jira.webp" width="1120" height="650" loading="lazy" decoding="async" alt="🚀 Sprint Preview: your draft, what Jira holds now, and what Jira will hold after applying — each row marked + Adds to Jira or ⇄ Overwrites Jira."></a>
+  <figcaption><b>🚀 Sprint Preview</b>: your draft, what Jira holds now, and what Jira will hold after applying — each row marked <i>+ Adds to Jira</i> or <i>⇄ Overwrites Jira</i>.</figcaption>
+</figure>
 <p><strong>🚀 Sprint Preview publishes the copy the table is showing</strong>, and says at the top which one that
 is:</p>
 <ul>
@@ -616,6 +684,10 @@ it, including someone who has estimated nothing themselves; that is the point of
 refuses outright if a teammate changed the draft while you were reviewing, and nothing is
 written to Jira in that case.</li>
 </ul>
+<figure class="doc-fig" id="figref-screenshot-2d-publish">
+  <a href="#fig-screenshot-2d-publish" aria-label="Open full size"><img src="/assets/shots/screenshot-2d-publish.webp" width="1120" height="560" loading="lazy" decoding="async" alt="Publishing the team draft: the same screen, with ✅ Apply Team Draft to Jira."></a>
+  <figcaption>Publishing the team draft: the same screen, with <b>✅ Apply Team Draft to Jira</b>.</figcaption>
+</figure>
 <p>The screen also offers <strong>📋 Copy…</strong> (the team draft into yours, or the last published values back
 into yours) and <strong>🗑 Delete My Draft</strong>, so you can decide a draft’s fate without going back first.</p>
 <p><strong>Publish</strong> <em>(Pro)</em> writes the previewed estimates to Jira:</p>
@@ -630,6 +702,10 @@ message, listed once per distinct reason with the issues it affected, so a singl
 reads as one problem rather than one line per row. Hovering the ❌ on a row shows the same text.
 On <strong>partial failure</strong> (a permissions issue, a workflow restriction, a deleted issue) nothing is
 lost: every draft stays alive, and a <strong>Retry</strong> button re-attempts just the failed issues.</p>
+<figure class="doc-fig" id="figref-publish-result">
+  <a href="#fig-publish-result" aria-label="Open full size"><img src="/assets/guide/publish-result.webp" width="1120" height="215" loading="lazy" decoding="async" alt="After a publish: ✅ 8 succeeded, and every row now matches Jira."></a>
+  <figcaption>After a publish: <b>✅ 8 succeeded</b>, and every row now matches Jira.</figcaption>
+</figure>
 <p>⚠️ <strong>Read the reason before pressing Retry.</strong> If the cause is configuration — a field that isn’t on
 the issue’s edit screen, say — retrying produces exactly the same result until an admin fixes it.</p>
 <p><strong>Before you publish</strong>, the screen warns you about T-shirt sizes Jira will refuse, naming the issue
@@ -780,6 +856,158 @@ basis (see the <a href="/terms/">terms of use</a>); support hours and the first-
 
         <p class="to-top"><a href="#main">Back to top ↑</a></p>
       </article>
+    </div>
+    <div class="lightbox" id="fig-sprint-menu" role="dialog" aria-label="A sprint’s ⋯ menu → Scope Planner opens the app on that one sprint.">
+      <a class="lb-backdrop" href="#figref-sprint-menu" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/sprint-menu.webp" width="715" height="150" loading="lazy" decoding="async" alt="A sprint’s ⋯ menu → Scope Planner opens the app on that one sprint.">
+        <figcaption>A sprint’s <b>⋯</b> menu → <b>Scope Planner</b> opens the app on that one sprint.</figcaption>
+        <a class="lb-close" href="#figref-sprint-menu" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-admin-page" role="dialog" aria-label="The admin page: ✨ Auto-detect Field Mappings at the top, then Field Mappings, Draft Retention Policy and Default Estimation Scales. Nothing applies until 💾 Save Configuration.">
+      <a class="lb-backdrop" href="#figref-admin-page" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/admin-page.webp" width="790" height="1290" loading="lazy" decoding="async" alt="The admin page: ✨ Auto-detect Field Mappings at the top, then Field Mappings, Draft Retention Policy and Default Estimation Scales. Nothing applies until 💾 Save Configuration.">
+        <figcaption>The admin page: <b>✨ Auto-detect Field Mappings</b> at the top, then Field Mappings, Draft Retention Policy and Default Estimation Scales. Nothing applies until <b>💾 Save Configuration</b>.</figcaption>
+        <a class="lb-close" href="#figref-admin-page" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-admin-detect" role="dialog" aria-label="After 🔍 Detect Fields: a suggestion for every role, each with a badge — Detected, 2 matches where more than one field fits (pick from the dropdown), or a warning such as On no screen. ✓ Apply to form copies them into the form; Save still has to be pressed.">
+      <a class="lb-backdrop" href="#figref-admin-detect" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/admin-detect.webp" width="790" height="640" loading="lazy" decoding="async" alt="After 🔍 Detect Fields: a suggestion for every role, each with a badge — Detected, 2 matches where more than one field fits (pick from the dropdown), or a warning such as On no screen. ✓ Apply to form copies them into the form; Save still has to be pressed.">
+        <figcaption>After <b>🔍 Detect Fields</b>: a suggestion for every role, each with a badge — <i>Detected</i>, <i>2 matches</i> where more than one field fits (pick from the dropdown), or a warning such as <i>On no screen</i>. <b>✓ Apply to form</b> copies them into the form; <b>Save</b> still has to be pressed.</figcaption>
+        <a class="lb-close" href="#figref-admin-detect" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-scope-builder" role="dialog" aria-label="🗂️ Scope Builder: choose a project, then an active or future sprint — or plan the backlog. The builder writes the JQL and runs it.">
+      <a class="lb-backdrop" href="#figref-scope-builder" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/scope-builder.webp" width="1120" height="360" loading="lazy" decoding="async" alt="🗂️ Scope Builder: choose a project, then an active or future sprint — or plan the backlog. The builder writes the JQL and runs it.">
+        <figcaption><b>🗂️ Scope Builder</b>: choose a project, then an active or future sprint — or plan the backlog. The builder writes the JQL and runs it.</figcaption>
+        <a class="lb-close" href="#figref-scope-builder" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-highlight-1-whole-sprint" role="dialog" aria-label="One row per issue: 🎯 Story Points, ⏱ Original and ⏳ Remaining on the right, the totals bar above the table, the status bar at the top.">
+      <a class="lb-backdrop" href="#figref-highlight-1-whole-sprint" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/highlight-1-whole-sprint.webp" width="1120" height="765" loading="lazy" decoding="async" alt="One row per issue: 🎯 Story Points, ⏱ Original and ⏳ Remaining on the right, the totals bar above the table, the status bar at the top.">
+        <figcaption>One row per issue: 🎯 Story Points, ⏱ Original and ⏳ Remaining on the right, the totals bar above the table, the status bar at the top.</figcaption>
+        <a class="lb-close" href="#figref-highlight-1-whole-sprint" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-sp-picker" role="dialog" aria-label="Click a value: the input opens with your scale’s preset chips — here Modified Fibonacci. Click a chip, or type and press Enter.">
+      <a class="lb-backdrop" href="#figref-sp-picker" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/sp-picker.webp" width="1120" height="170" loading="lazy" decoding="async" alt="Click a value: the input opens with your scale’s preset chips — here Modified Fibonacci. Click a chip, or type and press Enter.">
+        <figcaption>Click a value: the input opens with your scale’s preset chips — here Modified Fibonacci. Click a chip, or type and press <b>Enter</b>.</figcaption>
+        <a class="lb-close" href="#figref-sp-picker" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-screenshot-3c-history" role="dialog" aria-label="The ⏱ history (Pro): who changed the issue’s estimates, when, and from/to what — read from the Jira changelog.">
+      <a class="lb-backdrop" href="#figref-screenshot-3c-history" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/screenshot-3c-history.webp" width="660" height="380" loading="lazy" decoding="async" alt="The ⏱ history (Pro): who changed the issue’s estimates, when, and from/to what — read from the Jira changelog.">
+        <figcaption>The <b>⏱</b> history <i>(Pro)</i>: who changed the issue’s estimates, when, and from/to what — read from the Jira changelog.</figcaption>
+        <a class="lb-close" href="#figref-screenshot-3c-history" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-screenshot-1c-bulk" role="dialog" aria-label="Tick rows and the bulk bar appears above the table: apply one value to every selected issue, or clear a batch.">
+      <a class="lb-backdrop" href="#figref-screenshot-1c-bulk" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/screenshot-1c-bulk.webp" width="1120" height="560" loading="lazy" decoding="async" alt="Tick rows and the bulk bar appears above the table: apply one value to every selected issue, or clear a batch.">
+        <figcaption>Tick rows and the bulk bar appears above the table: apply one value to every selected issue, or clear a batch.</figcaption>
+        <a class="lb-close" href="#figref-screenshot-1c-bulk" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-screenshot-1d-breakdown" role="dialog" aria-label="Breakdown tab: totals grouped by Epic, Assignee, Label or Type.">
+      <a class="lb-backdrop" href="#figref-screenshot-1d-breakdown" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/screenshot-1d-breakdown.webp" width="1120" height="560" loading="lazy" decoding="async" alt="Breakdown tab: totals grouped by Epic, Assignee, Label or Type.">
+        <figcaption><b>Breakdown</b> tab: totals grouped by Epic, Assignee, Label or Type.</figcaption>
+        <a class="lb-close" href="#figref-screenshot-1d-breakdown" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-highlight-3-spot-overload" role="dialog" aria-label="Workload tab (Pro): each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average.">
+      <a class="lb-backdrop" href="#figref-highlight-3-spot-overload" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/highlight-3-spot-overload.webp" width="1120" height="560" loading="lazy" decoding="async" alt="Workload tab (Pro): each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average.">
+        <figcaption><b>Workload</b> tab <i>(Pro)</i>: each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average.</figcaption>
+        <a class="lb-close" href="#figref-highlight-3-spot-overload" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-screenshot-3d-csv-columns" role="dialog" aria-label="⚙️ Columns: Visible and CSV are separate checkboxes for every column.">
+      <a class="lb-backdrop" href="#figref-screenshot-3d-csv-columns" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/screenshot-3d-csv-columns.webp" width="450" height="420" loading="lazy" decoding="async" alt="⚙️ Columns: Visible and CSV are separate checkboxes for every column.">
+        <figcaption><b>⚙️ Columns</b>: <i>Visible</i> and <i>CSV</i> are separate checkboxes for every column.</figcaption>
+        <a class="lb-close" href="#figref-screenshot-3d-csv-columns" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-status-bar" role="dialog" aria-label="The status bar describes the copy on screen: ● Private Draft, how many rows differ from Jira, and whether it is saved.">
+      <a class="lb-backdrop" href="#figref-status-bar" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/status-bar.webp" width="1120" height="125" loading="lazy" decoding="async" alt="The status bar describes the copy on screen: ● Private Draft, how many rows differ from Jira, and whether it is saved.">
+        <figcaption>The status bar describes the copy on screen: <b>● Private Draft</b>, how many rows differ from Jira, and whether it is saved.</figcaption>
+        <a class="lb-close" href="#figref-status-bar" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-screenshot-2c-team-draft" role="dialog" aria-label="Reading the team draft: ◈ Shared Draft, read-only, with 📋 Copy to My Private Draft and ● Back to My Draft.">
+      <a class="lb-backdrop" href="#figref-screenshot-2c-team-draft" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/screenshot-2c-team-draft.webp" width="1120" height="355" loading="lazy" decoding="async" alt="Reading the team draft: ◈ Shared Draft, read-only, with 📋 Copy to My Private Draft and ● Back to My Draft.">
+        <figcaption>Reading the team draft: <b>◈ Shared Draft</b>, read-only, with <b>📋 Copy to My Private Draft</b> and <b>● Back to My Draft</b>.</figcaption>
+        <a class="lb-close" href="#figref-screenshot-2c-team-draft" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-drafts-screen" role="dialog" aria-label="🗂 Drafts: your private drafts and the team drafts you can see, each with Open, Rename, Renew and Delete.">
+      <a class="lb-backdrop" href="#figref-drafts-screen" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/drafts-screen.webp" width="1120" height="215" loading="lazy" decoding="async" alt="🗂 Drafts: your private drafts and the team drafts you can see, each with Open, Rename, Renew and Delete.">
+        <figcaption><b>🗂 Drafts</b>: your private drafts and the team drafts you can see, each with Open, Rename, Renew and Delete.</figcaption>
+        <a class="lb-close" href="#figref-drafts-screen" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-screenshot-1b-scales" role="dialog" aria-label="⚙️ Preferences: the Story Points scale and time stepping you choose here are yours alone.">
+      <a class="lb-backdrop" href="#figref-screenshot-1b-scales" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/screenshot-1b-scales.webp" width="480" height="470" loading="lazy" decoding="async" alt="⚙️ Preferences: the Story Points scale and time stepping you choose here are yours alone.">
+        <figcaption><b>⚙️ Preferences</b>: the Story Points scale and time stepping you choose here are yours alone.</figcaption>
+        <a class="lb-close" href="#figref-screenshot-1b-scales" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-screenshot-3b-velocity" role="dialog" aria-label="🚀 Target Velocity (Pro): ✨ Auto-calculate averages the board’s last five completed sprints.">
+      <a class="lb-backdrop" href="#figref-screenshot-3b-velocity" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/screenshot-3b-velocity.webp" width="480" height="200" loading="lazy" decoding="async" alt="🚀 Target Velocity (Pro): ✨ Auto-calculate averages the board’s last five completed sprints.">
+        <figcaption><b>🚀 Target Velocity</b> <i>(Pro)</i>: <b>✨ Auto-calculate</b> averages the board’s last five completed sprints.</figcaption>
+        <a class="lb-close" href="#figref-screenshot-3b-velocity" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-highlight-2-review-before-jira" role="dialog" aria-label="🚀 Sprint Preview: your draft, what Jira holds now, and what Jira will hold after applying — each row marked + Adds to Jira or ⇄ Overwrites Jira.">
+      <a class="lb-backdrop" href="#figref-highlight-2-review-before-jira" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/highlight-2-review-before-jira.webp" width="1120" height="650" loading="lazy" decoding="async" alt="🚀 Sprint Preview: your draft, what Jira holds now, and what Jira will hold after applying — each row marked + Adds to Jira or ⇄ Overwrites Jira.">
+        <figcaption><b>🚀 Sprint Preview</b>: your draft, what Jira holds now, and what Jira will hold after applying — each row marked <i>+ Adds to Jira</i> or <i>⇄ Overwrites Jira</i>.</figcaption>
+        <a class="lb-close" href="#figref-highlight-2-review-before-jira" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-screenshot-2d-publish" role="dialog" aria-label="Publishing the team draft: the same screen, with ✅ Apply Team Draft to Jira.">
+      <a class="lb-backdrop" href="#figref-screenshot-2d-publish" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/screenshot-2d-publish.webp" width="1120" height="560" loading="lazy" decoding="async" alt="Publishing the team draft: the same screen, with ✅ Apply Team Draft to Jira.">
+        <figcaption>Publishing the team draft: the same screen, with <b>✅ Apply Team Draft to Jira</b>.</figcaption>
+        <a class="lb-close" href="#figref-screenshot-2d-publish" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-publish-result" role="dialog" aria-label="After a publish: ✅ 8 succeeded, and every row now matches Jira.">
+      <a class="lb-backdrop" href="#figref-publish-result" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/publish-result.webp" width="1120" height="215" loading="lazy" decoding="async" alt="After a publish: ✅ 8 succeeded, and every row now matches Jira.">
+        <figcaption>After a publish: <b>✅ 8 succeeded</b>, and every row now matches Jira.</figcaption>
+        <a class="lb-close" href="#figref-publish-result" aria-label="Close">×</a>
+      </figure>
     </div>
   </main>
   <footer class="site">

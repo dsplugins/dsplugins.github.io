@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 /**
- * Cuts the landing page's product screenshots out of the app repo's raw listing captures.
+ * Cuts the site's product screenshots out of raw captures.
  *
  *   node shots.mjs /path/to/scope-planner      (or SCOPE_PLANNER_PATH=… node shots.mjs)
+ *
+ * Two sets. The landing page's (assets/static/shots/) come straight from the app repo's listing
+ * captures, region for region. The user guide's (assets/static/guide/) are closer crops of the
+ * same captures plus three this repo takes itself with guide-capture.mjs (the admin page, Detect
+ * Fields, the Scope Builder — into the gitignored .work/raw/); build.mjs places them in the guide.
  *
  * The app repo's listing pipeline (scripts/listing-assets/) captures the live demo board at 2×
  * into the gitignored `.work/raw/`, and `specs.json` names the region of each capture that its
@@ -25,6 +30,8 @@ const APP = process.argv[2] || process.env.SCOPE_PLANNER_PATH || join(ROOT, '..'
 const SPECS = join(APP, 'scripts', 'listing-assets', 'specs.json');
 const RAW = join(APP, 'scripts', 'listing-assets', '.work', 'raw');
 const OUT = join(ROOT, 'assets', 'static', 'shots');
+const GUIDE_OUT = join(ROOT, 'assets', 'static', 'guide');
+const SITE_RAW = join(ROOT, '.work', 'raw');
 const SCALE = 2; // the raw captures are taken at deviceScaleFactor 2; spec regions are CSS px
 
 /** The listing images the landing page shows — content/index.html refers to them by name. */
@@ -40,6 +47,21 @@ const WANT = [
   'screenshot-3b-velocity',
   'screenshot-3c-history',
   'screenshot-3d-csv-columns',
+];
+
+/**
+ * The guide's crops: source capture and region in CSS px (every capture is 2×). `listing:` is the
+ * app repo's scripts/listing-assets/.work/, `site:` is this repo's .work/raw/ (guide-capture.mjs).
+ */
+const GUIDE = [
+  { name: 'sprint-menu', src: 'listing:probe-menu', region: { x: 230, y: 195, w: 715, h: 150 } },
+  { name: 'admin-page', src: 'site:admin-page', region: { x: 360, y: 124, w: 790, h: 1290 } },
+  { name: 'admin-detect', src: 'site:admin-detect', region: { x: 360, y: 124, w: 790, h: 640 } },
+  { name: 'scope-builder', src: 'site:scope-builder', region: { x: 360, y: 228, w: 1120, h: 360 } },
+  { name: 'sp-picker', src: 'listing:raw/h1-table', region: { x: 360, y: 740, w: 1120, h: 170 } },
+  { name: 'status-bar', src: 'listing:raw/2b-draft', region: { x: 360, y: 228, w: 1120, h: 125 } },
+  { name: 'drafts-screen', src: 'listing:raw/2e-drafts', region: { x: 360, y: 190, w: 1120, h: 215 } },
+  { name: 'publish-result', src: 'listing:raw/2d-published', region: { x: 360, y: 190, w: 1120, h: 215 } },
 ];
 
 if (!existsSync(SPECS) || !existsSync(RAW)) {
@@ -64,4 +86,19 @@ for (const name of WANT) {
   const out = join(OUT, `${name}.webp`);
   execFileSync('convert', [src, '-crop', crop, '+repage', '-strip', ...webp, out]);
   console.log(`✓ ${name}.webp — ${w}×${h} CSS px, ${Math.round(statSync(out).size / 1024)} KB`);
+}
+
+mkdirSync(GUIDE_OUT, { recursive: true });
+for (const { name, src, region } of GUIDE) {
+  const [where, file] = src.split(':');
+  const path = where === 'site' ? join(SITE_RAW, `${file}.png`) : join(APP, 'scripts', 'listing-assets', '.work', `${file}.png`);
+  if (!existsSync(path)) {
+    console.error(`✗ ${name}: no capture at ${path}` + (where === 'site' ? ' — run guide-capture.mjs first' : ''));
+    process.exit(1);
+  }
+  const { x, y, w, h } = region;
+  const out = join(GUIDE_OUT, `${name}.webp`);
+  const crop = `${w * SCALE}x${h * SCALE}+${x * SCALE}+${y * SCALE}`;
+  execFileSync('convert', [path, '-crop', crop, '+repage', '-strip', '-define', 'webp:lossless=true', '-define', 'webp:method=6', out]);
+  console.log(`✓ guide/${name}.webp — ${w}×${h} CSS px, ${Math.round(statSync(out).size / 1024)} KB`);
 }
