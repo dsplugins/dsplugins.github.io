@@ -1,6 +1,6 @@
 # Scope Planner — Privacy Policy
 
-_Last updated: 12 October 2026_
+_Last updated: 16 October 2026_
 
 Scope Planner is a Jira Cloud app built on Atlassian Forge. It runs entirely on Atlassian's
 infrastructure and has **no servers, storage, or network egress outside Atlassian**. The app's
@@ -131,7 +131,10 @@ location. The app stores no data anywhere else.
 **In scope for data residency:** private drafts, team drafts, publish records, user preferences,
 site settings, the velocity cache and the permissions cache — that is, everything listed under
 "What data the app processes" that the app stores. **Out of scope:** nothing the app stores is out
-of scope. Jira issue data itself is held by Jira, under Jira's own data residency.
+of scope. Two things the app does not store sit outside it: Jira issue data itself, held by Jira
+under Jira's own data residency; and the app's Forge logs — technical diagnostics only and, for GDPR
+processing records, the account ID being deleted or anonymized (see "What the app does NOT do") —
+which Atlassian keeps in its own logging, and for which the app makes no data residency commitment.
 
 ## Security
 
