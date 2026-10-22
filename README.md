@@ -142,6 +142,20 @@ hover anchors, an *On this page* index built from the `##` headings (a sticky si
 screens, a collapsed `<details>` on narrow ones), and a framed scroll box around tables. A
 `_Last updated: …_` line directly under the title moves into the page header.
 
+**Search engines.** The build also writes `robots.txt` and `sitemap.xml` (every page in `PAGES`,
+no `<lastmod>` — a date from the build or a shallow checkout would make the `check` job's diff fail
+by itself), and one JSON-LD block per page: Organization, WebSite, SoftwareApplication and an
+FAQPage on the landing page — the FAQ is parsed from the landing page's own `<details>`, and the
+build fails if it finds none — and WebPage + BreadcrumbList on the documents. A JSON-LD block is
+data the browser never runs, so "no scripts" still holds. No `offers` and no `aggregateRating`:
+prices live on the Marketplace and there are no reviews yet, so Search Console may report the app
+item as missing them — expected, not a bug.
+
+`google9b7280b4081c83ac.html` at the root is the **Google Search Console** ownership proof for the
+`https://dsplugins.dev/` property (account `dsplugins@gmail.com`, 2026-10-22), written by the build.
+Search Console re-checks it: **removing it unverifies the site.** Search Console needs no code on the
+pages — it reads Google's own crawl data — so the no-tracking promise is unaffected.
+
 `assets/style.css` is the whole design: colour tokens with a dark scheme, then components. Files in
 `assets/static/` are copied to `/assets/` — the favicon (the partner mark) and `og-banner.png`, the
 social-preview image (a copy of the app repo's `docs/branding/banner-1120x548.png`). Asset URLs are
@@ -166,3 +180,7 @@ commit metadata here, since this repo is public. It must not reappear in `conten
 ## Still to do
 
 - Link the Marketplace listing from the landing page once it is approved and has a public URL.
+  Make it the hero's first button (`Try it free on Atlassian Marketplace`) and repeat it in
+  *Free and Pro*: the link sends buyers to the listing and also helps the listing rank in Google.
+- After every push that changes pages: Search Console → *Sitemaps* shows the last read; resubmit
+  `https://dsplugins.dev/sitemap.xml` only if a page was added or removed.

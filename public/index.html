@@ -3,18 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Scope Planner – Bulk Sprint Estimation for Jira | DSPlugins</title>
-<meta name="description" content="Estimate a whole sprint on one screen, review exactly what will change, then publish every estimate to Jira in one pass. Runs on Atlassian Forge: no external servers, no data egress, no tracking.">
+<title>Scope Planner – Bulk Story Point &amp; Sprint Estimation for Jira</title>
+<meta name="description" content="Estimate story points and time for a whole Jira sprint, backlog or any JQL in one table. Review every change, then publish to Jira in one pass.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#4f46e5">
 <link rel="canonical" href="https://dsplugins.dev/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DSPlugins">
-<meta property="og:title" content="Scope Planner – Bulk Sprint Estimation for Jira | DSPlugins">
-<meta property="og:description" content="Estimate a whole sprint on one screen, review exactly what will change, then publish every estimate to Jira in one pass. Runs on Atlassian Forge: no external servers, no data egress, no tracking.">
+<meta property="og:title" content="Scope Planner – Bulk Story Point &amp; Sprint Estimation for Jira">
+<meta property="og:description" content="Estimate story points and time for a whole Jira sprint, backlog or any JQL in one table. Review every change, then publish to Jira in one pass.">
 <meta property="og:url" content="https://dsplugins.dev/">
 <meta property="og:image" content="https://dsplugins.dev/assets/og-banner.png">
+<meta property="og:image:width" content="1120">
+<meta property="og:image:height" content="548">
+<meta property="og:image:alt" content="Scope Planner — bulk sprint estimation for Jira Cloud">
 <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://dsplugins.dev/#org","name":"DSPlugins","url":"https://dsplugins.dev/","logo":"https://dsplugins.dev/assets/favicon.svg","email":"support@dsplugins.dev"},{"@type":"WebSite","@id":"https://dsplugins.dev/#site","url":"https://dsplugins.dev/","name":"DSPlugins","publisher":{"@id":"https://dsplugins.dev/#org"}},{"@type":"SoftwareApplication","@id":"https://dsplugins.dev/#app","name":"Scope Planner","alternateName":"Scope Planner for Jira","description":"Estimate story points and time for a whole Jira sprint, backlog or any JQL in one table. Review every change, then publish to Jira in one pass.","url":"https://dsplugins.dev/","image":"https://dsplugins.dev/assets/og-banner.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Agile estimation","operatingSystem":"Jira Cloud","softwareHelp":{"@type":"CreativeWork","url":"https://dsplugins.dev/guide/"},"publisher":{"@id":"https://dsplugins.dev/#org"}},{"@type":"FAQPage","@id":"https://dsplugins.dev/#faq","url":"https://dsplugins.dev/","mainEntity":[{"@type":"Question","name":"Does anything reach Jira while we estimate?","acceptedAnswer":{"@type":"Answer","text":"No. Drafts live in the app’s own storage, not in your issues. Nothing is written to Jira until someone reviews the change in Sprint Preview and publishes it."}},{"@type":"Question","name":"Can a teammate overwrite my numbers?","acceptedAnswer":{"@type":"Answer","text":"Not by accident. Only your private draft is edited directly; changes reach the team draft whole, through a review screen that shows row by row what will change."}},{"@type":"Question","name":"What works without a Pro subscription?","acceptedAnswer":{"@type":"Answer","text":"The estimation table, private and team drafts, totals and Sprint Preview. You cannot publish estimates into Jira — your drafts are kept, and publishing becomes available as soon as a subscription or trial is active."}},{"@type":"Question","name":"What does a Jira admin need to set up?","acceptedAnswer":{"@type":"Answer","text":"Once per site: which Jira fields hold your estimates. 🔍 Detect Fields scans your fields and suggests the mappings; the user guide walks through it."}},{"@type":"Question","name":"Where is our data stored?","acceptedAnswer":{"@type":"Answer","text":"In Atlassian Forge hosted storage, inside your own Atlassian site. The developer operates no infrastructure of its own and receives no copies of your data. Details are in the privacy policy."}},{"@type":"Question","name":"How do we get help?","acceptedAnswer":{"@type":"Answer","text":"Email support@dsplugins.dev. Every message is answered by the people who build the app; we aim to reply within one business day. Hours and what to include are on the support page."}}]}]}</script>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css?v=c639a90e51">
 </head>
@@ -70,8 +74,9 @@
         <div class="hero-copy">
           <p class="pill"><span class="pill-dot"></span>Jira Cloud app &middot; built on Atlassian Forge</p>
           <h1>Estimate the whole sprint. <span class="grad">Publish once.</span></h1>
-          <p class="lede">Scope Planner puts every issue in one editable table, keeps the numbers in
-            a draft until the team agrees, and shows exactly what will change before anything
+          <p class="lede">Scope Planner puts every issue of a sprint, a backlog or any JQL in one
+            editable table — story points, original and remaining time — keeps the numbers in a
+            draft until the team agrees, and shows exactly what will change before anything
             reaches Jira.</p>
           <div class="actions">
             <a class="btn btn-light" href="#how">See how it works</a>
@@ -191,7 +196,8 @@
           <div class="feature-copy">
             <p class="eyebrow">Estimate</p>
             <h2>The whole sprint on one screen</h2>
-            <p>Stop opening issues one at a time. Load a sprint, a backlog or any JQL into a
+            <p>Stop opening issues one at a time in sprint planning or backlog refinement. Load a
+              sprint, a backlog or any JQL into a
               spreadsheet-style table and estimate every issue right where you see it.</p>
             <ul class="checks">
               <li>Story points, original and remaining estimate — inline, or one value applied to a
