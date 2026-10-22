@@ -57,9 +57,10 @@ const PAGES = [
     src: 'index.html',
     out: '.',
     label: 'Scope Planner',
-    title: 'Scope Planner – Bulk Sprint Estimation for Jira | DSPlugins',
+    // "Story points" is what people type into a search box; "sprint estimation" alone is not.
+    title: 'Scope Planner – Bulk Story Point & Sprint Estimation for Jira',
     description:
-      'Estimate a whole sprint on one screen, review exactly what will change, then publish every estimate to Jira in one pass. Runs on Atlassian Forge: no external servers, no data egress, no tracking.',
+      'Estimate story points and time for a whole Jira sprint, backlog or any JQL in one table. Review every change, then publish to Jira in one pass.',
   },
   {
     src: 'guide.md',
@@ -74,6 +75,7 @@ const PAGES = [
     out: 'support',
     label: 'Support',
     eyebrow: 'Help',
+    title: 'Scope Planner Support | DSPlugins',
     description:
       'Scope Planner support: email support@dsplugins.dev, support hours, the first-reply target and what to include in a message.',
   },
@@ -329,6 +331,86 @@ const PARTNER_MARK = `<svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
           .join('')}</g>
       </svg>`;
 
+/**
+ * schema.org data for search engines, as one JSON-LD block per page. A data block, not a script:
+ * the browser never executes it, so "no scripts" above still holds.
+ *
+ * Deliberately absent: `offers` and `aggregateRating`. Prices live on the Marketplace and there are
+ * no reviews yet; inventing either would be a false claim. Without them Google shows no rich
+ * result for the app, and Search Console may list the item as incomplete — that is expected.
+ *
+ * The FAQ is read from the landing page's own <details> blocks, so the two cannot disagree; a
+ * landing page whose FAQ markup changed shape FAILS the build instead of shipping an empty one.
+ */
+const ORG = {
+  '@type': 'Organization',
+  '@id': `${ORIGIN}/#org`,
+  name: 'DSPlugins',
+  url: `${ORIGIN}/`,
+  logo: `${ORIGIN}/assets/favicon.svg`,
+  email: 'support@dsplugins.dev',
+};
+
+function faqFrom(html) {
+  const items = [...html.matchAll(/<details>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)].map(
+    ([, q, a]) => ({
+      '@type': 'Question',
+      name: stripTags(q).replace(/\s+/g, ' ').trim(),
+      acceptedAnswer: { '@type': 'Answer', text: stripTags(a).replace(/\s+/g, ' ').trim() },
+    }),
+  );
+  if (!items.length) {
+    console.error('✗ No FAQ <details> found in content/index.html — fix faqFrom() in build.mjs.');
+    process.exit(1);
+  }
+  return items;
+}
+
+function structuredData(page, title, description, mainHtml) {
+  const url = `${ORIGIN}${hrefOf(page)}`;
+  const graph =
+    page.out === '.'
+      ? [
+          ORG,
+          { '@type': 'WebSite', '@id': `${ORIGIN}/#site`, url: `${ORIGIN}/`, name: 'DSPlugins', publisher: { '@id': ORG['@id'] } },
+          {
+            '@type': 'SoftwareApplication',
+            '@id': `${ORIGIN}/#app`,
+            name: 'Scope Planner',
+            alternateName: 'Scope Planner for Jira',
+            description,
+            url,
+            image: `${ORIGIN}/assets/og-banner.png`,
+            applicationCategory: 'BusinessApplication',
+            applicationSubCategory: 'Agile estimation',
+            operatingSystem: 'Jira Cloud',
+            softwareHelp: { '@type': 'CreativeWork', url: `${ORIGIN}/guide/` },
+            publisher: { '@id': ORG['@id'] },
+          },
+          { '@type': 'FAQPage', '@id': `${url}#faq`, url, mainEntity: faqFrom(mainHtml) },
+        ]
+      : [
+          {
+            '@type': 'WebPage',
+            '@id': url,
+            url,
+            name: title,
+            description,
+            isPartOf: { '@id': `${ORIGIN}/#site` },
+            about: { '@id': `${ORIGIN}/#app` },
+          },
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Scope Planner', item: `${ORIGIN}/` },
+              { '@type': 'ListItem', position: 2, name: page.label, item: url },
+            ],
+          },
+        ];
+  // `<` escaped so no string in the data can close the <script> element early.
+  return JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+}
+
 function layout({ page, title, description, mainHtml, here }) {
   const links = PAGES.map((p) => {
     const current = p.out === here ? ' aria-current="page"' : '';
@@ -350,7 +432,10 @@ ${canonical ? `<link rel="canonical" href="${canonical}">\n` : ''}<meta property
 <meta property="og:title" content="${escapeHtml(title)}">
 <meta property="og:description" content="${escapeHtml(description)}">
 ${canonical ? `<meta property="og:url" content="${canonical}">\n` : ''}<meta property="og:image" content="${ORIGIN}/assets/og-banner.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image:width" content="1120">
+<meta property="og:image:height" content="548">
+<meta property="og:image:alt" content="Scope Planner — bulk sprint estimation for Jira Cloud">
+<meta name="twitter:card" content="summary_large_image">${page ? `\n<script type="application/ld+json">${structuredData(page, title, description, mainHtml)}</script>` : ''}
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="${CSS_HREF}">
 </head>
@@ -521,6 +606,26 @@ if (unmapped.length) {
   for (const u of unmapped) console.error(`    ${u.page} → ${u.href}`);
   process.exit(1);
 }
+
+/**
+ * Crawl hints. No <lastmod>: the CI `check` job re-renders and diffs, so anything derived from the
+ * build date or a shallow checkout's git history would make committed output drift by itself.
+ */
+// Google Search Console ownership proof for the https://dsplugins.dev/ property (account
+// dsplugins@gmail.com, 2026-10-22). Search Console re-checks it: removing it unverifies the site.
+// It is a file, not a meta tag or a script, so it costs visitors nothing.
+const GOOGLE_VERIFICATION = 'google9b7280b4081c83ac.html';
+writeFileSync(join(OUT, GOOGLE_VERIFICATION), `google-site-verification: ${GOOGLE_VERIFICATION}`);
+
+writeFileSync(join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`);
+writeFileSync(
+  join(OUT, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${PAGES.map((p) => `  <url><loc>${ORIGIN}${hrefOf(p)}</loc></url>`).join('\n')}
+</urlset>
+`,
+);
 
 writeFileSync(join(OUT, 'style.css'), CSS);
 cpSync(join(ASSETS, 'static'), join(OUT, 'assets'), { recursive: true });
