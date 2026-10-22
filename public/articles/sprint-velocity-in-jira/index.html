@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to calculate sprint velocity in Jira | DSPlugins</title>
+<meta name="description" content="How to read sprint velocity in Jira, turn it into a planning number for the next sprint, and avoid the mistakes that distort it.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#4f46e5">
+<link rel="canonical" href="https://dsplugins.dev/articles/sprint-velocity-in-jira/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DSPlugins">
+<meta property="og:title" content="How to calculate sprint velocity in Jira | DSPlugins">
+<meta property="og:description" content="How to read sprint velocity in Jira, turn it into a planning number for the next sprint, and avoid the mistakes that distort it.">
+<meta property="og:url" content="https://dsplugins.dev/articles/sprint-velocity-in-jira/">
+<meta property="og:image" content="https://dsplugins.dev/assets/og-banner.png">
+<meta property="og:image:width" content="1120">
+<meta property="og:image:height" content="548">
+<meta property="og:image:alt" content="Scope Planner — bulk sprint estimation for Jira Cloud">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://dsplugins.dev/articles/sprint-velocity-in-jira/","url":"https://dsplugins.dev/articles/sprint-velocity-in-jira/","headline":"How to calculate sprint velocity in Jira","description":"How to read sprint velocity in Jira, turn it into a planning number for the next sprint, and avoid the mistakes that distort it.","datePublished":"2026-10-22","image":"https://dsplugins.dev/assets/og-banner.png","author":{"@id":"https://dsplugins.dev/#org"},"publisher":{"@type":"Organization","@id":"https://dsplugins.dev/#org","name":"DSPlugins","url":"https://dsplugins.dev/","logo":"https://dsplugins.dev/assets/favicon.svg","email":"support@dsplugins.dev"},"isPartOf":{"@id":"https://dsplugins.dev/#site"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scope Planner","item":"https://dsplugins.dev/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://dsplugins.dev/articles/"},{"@type":"ListItem","position":3,"name":"Sprint velocity in Jira","item":"https://dsplugins.dev/articles/sprint-velocity-in-jira/"}]}]}</script>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=c639a90e51">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="brand" href="/" aria-label="DSPlugins — home">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="19" fill="#FBBF24" opacity=".2"/>
+        <g fill="#FBBF24"><circle cx="32" cy="32" r="11"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(0 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(45 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(90 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(135 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(180 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(225 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(270 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(315 32 32)"/></g>
+      </svg>
+        <span>DSPlugins</span>
+      </a>
+      <nav class="nav" aria-label="Site">
+        <a href="/">Scope Planner</a>
+        <a href="/guide/">User guide</a>
+        <a href="/support/">Support</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+      <a class="btn btn-sm header-cta" href="mailto:support@dsplugins.dev">Contact</a>
+      <details class="menu">
+        <summary aria-label="Menu"><span></span></summary>
+        <nav aria-label="Site (mobile)">
+          <a href="/">Scope Planner</a>
+          <a href="/guide/">User guide</a>
+          <a href="/support/">Support</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+  <main id="main">
+    <div class="doc-head">
+      <div class="wrap">
+        <p class="eyebrow">Scope Planner &middot; Articles</p>
+        <h1>How to calculate sprint velocity in Jira</h1>
+        <p class="doc-meta">Last updated: 22 October 2026</p>
+      </div>
+    </div>
+    <div class="wrap doc">
+      <aside class="toc" aria-label="On this page">
+        <nav class="toc-side">
+          <p class="toc-title">On this page</p>
+          <ol>
+            <li><a href="#what-counts">What counts</a></li>
+            <li><a href="#reading-it-in-jira">Reading it in Jira</a></li>
+            <li><a href="#turning-it-into-a-planning-number">Turning it into a planning number</a></li>
+            <li><a href="#mistakes-that-distort-velocity">Mistakes that distort velocity</a></li>
+            <li><a href="#planning-against-velocity-in-one-table">Planning against velocity in one table</a></li>
+          </ol>
+        </nav>
+        <details class="toc-fold">
+          <summary>On this page</summary>
+          <ol>
+            <li><a href="#what-counts">What counts</a></li>
+            <li><a href="#reading-it-in-jira">Reading it in Jira</a></li>
+            <li><a href="#turning-it-into-a-planning-number">Turning it into a planning number</a></li>
+            <li><a href="#mistakes-that-distort-velocity">Mistakes that distort velocity</a></li>
+            <li><a href="#planning-against-velocity-in-one-table">Planning against velocity in one table</a></li>
+          </ol>
+        </details>
+      </aside>
+      <article class="prose">
+<p>Velocity is the amount of work a team actually finishes in a sprint, usually measured in story
+points. Averaged over a few sprints, it tells you how much to plan into the next one. This article
+shows how to read it in Jira, how to turn it into a planning number, and the mistakes that make it
+misleading.</p>
+<h2 id="what-counts">What counts<a class="anchor" href="#what-counts" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>Only finished work.</strong> An issue counts toward the sprint in which it was completed. Work started
+but not done counts for nothing in that sprint.</li>
+<li><strong>Only estimated work.</strong> An issue without story points adds zero, however big it was.</li>
+<li><strong>The board’s estimation field.</strong> Velocity is computed from the one field the board estimates with
+(its <strong>Estimation</strong> settings). Points typed into another field are invisible to it.</li>
+</ul>
+<h2 id="reading-it-in-jira">Reading it in Jira<a class="anchor" href="#reading-it-in-jira" aria-label="Link to this section">#</a></h2>
+<p>On a Scrum board, open <strong>Reports</strong> and choose the <strong>Velocity report</strong>. For each recent sprint it
+shows two bars:</p>
+<ul>
+<li><strong>Commitment</strong> — the estimates of the issues in the sprint when it started;</li>
+<li><strong>Completed</strong> — the estimates of the issues finished by the time it closed.</li>
+</ul>
+<p>The gap between them is the useful part. A team that always commits far more than it completes is
+planning on hope, not on velocity.</p>
+<h2 id="turning-it-into-a-planning-number">Turning it into a planning number<a class="anchor" href="#turning-it-into-a-planning-number" aria-label="Link to this section">#</a></h2>
+<p>Take the <strong>Completed</strong> values of the last few sprints — five is a common choice — and average them:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th style="text-align:left">Sprint</th>
+<th style="text-align:right">Completed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Sprint 20</td>
+<td style="text-align:right">34</td>
+</tr>
+<tr>
+<td style="text-align:left">Sprint 21</td>
+<td style="text-align:right">41</td>
+</tr>
+<tr>
+<td style="text-align:left">Sprint 22</td>
+<td style="text-align:right">29</td>
+</tr>
+<tr>
+<td style="text-align:left">Sprint 23</td>
+<td style="text-align:right">38</td>
+</tr>
+<tr>
+<td style="text-align:left">Sprint 24</td>
+<td style="text-align:right">36</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Average</strong></td>
+<td style="text-align:right"><strong>35.6</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Plan the next sprint at about that total, then adjust for what you know: holidays, a new teammate,
+an unusual amount of support work. Use the average, not the best sprint.</p>
+<h2 id="mistakes-that-distort-velocity">Mistakes that distort velocity<a class="anchor" href="#mistakes-that-distort-velocity" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>Changing estimates after the work is done.</strong> Re-pointing a finished issue rewrites history, and
+the average stops describing the team.</li>
+<li><strong>Comparing teams.</strong> Points are relative to the team that assigned them; one team’s 40 is not
+another’s.</li>
+<li><strong>Counting half-done work.</strong> Splitting an unfinished issue and crediting the “done half” inflates
+the number. Carry the issue over and let it count when it is finished.</li>
+<li><strong>Too few sprints.</strong> One or two sprints are noise. Wait for four or five before trusting the
+average.</li>
+</ul>
+<h2 id="planning-against-velocity-in-one-table">Planning against velocity in one table<a class="anchor" href="#planning-against-velocity-in-one-table" aria-label="Link to this section">#</a></h2>
+<p><a href="/">Scope Planner</a> shows the sprint total next to a target velocity while you estimate, so you see
+the sprint overflow before you start it, not halfway through.</p>
+<ul>
+<li>The totals bar shows the sprint’s story points and, when a target velocity is set, a capacity
+indicator that highlights when the draft total goes over it.</li>
+<li>With <strong>Pro</strong>, <strong>✨ Auto-calculate</strong> fills the target from the average of the board’s last five
+completed sprints — no number to maintain by hand.</li>
+<li>Also with <strong>Pro</strong>, the <strong>Workload</strong> tab shows each assignee’s points and flags anyone above 1.5×
+the team average, so you can rebalance before the sprint starts.</li>
+</ul>
+<p>The estimation table, drafts and totals are free; target velocity, workload and publishing to Jira
+are <strong>Pro</strong> — see <a href="/#pricing">Free and Pro</a> and <a href="/guide/#10-preferences-per-user">Preferences</a> in the
+user guide.</p>
+
+        <p class="to-top"><a href="#main">Back to top ↑</a></p>
+      </article>
+    </div>
+  </main>
+  <footer class="site">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="/">
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="19" fill="#FBBF24" opacity=".2"/>
+        <g fill="#FBBF24"><circle cx="32" cy="32" r="11"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(0 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(45 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(90 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(135 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(180 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(225 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(270 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(315 32 32)"/></g>
+      </svg>
+            <span>DSPlugins</span>
+          </a>
+          <p>Focused apps for Jira Cloud that keep your data where it already lives. Built on
+             Atlassian Forge — no external servers, no data egress, no tracking.</p>
+        </div>
+        <div>
+          <h2>Product</h2>
+          <a href="/">Scope Planner</a>
+          <a href="/guide/">User guide</a>
+          <a href="/articles/">Articles</a>
+          <a href="/#pricing">Free and Pro</a>
+          <a href="https://www.youtube.com/watch?v=Fwu-1fwdugA" target="_blank" rel="noopener noreferrer">Demo video ↗</a>
+        </div>
+        <div>
+          <h2>Help</h2>
+          <a href="/support/">Support</a>
+          <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+        </div>
+        <div>
+          <h2>Legal</h2>
+          <a href="/privacy/">Privacy policy</a>
+          <a href="/terms/">Terms of use</a>
+        </div>
+      </div>
+      <div class="foot-base">
+        <p>&copy; 2026 DSPlugins &middot; This site sets no cookies and loads nothing from
+           anywhere else.</p>
+        <p class="fineprint">Scope Planner is a Jira Cloud app built on Atlassian Forge. Jira and
+           Atlassian are trademarks of Atlassian Pty Ltd, used here only to identify the platform the
+           app runs on.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
