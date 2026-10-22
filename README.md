@@ -155,6 +155,10 @@ item as missing them — expected, not a bug.
 `https://dsplugins.dev/` property (account `dsplugins@gmail.com`, 2026-10-22), written by the build.
 Search Console re-checks it: **removing it unverifies the site.** Search Console needs no code on the
 pages — it reads Google's own crawl data — so the no-tracking promise is unaffected.
+`sitemap.xml` was submitted there the same day (read: *Success*, 5 pages; Google re-reads it by
+itself after a push). **Bing Webmaster Tools** has the site too, imported from Search Console under
+the same Google account — no file of its own, and it keeps a read-only Search Console grant to
+re-check verification and pick up the sitemap.
 
 `assets/style.css` is the whole design: colour tokens with a dark scheme, then components. Files in
 `assets/static/` are copied to `/assets/` — the favicon (the partner mark) and `og-banner.png`, the
