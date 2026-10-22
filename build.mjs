@@ -94,6 +94,49 @@ const PAGES = [
     eyebrow: 'Legal',
     description: 'Scope Planner terms of use: licensing, responsibilities, warranty and liability.',
   },
+  // Articles: practical how-tos written for search, one line on the app at the end of each. Out of
+  // the header nav (`nav: false`); the footer and the sitemap link them. `published` feeds the
+  // Article JSON-LD — set it to the day an article is merged, not the day it was drafted.
+  {
+    src: 'articles.md',
+    out: 'articles',
+    label: 'Articles',
+    eyebrow: 'Articles',
+    nav: false,
+    title: 'Articles on Jira estimation and sprint planning | DSPlugins',
+    description:
+      'Practical articles on estimating in Jira: bulk-editing story points, story points vs. time estimates, and sprint velocity.',
+  },
+  {
+    src: 'articles/bulk-edit-story-points.md',
+    out: 'articles/bulk-edit-story-points-in-jira',
+    label: 'Bulk-edit story points in Jira',
+    eyebrow: 'Articles',
+    nav: false,
+    published: '2026-10-22',
+    description:
+      'Three ways to set story points on many Jira issues: bulk change for one shared value, the issue view for one at a time, and a table for a whole sprint.',
+  },
+  {
+    src: 'articles/story-points-vs-time-estimates.md',
+    out: 'articles/story-points-vs-time-estimates',
+    label: 'Story points vs. time estimates',
+    eyebrow: 'Articles',
+    nav: false,
+    published: '2026-10-22',
+    description:
+      'Story points or Original and Remaining Estimate in Jira: what each field is for, which one the board reads, and how to pick a scale.',
+  },
+  {
+    src: 'articles/sprint-velocity-in-jira.md',
+    out: 'articles/sprint-velocity-in-jira',
+    label: 'Sprint velocity in Jira',
+    eyebrow: 'Articles',
+    nav: false,
+    published: '2026-10-22',
+    description:
+      'How to read sprint velocity in Jira, turn it into a planning number for the next sprint, and avoid the mistakes that distort it.',
+  },
 ];
 
 const md = new MarkdownIt({ html: false, linkify: true, typographer: true });
@@ -390,21 +433,35 @@ function structuredData(page, title, description, mainHtml) {
           { '@type': 'FAQPage', '@id': `${url}#faq`, url, mainEntity: faqFrom(mainHtml) },
         ]
       : [
-          {
-            '@type': 'WebPage',
-            '@id': url,
-            url,
-            name: title,
-            description,
-            isPartOf: { '@id': `${ORIGIN}/#site` },
-            about: { '@id': `${ORIGIN}/#app` },
-          },
+          page.published
+            ? {
+                '@type': 'Article',
+                '@id': url,
+                url,
+                headline: title.replace(/ \| DSPlugins$/, ''),
+                description,
+                datePublished: page.published,
+                image: `${ORIGIN}/assets/og-banner.png`,
+                author: { '@id': ORG['@id'] },
+                publisher: ORG,
+                isPartOf: { '@id': `${ORIGIN}/#site` },
+              }
+            : {
+                '@type': 'WebPage',
+                '@id': url,
+                url,
+                name: title,
+                description,
+                isPartOf: { '@id': `${ORIGIN}/#site` },
+                about: { '@id': `${ORIGIN}/#app` },
+              },
           {
             '@type': 'BreadcrumbList',
             itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Scope Planner', item: `${ORIGIN}/` },
-              { '@type': 'ListItem', position: 2, name: page.label, item: url },
-            ],
+              { name: 'Scope Planner', item: `${ORIGIN}/` },
+              ...(page.out.startsWith('articles/') ? [{ name: 'Articles', item: `${ORIGIN}/articles/` }] : []),
+              { name: page.label, item: url },
+            ].map((c, i) => ({ '@type': 'ListItem', position: i + 1, ...c })),
           },
         ];
   // `<` escaped so no string in the data can close the <script> element early.
@@ -412,7 +469,7 @@ function structuredData(page, title, description, mainHtml) {
 }
 
 function layout({ page, title, description, mainHtml, here }) {
-  const links = PAGES.map((p) => {
+  const links = PAGES.filter((p) => p.nav !== false).map((p) => {
     const current = p.out === here ? ' aria-current="page"' : '';
     return `<a href="${hrefOf(p)}"${current}>${p.label}</a>`;
   });
@@ -478,6 +535,7 @@ ${mainHtml}
           <h2>Product</h2>
           <a href="/">Scope Planner</a>
           <a href="/guide/">User guide</a>
+          <a href="/articles/">Articles</a>
           <a href="/#pricing">Free and Pro</a>
           <a href="https://www.youtube.com/watch?v=Fwu-1fwdugA" target="_blank" rel="noopener noreferrer">Demo video ↗</a>
         </div>
@@ -568,7 +626,8 @@ rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 
 const known = new Set(PAGES.map((p) => p.src));
-for (const f of readdirSync(CONTENT)) {
+const sources = [...readdirSync(CONTENT), ...readdirSync(join(CONTENT, 'articles')).map((f) => `articles/${f}`)];
+for (const f of sources) {
   if (/\.(md|html)$/.test(f) && !known.has(f)) {
     console.error(`✗ content/${f} is not listed in PAGES — it would not be published.`);
     process.exit(1);

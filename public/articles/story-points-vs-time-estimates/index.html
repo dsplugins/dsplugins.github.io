@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story points vs. time estimates in Jira | DSPlugins</title>
+<meta name="description" content="Story points or Original and Remaining Estimate in Jira: what each field is for, which one the board reads, and how to pick a scale.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#4f46e5">
+<link rel="canonical" href="https://dsplugins.dev/articles/story-points-vs-time-estimates/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DSPlugins">
+<meta property="og:title" content="Story points vs. time estimates in Jira | DSPlugins">
+<meta property="og:description" content="Story points or Original and Remaining Estimate in Jira: what each field is for, which one the board reads, and how to pick a scale.">
+<meta property="og:url" content="https://dsplugins.dev/articles/story-points-vs-time-estimates/">
+<meta property="og:image" content="https://dsplugins.dev/assets/og-banner.png">
+<meta property="og:image:width" content="1120">
+<meta property="og:image:height" content="548">
+<meta property="og:image:alt" content="Scope Planner — bulk sprint estimation for Jira Cloud">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://dsplugins.dev/articles/story-points-vs-time-estimates/","url":"https://dsplugins.dev/articles/story-points-vs-time-estimates/","headline":"Story points vs. time estimates in Jira","description":"Story points or Original and Remaining Estimate in Jira: what each field is for, which one the board reads, and how to pick a scale.","datePublished":"2026-10-22","image":"https://dsplugins.dev/assets/og-banner.png","author":{"@id":"https://dsplugins.dev/#org"},"publisher":{"@type":"Organization","@id":"https://dsplugins.dev/#org","name":"DSPlugins","url":"https://dsplugins.dev/","logo":"https://dsplugins.dev/assets/favicon.svg","email":"support@dsplugins.dev"},"isPartOf":{"@id":"https://dsplugins.dev/#site"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scope Planner","item":"https://dsplugins.dev/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://dsplugins.dev/articles/"},{"@type":"ListItem","position":3,"name":"Story points vs. time estimates","item":"https://dsplugins.dev/articles/story-points-vs-time-estimates/"}]}]}</script>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=c639a90e51">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="brand" href="/" aria-label="DSPlugins — home">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="19" fill="#FBBF24" opacity=".2"/>
+        <g fill="#FBBF24"><circle cx="32" cy="32" r="11"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(0 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(45 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(90 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(135 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(180 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(225 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(270 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(315 32 32)"/></g>
+      </svg>
+        <span>DSPlugins</span>
+      </a>
+      <nav class="nav" aria-label="Site">
+        <a href="/">Scope Planner</a>
+        <a href="/guide/">User guide</a>
+        <a href="/support/">Support</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+      <a class="btn btn-sm header-cta" href="mailto:support@dsplugins.dev">Contact</a>
+      <details class="menu">
+        <summary aria-label="Menu"><span></span></summary>
+        <nav aria-label="Site (mobile)">
+          <a href="/">Scope Planner</a>
+          <a href="/guide/">User guide</a>
+          <a href="/support/">Support</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+  <main id="main">
+    <div class="doc-head">
+      <div class="wrap">
+        <p class="eyebrow">Scope Planner &middot; Articles</p>
+        <h1>Story points vs. time estimates in Jira</h1>
+        <p class="doc-meta">Last updated: 22 October 2026</p>
+      </div>
+    </div>
+    <div class="wrap doc">
+      <aside class="toc" aria-label="On this page">
+        <nav class="toc-side">
+          <p class="toc-title">On this page</p>
+          <ol>
+            <li><a href="#what-each-field-is">What each field is</a></li>
+            <li><a href="#which-one-the-board-uses">Which one the board uses</a></li>
+            <li><a href="#when-to-use-which">When to use which</a></li>
+            <li><a href="#picking-a-scale-for-story-points">Picking a scale for story points</a></li>
+            <li><a href="#estimating-both-in-one-place">Estimating both in one place</a></li>
+          </ol>
+        </nav>
+        <details class="toc-fold">
+          <summary>On this page</summary>
+          <ol>
+            <li><a href="#what-each-field-is">What each field is</a></li>
+            <li><a href="#which-one-the-board-uses">Which one the board uses</a></li>
+            <li><a href="#when-to-use-which">When to use which</a></li>
+            <li><a href="#picking-a-scale-for-story-points">Picking a scale for story points</a></li>
+            <li><a href="#estimating-both-in-one-place">Estimating both in one place</a></li>
+          </ol>
+        </details>
+      </aside>
+      <article class="prose">
+<p>Jira lets a team estimate in two units: <strong>story points</strong>, a relative size, and <strong>time</strong>, in hours,
+days and weeks. They live in different fields, a board uses one of them for its reports, and many
+teams end up using both without having decided to. This article explains what each one is for and
+how to keep them from contradicting each other.</p>
+<h2 id="what-each-field-is">What each field is<a class="anchor" href="#what-each-field-is" aria-label="Link to this section">#</a></h2>
+<p><strong>Story points</strong> are a number on a scale the team agrees on. A 5 means “about as much as the other
+5s”, not “five hours”. Jira stores them in a number field — usually <strong>Story Points</strong> in
+company-managed projects and <strong>Story point estimate</strong> in team-managed ones.</p>
+<p><strong>Time estimates</strong> are Jira’s time tracking fields:</p>
+<ul>
+<li><strong>Original Estimate</strong> — how long the work was expected to take when it was planned;</li>
+<li><strong>Remaining Estimate</strong> — how much is left now; it goes down as people log work.</li>
+</ul>
+<p>Jira writes durations as <code>1w 2d 4h 30m</code>. By default a day is 8 hours and a week is 5 days; a Jira
+administrator can change both in the site’s time tracking settings, so check yours before you
+convert anything by hand.</p>
+<h2 id="which-one-the-board-uses">Which one the board uses<a class="anchor" href="#which-one-the-board-uses" aria-label="Link to this section">#</a></h2>
+<p>A Scrum board reads <strong>one</strong> estimation field for its badges, its velocity report and its burndown,
+chosen in the board’s <strong>Estimation</strong> settings — story points or original time estimate. A value in
+the other field is still stored and still shown on the issue, but the board’s reports ignore it.</p>
+<p>That is the most common reason a team “estimated everything” and the velocity chart still shows
+nothing: the numbers went into a field the board does not read.</p>
+<h2 id="when-to-use-which">When to use which<a class="anchor" href="#when-to-use-which" aria-label="Link to this section">#</a></h2>
+<p><strong>Story points suit sprint planning.</strong> Sizes are compared with each other, not with the clock, so
+the conversation is “is this bigger than that?” — quicker to agree on than hours, and less personal.
+Over a few sprints the team’s completed points per sprint (its velocity) becomes a reliable guide to
+how much to plan.</p>
+<p><strong>Time suits tracking work in progress.</strong> Remaining Estimate answers “how much is left on this
+issue?” during the sprint, and logged work answers “where did the time go?” afterwards.</p>
+<p><strong>Using both is common and fine</strong> — points at planning, time during the sprint — as long as the
+board’s estimation field is the one you plan with.</p>
+<h2 id="picking-a-scale-for-story-points">Picking a scale for story points<a class="anchor" href="#picking-a-scale-for-story-points" aria-label="Link to this section">#</a></h2>
+<p>Most teams use a scale whose steps widen as items grow, because the uncertainty does too:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th style="text-align:left">Scale</th>
+<th style="text-align:left">Values</th>
+<th style="text-align:left">Good for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Fibonacci</td>
+<td style="text-align:left">1, 2, 3, 5, 8, 13, 21…</td>
+<td style="text-align:left">The classic; big items look visibly uncertain</td>
+</tr>
+<tr>
+<td style="text-align:left">Modified Fibonacci</td>
+<td style="text-align:left">0.25, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100</td>
+<td style="text-align:left">The planning-poker deck; rounds the large values</td>
+</tr>
+<tr>
+<td style="text-align:left">Powers of 2</td>
+<td style="text-align:left">1, 2, 4, 8, 16, 32, 64</td>
+<td style="text-align:left">Teams that think in “twice as big”</td>
+</tr>
+<tr>
+<td style="text-align:left">Linear</td>
+<td style="text-align:left">1–10</td>
+<td style="text-align:left">Small, well-understood items</td>
+</tr>
+<tr>
+<td style="text-align:left">T-shirt sizes</td>
+<td style="text-align:left">XS, S, M, L, XL, XXL</td>
+<td style="text-align:left">Early backlog refinement, before numbers mean much</td>
+</tr>
+</tbody>
+</table></div>
+<p>T-shirt sizes are not numbers, so Jira cannot add them up. They need their own field, and a team
+that wants velocity eventually maps them to points.</p>
+<h2 id="estimating-both-in-one-place">Estimating both in one place<a class="anchor" href="#estimating-both-in-one-place" aria-label="Link to this section">#</a></h2>
+<p><a href="/">Scope Planner</a> puts story points, <strong>Original</strong> and <strong>Remaining</strong> in the same row of one table,
+for a whole sprint, a backlog or any JQL.</p>
+<ul>
+<li>Pick your story-points scale in <strong>⚙️ Preferences</strong>; the cells offer that scale’s values.</li>
+<li>Type time as a Jira duration (<code>1d 2h</code>, <code>1w</code>) or as a bare number in the unit you chose.</li>
+<li>Totals for points and both time fields update as you type.</li>
+<li>If the board estimates on a different field than the app is configured to use, the app warns
+you, so the numbers do not go into a field the board ignores.</li>
+</ul>
+<p>Estimating and drafts are free; publishing the estimates to Jira is part of <strong>Pro</strong> — see
+<a href="/#pricing">Free and Pro</a>. The <a href="/guide/#5-the-estimation-table">user guide</a> covers every cell type.</p>
+
+        <p class="to-top"><a href="#main">Back to top ↑</a></p>
+      </article>
+    </div>
+  </main>
+  <footer class="site">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="/">
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="19" fill="#FBBF24" opacity=".2"/>
+        <g fill="#FBBF24"><circle cx="32" cy="32" r="11"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(0 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(45 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(90 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(135 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(180 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(225 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(270 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(315 32 32)"/></g>
+      </svg>
+            <span>DSPlugins</span>
+          </a>
+          <p>Focused apps for Jira Cloud that keep your data where it already lives. Built on
+             Atlassian Forge — no external servers, no data egress, no tracking.</p>
+        </div>
+        <div>
+          <h2>Product</h2>
+          <a href="/">Scope Planner</a>
+          <a href="/guide/">User guide</a>
+          <a href="/articles/">Articles</a>
+          <a href="/#pricing">Free and Pro</a>
+          <a href="https://www.youtube.com/watch?v=Fwu-1fwdugA" target="_blank" rel="noopener noreferrer">Demo video ↗</a>
+        </div>
+        <div>
+          <h2>Help</h2>
+          <a href="/support/">Support</a>
+          <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+        </div>
+        <div>
+          <h2>Legal</h2>
+          <a href="/privacy/">Privacy policy</a>
+          <a href="/terms/">Terms of use</a>
+        </div>
+      </div>
+      <div class="foot-base">
+        <p>&copy; 2026 DSPlugins &middot; This site sets no cookies and loads nothing from
+           anywhere else.</p>
+        <p class="fineprint">Scope Planner is a Jira Cloud app built on Atlassian Forge. Jira and
+           Atlassian are trademarks of Atlassian Pty Ltd, used here only to identify the platform the
+           app runs on.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

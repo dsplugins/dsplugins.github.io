@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to bulk-edit story points in Jira | DSPlugins</title>
+<meta name="description" content="Three ways to set story points on many Jira issues: bulk change for one shared value, the issue view for one at a time, and a table for a whole sprint.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#4f46e5">
+<link rel="canonical" href="https://dsplugins.dev/articles/bulk-edit-story-points-in-jira/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DSPlugins">
+<meta property="og:title" content="How to bulk-edit story points in Jira | DSPlugins">
+<meta property="og:description" content="Three ways to set story points on many Jira issues: bulk change for one shared value, the issue view for one at a time, and a table for a whole sprint.">
+<meta property="og:url" content="https://dsplugins.dev/articles/bulk-edit-story-points-in-jira/">
+<meta property="og:image" content="https://dsplugins.dev/assets/og-banner.png">
+<meta property="og:image:width" content="1120">
+<meta property="og:image:height" content="548">
+<meta property="og:image:alt" content="Scope Planner — bulk sprint estimation for Jira Cloud">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://dsplugins.dev/articles/bulk-edit-story-points-in-jira/","url":"https://dsplugins.dev/articles/bulk-edit-story-points-in-jira/","headline":"How to bulk-edit story points in Jira","description":"Three ways to set story points on many Jira issues: bulk change for one shared value, the issue view for one at a time, and a table for a whole sprint.","datePublished":"2026-10-22","image":"https://dsplugins.dev/assets/og-banner.png","author":{"@id":"https://dsplugins.dev/#org"},"publisher":{"@type":"Organization","@id":"https://dsplugins.dev/#org","name":"DSPlugins","url":"https://dsplugins.dev/","logo":"https://dsplugins.dev/assets/favicon.svg","email":"support@dsplugins.dev"},"isPartOf":{"@id":"https://dsplugins.dev/#site"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scope Planner","item":"https://dsplugins.dev/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://dsplugins.dev/articles/"},{"@type":"ListItem","position":3,"name":"Bulk-edit story points in Jira","item":"https://dsplugins.dev/articles/bulk-edit-story-points-in-jira/"}]}]}</script>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=c639a90e51">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="brand" href="/" aria-label="DSPlugins — home">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="19" fill="#FBBF24" opacity=".2"/>
+        <g fill="#FBBF24"><circle cx="32" cy="32" r="11"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(0 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(45 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(90 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(135 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(180 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(225 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(270 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(315 32 32)"/></g>
+      </svg>
+        <span>DSPlugins</span>
+      </a>
+      <nav class="nav" aria-label="Site">
+        <a href="/">Scope Planner</a>
+        <a href="/guide/">User guide</a>
+        <a href="/support/">Support</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+      <a class="btn btn-sm header-cta" href="mailto:support@dsplugins.dev">Contact</a>
+      <details class="menu">
+        <summary aria-label="Menu"><span></span></summary>
+        <nav aria-label="Site (mobile)">
+          <a href="/">Scope Planner</a>
+          <a href="/guide/">User guide</a>
+          <a href="/support/">Support</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+  <main id="main">
+    <div class="doc-head">
+      <div class="wrap">
+        <p class="eyebrow">Scope Planner &middot; Articles</p>
+        <h1>How to bulk-edit story points in Jira</h1>
+        <p class="doc-meta">Last updated: 22 October 2026</p>
+      </div>
+    </div>
+    <div class="wrap doc">
+      <aside class="toc" aria-label="On this page">
+        <nav class="toc-side">
+          <p class="toc-title">On this page</p>
+          <ol>
+            <li><a href="#before-you-start-which-field-holds-your-story-points">Before you start: which field holds your story points</a></li>
+            <li><a href="#option-1-the-same-value-on-many-issues--jiras-bulk-change">Option 1: the same value on many issues — Jira’s bulk change</a></li>
+            <li><a href="#option-2-a-different-value-on-each-issue--one-at-a-time">Option 2: a different value on each issue — one at a time</a></li>
+            <li><a href="#option-3-the-whole-sprint-in-one-table">Option 3: the whole sprint in one table</a></li>
+            <li><a href="#which-one-to-use">Which one to use</a></li>
+          </ol>
+        </nav>
+        <details class="toc-fold">
+          <summary>On this page</summary>
+          <ol>
+            <li><a href="#before-you-start-which-field-holds-your-story-points">Before you start: which field holds your story points</a></li>
+            <li><a href="#option-1-the-same-value-on-many-issues--jiras-bulk-change">Option 1: the same value on many issues — Jira’s bulk change</a></li>
+            <li><a href="#option-2-a-different-value-on-each-issue--one-at-a-time">Option 2: a different value on each issue — one at a time</a></li>
+            <li><a href="#option-3-the-whole-sprint-in-one-table">Option 3: the whole sprint in one table</a></li>
+            <li><a href="#which-one-to-use">Which one to use</a></li>
+          </ol>
+        </details>
+      </aside>
+      <article class="prose">
+<p>Sprint planning usually ends with twenty or thirty issues that each need a number. Jira Cloud gives
+you two built-in ways to set story points, and they solve different problems: one sets the <strong>same</strong>
+value on many issues, the other sets a <strong>different</strong> value on one issue at a time. This article walks
+through both, then shows a third way that estimates a whole sprint in one table.</p>
+<h2 id="before-you-start-which-field-holds-your-story-points">Before you start: which field holds your story points<a class="anchor" href="#before-you-start-which-field-holds-your-story-points" aria-label="Link to this section">#</a></h2>
+<p>Jira has more than one story-points field, and editing the wrong one is the most common reason an
+estimate “doesn’t show up” on the board.</p>
+<ul>
+<li><strong>Company-managed projects</strong> usually estimate with the <strong>Story Points</strong> field.</li>
+<li><strong>Team-managed projects</strong> usually estimate with <strong>Story point estimate</strong>.</li>
+</ul>
+<p>A Scrum board reads exactly one field — the one chosen in the board’s <strong>Estimation</strong> settings — for
+its badges, its velocity report and its burndown. Set a value in another field and the board ignores
+it. If you are not sure, open the board settings and check before you edit anything.</p>
+<h2 id="option-1-the-same-value-on-many-issues--jiras-bulk-change">Option 1: the same value on many issues — Jira’s bulk change<a class="anchor" href="#option-1-the-same-value-on-many-issues--jiras-bulk-change" aria-label="Link to this section">#</a></h2>
+<p>Use this when a batch of issues genuinely shares one estimate: a set of 1-point copy fixes, or
+clearing the estimate from issues that moved back to the backlog.</p>
+<ol>
+<li>Search for the issues. JQL makes this precise, for example
+<code>sprint in openSprints() AND &quot;Story Points&quot; is EMPTY</code> — use the field name your board estimates
+with.</li>
+<li>From the search results, start a <strong>bulk change</strong> and choose <strong>Edit issues</strong>.</li>
+<li>Tick the story-points field, enter the value, and confirm.</li>
+</ol>
+<p>Two things can stop you here: bulk change needs the <strong>Make bulk changes</strong> global permission, and the
+field has to be on the issues’ edit screen. If either is missing, ask a Jira administrator.</p>
+<p>What bulk change cannot do is give each issue its own value. That is the actual job of estimation,
+so for a sprint it covers only the easy part.</p>
+<h2 id="option-2-a-different-value-on-each-issue--one-at-a-time">Option 2: a different value on each issue — one at a time<a class="anchor" href="#option-2-a-different-value-on-each-issue--one-at-a-time" aria-label="Link to this section">#</a></h2>
+<p>The backlog and the issue view let you edit the estimate of the issue in front of you. It works,
+and it is how most teams estimate — but it scales badly:</p>
+<ul>
+<li>every issue is an open, read, type, close cycle;</li>
+<li>you lose sight of the other issues, so it is hard to keep sizes consistent (“is this bigger than
+the one we called a 5?”);</li>
+<li>you do not see the sprint total until you are done;</li>
+<li>every number is written to Jira immediately, so a half-finished planning session leaves
+half-estimated issues on the board.</li>
+</ul>
+<h2 id="option-3-the-whole-sprint-in-one-table">Option 3: the whole sprint in one table<a class="anchor" href="#option-3-the-whole-sprint-in-one-table" aria-label="Link to this section">#</a></h2>
+<p><a href="/">Scope Planner</a> is a Jira Cloud app that loads a sprint, a backlog or any JQL into one editable
+table, so you estimate every issue where you can see all of them.</p>
+<ul>
+<li><strong>Different values, inline.</strong> Click a story-points cell and pick from your scale — Fibonacci,
+Modified Fibonacci, Powers of 2, Linear or T-shirt sizes — or type a number. Original and
+remaining time sit in the same row.</li>
+<li><strong>The same value, in bulk.</strong> Tick several rows and the bulk bar applies one value to all of them,
+or clears a batch, after a confirmation. See <a href="/guide/#6-bulk-actions">Bulk actions</a> in the user
+guide.</li>
+<li><strong>Totals as you go.</strong> The sprint total updates with every edit and breaks down by epic, assignee,
+label or type.</li>
+<li><strong>Nothing reaches Jira until you decide.</strong> Every edit lands in a private draft. You can share it
+with the team, and <strong>Sprint Preview</strong> shows exactly what would change, issue by issue, before
+anything is written.</li>
+</ul>
+<p>Estimating, drafts, totals and Sprint Preview are free. Publishing the estimates to Jira in one pass
+is a <strong>Pro</strong> feature, alongside per-assignee workload, estimation history, auto-calculated velocity
+and CSV export — see <a href="/#pricing">Free and Pro</a>.</p>
+<h2 id="which-one-to-use">Which one to use<a class="anchor" href="#which-one-to-use" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th style="text-align:left">You want to…</th>
+<th style="text-align:left">Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Give many issues the same number, or clear them</td>
+<td style="text-align:left">Jira’s bulk change, or Scope Planner’s bulk bar</td>
+</tr>
+<tr>
+<td style="text-align:left">Estimate one issue you are already looking at</td>
+<td style="text-align:left">The issue view</td>
+</tr>
+<tr>
+<td style="text-align:left">Estimate a whole sprint or backlog, compare sizes and watch the total</td>
+<td style="text-align:left">A table: Scope Planner</td>
+</tr>
+<tr>
+<td style="text-align:left">Agree on the numbers before Jira changes</td>
+<td style="text-align:left">Scope Planner’s drafts and Sprint Preview</td>
+</tr>
+</tbody>
+</table></div>
+<p>Whichever way you choose, check the board’s estimation field first. It decides whether the numbers
+you type ever reach the board.</p>
+
+        <p class="to-top"><a href="#main">Back to top ↑</a></p>
+      </article>
+    </div>
+  </main>
+  <footer class="site">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="/">
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="19" fill="#FBBF24" opacity=".2"/>
+        <g fill="#FBBF24"><circle cx="32" cy="32" r="11"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(0 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(45 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(90 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(135 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(180 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(225 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(270 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(315 32 32)"/></g>
+      </svg>
+            <span>DSPlugins</span>
+          </a>
+          <p>Focused apps for Jira Cloud that keep your data where it already lives. Built on
+             Atlassian Forge — no external servers, no data egress, no tracking.</p>
+        </div>
+        <div>
+          <h2>Product</h2>
+          <a href="/">Scope Planner</a>
+          <a href="/guide/">User guide</a>
+          <a href="/articles/">Articles</a>
+          <a href="/#pricing">Free and Pro</a>
+          <a href="https://www.youtube.com/watch?v=Fwu-1fwdugA" target="_blank" rel="noopener noreferrer">Demo video ↗</a>
+        </div>
+        <div>
+          <h2>Help</h2>
+          <a href="/support/">Support</a>
+          <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+        </div>
+        <div>
+          <h2>Legal</h2>
+          <a href="/privacy/">Privacy policy</a>
+          <a href="/terms/">Terms of use</a>
+        </div>
+      </div>
+      <div class="foot-base">
+        <p>&copy; 2026 DSPlugins &middot; This site sets no cookies and loads nothing from
+           anywhere else.</p>
+        <p class="fineprint">Scope Planner is a Jira Cloud app built on Atlassian Forge. Jira and
+           Atlassian are trademarks of Atlassian Pty Ltd, used here only to identify the platform the
+           app runs on.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
