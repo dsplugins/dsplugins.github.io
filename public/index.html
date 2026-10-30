@@ -18,9 +18,9 @@
 <meta property="og:image:height" content="548">
 <meta property="og:image:alt" content="Scope Planner — bulk sprint estimation for Jira Cloud">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://dsplugins.dev/#org","name":"DSPlugins","url":"https://dsplugins.dev/","logo":"https://dsplugins.dev/assets/favicon.svg","email":"support@dsplugins.dev"},{"@type":"WebSite","@id":"https://dsplugins.dev/#site","url":"https://dsplugins.dev/","name":"DSPlugins","publisher":{"@id":"https://dsplugins.dev/#org"}},{"@type":"SoftwareApplication","@id":"https://dsplugins.dev/#app","name":"Scope Planner","alternateName":"Scope Planner for Jira","description":"Estimate story points and time for a whole Jira sprint, backlog or any JQL in one table. Review every change, then publish to Jira in one pass.","url":"https://dsplugins.dev/","image":"https://dsplugins.dev/assets/og-banner.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Agile estimation","operatingSystem":"Jira Cloud","softwareHelp":{"@type":"CreativeWork","url":"https://dsplugins.dev/guide/"},"publisher":{"@id":"https://dsplugins.dev/#org"}},{"@type":"FAQPage","@id":"https://dsplugins.dev/#faq","url":"https://dsplugins.dev/","mainEntity":[{"@type":"Question","name":"Does anything reach Jira while we estimate?","acceptedAnswer":{"@type":"Answer","text":"No. Drafts live in the app’s own storage, not in your issues. Nothing is written to Jira until someone reviews the change in Sprint Preview and publishes it."}},{"@type":"Question","name":"Can a teammate overwrite my numbers?","acceptedAnswer":{"@type":"Answer","text":"Not by accident. Only your private draft is edited directly; changes reach the team draft whole, through a review screen that shows row by row what will change."}},{"@type":"Question","name":"What works without a Pro subscription?","acceptedAnswer":{"@type":"Answer","text":"The estimation table, private and team drafts, totals and Sprint Preview. You cannot publish estimates into Jira — your drafts are kept, and publishing becomes available as soon as a subscription or trial is active."}},{"@type":"Question","name":"What does a Jira admin need to set up?","acceptedAnswer":{"@type":"Answer","text":"Once per site: which Jira fields hold your estimates. 🔍 Detect Fields scans your fields and suggests the mappings; the user guide walks through it."}},{"@type":"Question","name":"Where is our data stored?","acceptedAnswer":{"@type":"Answer","text":"In Atlassian Forge hosted storage, inside your own Atlassian site. The developer operates no infrastructure of its own and receives no copies of your data. Details are in the privacy policy."}},{"@type":"Question","name":"How do we get help?","acceptedAnswer":{"@type":"Answer","text":"Email support@dsplugins.dev. Every message is answered by the people who build the app; we aim to reply within one business day. Hours and what to include are on the support page."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://dsplugins.dev/#org","name":"DSPlugins","url":"https://dsplugins.dev/","logo":"https://dsplugins.dev/assets/favicon.svg","email":"support@dsplugins.dev","sameAs":["https://marketplace.atlassian.com/vendors/1218450/","https://github.com/dsplugins"]},{"@type":"WebSite","@id":"https://dsplugins.dev/#site","url":"https://dsplugins.dev/","name":"DSPlugins","publisher":{"@id":"https://dsplugins.dev/#org"}},{"@type":"SoftwareApplication","@id":"https://dsplugins.dev/#app","name":"Scope Planner","alternateName":"Scope Planner for Jira","description":"Estimate story points and time for a whole Jira sprint, backlog or any JQL in one table. Review every change, then publish to Jira in one pass.","url":"https://dsplugins.dev/","image":"https://dsplugins.dev/assets/og-banner.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Agile estimation","operatingSystem":"Jira Cloud","softwareHelp":{"@type":"CreativeWork","url":"https://dsplugins.dev/guide/"},"publisher":{"@id":"https://dsplugins.dev/#org"}},{"@type":"FAQPage","@id":"https://dsplugins.dev/#faq","url":"https://dsplugins.dev/","mainEntity":[{"@type":"Question","name":"Does anything reach Jira while we estimate?","acceptedAnswer":{"@type":"Answer","text":"No. Drafts live in the app’s own storage, not in your issues. Nothing is written to Jira until someone reviews the change in Sprint Preview and publishes it."}},{"@type":"Question","name":"Can a teammate overwrite my numbers?","acceptedAnswer":{"@type":"Answer","text":"Not by accident. Only your private draft is edited directly; changes reach the team draft whole, through a review screen that shows row by row what will change."}},{"@type":"Question","name":"What works without a Pro subscription?","acceptedAnswer":{"@type":"Answer","text":"The estimation table, private and team drafts, totals and Sprint Preview. You cannot publish estimates into Jira — your drafts are kept, and publishing becomes available as soon as a subscription or trial is active."}},{"@type":"Question","name":"What does a Jira admin need to set up?","acceptedAnswer":{"@type":"Answer","text":"Once per site: which Jira fields hold your estimates. 🔍 Detect Fields scans your fields and suggests the mappings; the user guide walks through it."}},{"@type":"Question","name":"Where is our data stored?","acceptedAnswer":{"@type":"Answer","text":"In Atlassian Forge hosted storage, inside your own Atlassian site. The developer operates no infrastructure of its own and receives no copies of your data. Details are in the privacy policy."}},{"@type":"Question","name":"How do we get help?","acceptedAnswer":{"@type":"Answer","text":"Email support@dsplugins.dev. Every message is answered by the people who build the app; we aim to reply within one business day. Hours and what to include are on the support page."}}]}]}</script>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css?v=c639a90e51">
+<link rel="stylesheet" href="/style.css?v=f289d705fd">
 </head>
 <body class="home">
   <a class="skip" href="#main">Skip to content</a>
@@ -488,6 +488,39 @@
       </div>
     </section>
 
+    <section id="articles" class="section">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Articles</p>
+          <h2>Estimating sprints in Jira, with or without an app</h2>
+          <p>Practical notes on what Jira does on its own, where it stops, and how to plan a sprint
+            around it. <a href="/articles/">All articles</a>.</p>
+        </header>
+        <div class="docs-grid">
+          <a class="doc-card" href="/articles/bulk-edit-story-points-in-jira/">
+            <span class="doc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2z"/><path d="M4 20a2 2 0 0 0 2 2h13v-4"/><path d="M9 8h6"/></svg></span>
+            <b>How to bulk-edit story points</b>
+            <span>Bulk change, CSV import or a table, and when to use each.</span>
+          </a>
+          <a class="doc-card" href="/articles/story-points-vs-time-estimates/">
+            <span class="doc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2z"/><path d="M4 20a2 2 0 0 0 2 2h13v-4"/><path d="M9 8h6"/></svg></span>
+            <b>Story points vs. hours</b>
+            <span>What each field is for, and which one the board reads.</span>
+          </a>
+          <a class="doc-card" href="/articles/sprint-velocity-in-jira/">
+            <span class="doc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2z"/><path d="M4 20a2 2 0 0 0 2 2h13v-4"/><path d="M9 8h6"/></svg></span>
+            <b>How to calculate velocity</b>
+            <span>The formula, a worked example and what the chart counts.</span>
+          </a>
+          <a class="doc-card" href="/articles/velocity-per-assignee-in-jira/">
+            <span class="doc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2z"/><path d="M4 20a2 2 0 0 0 2 2h13v-4"/><path d="M9 8h6"/></svg></span>
+            <b>Velocity per assignee</b>
+            <span>Getting points per person, and when not to.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section id="faq" class="section">
       <div class="wrap faq-grid">
         <header class="section-head">
@@ -604,6 +637,7 @@
         <div>
           <h2>Help</h2>
           <a href="/support/">Support</a>
+          <a href="/about/">About DSPlugins</a>
           <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
         </div>
         <div>

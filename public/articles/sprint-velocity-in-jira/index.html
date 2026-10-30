@@ -3,24 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How to calculate sprint velocity in Jira | DSPlugins</title>
-<meta name="description" content="How to read sprint velocity in Jira, turn it into a planning number for the next sprint, and avoid the mistakes that distort it.">
+<title>How to Calculate Velocity in Jira: Formula &amp; Example | DSPlugins</title>
+<meta name="description" content="How to calculate sprint velocity in Jira: the formula, a worked example, what the Velocity Chart counts, sprint completion rate and scope change.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#4f46e5">
 <link rel="canonical" href="https://dsplugins.dev/articles/sprint-velocity-in-jira/">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-10-22">
+<meta property="article:modified_time" content="2026-10-30">
 <meta property="og:site_name" content="DSPlugins">
-<meta property="og:title" content="How to calculate sprint velocity in Jira | DSPlugins">
-<meta property="og:description" content="How to read sprint velocity in Jira, turn it into a planning number for the next sprint, and avoid the mistakes that distort it.">
+<meta property="og:title" content="How to Calculate Velocity in Jira: Formula &amp; Example | DSPlugins">
+<meta property="og:description" content="How to calculate sprint velocity in Jira: the formula, a worked example, what the Velocity Chart counts, sprint completion rate and scope change.">
 <meta property="og:url" content="https://dsplugins.dev/articles/sprint-velocity-in-jira/">
 <meta property="og:image" content="https://dsplugins.dev/assets/og-banner.png">
 <meta property="og:image:width" content="1120">
 <meta property="og:image:height" content="548">
 <meta property="og:image:alt" content="Scope Planner — bulk sprint estimation for Jira Cloud">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://dsplugins.dev/articles/sprint-velocity-in-jira/","url":"https://dsplugins.dev/articles/sprint-velocity-in-jira/","headline":"How to calculate sprint velocity in Jira","description":"How to read sprint velocity in Jira, turn it into a planning number for the next sprint, and avoid the mistakes that distort it.","datePublished":"2026-10-22","image":"https://dsplugins.dev/assets/og-banner.png","author":{"@id":"https://dsplugins.dev/#org"},"publisher":{"@type":"Organization","@id":"https://dsplugins.dev/#org","name":"DSPlugins","url":"https://dsplugins.dev/","logo":"https://dsplugins.dev/assets/favicon.svg","email":"support@dsplugins.dev"},"isPartOf":{"@id":"https://dsplugins.dev/#site"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scope Planner","item":"https://dsplugins.dev/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://dsplugins.dev/articles/"},{"@type":"ListItem","position":3,"name":"Sprint velocity in Jira","item":"https://dsplugins.dev/articles/sprint-velocity-in-jira/"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://dsplugins.dev/articles/sprint-velocity-in-jira/","url":"https://dsplugins.dev/articles/sprint-velocity-in-jira/","headline":"How to Calculate Velocity in Jira: Formula & Example","inLanguage":"en","description":"How to calculate sprint velocity in Jira: the formula, a worked example, what the Velocity Chart counts, sprint completion rate and scope change.","datePublished":"2026-10-22","dateModified":"2026-10-30","image":"https://dsplugins.dev/assets/og-banner.png","author":{"@id":"https://dsplugins.dev/#org"},"publisher":{"@type":"Organization","@id":"https://dsplugins.dev/#org","name":"DSPlugins","url":"https://dsplugins.dev/","logo":"https://dsplugins.dev/assets/favicon.svg","email":"support@dsplugins.dev","sameAs":["https://marketplace.atlassian.com/vendors/1218450/","https://github.com/dsplugins"]},"isPartOf":{"@id":"https://dsplugins.dev/#site"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scope Planner","item":"https://dsplugins.dev/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://dsplugins.dev/articles/"},{"@type":"ListItem","position":3,"name":"Sprint velocity in Jira","item":"https://dsplugins.dev/articles/sprint-velocity-in-jira/"}]},{"@type":"FAQPage","@id":"https://dsplugins.dev/articles/sprint-velocity-in-jira/#faq","url":"https://dsplugins.dev/articles/sprint-velocity-in-jira/","mainEntity":[{"@type":"Question","name":"How is velocity calculated in Jira?","acceptedAnswer":{"@type":"Answer","text":"Jira adds up the estimates of the issues completed in each sprint, and the Velocity Chart shows the average across the sprints it displays. To check it, add the Completed values and divide by the number of sprints."}},{"@type":"Question","name":"Why is my velocity chart empty?","acceptedAnswer":{"@type":"Answer","text":"Usually the issues are not estimated in the field the board reads, or no sprint has been completed yet. Check the board's estimation setting first, then that the issues reached a status in the board's right-most column. In a company-managed project the chart is only available for Scrum."}},{"@type":"Question","name":"Can I see velocity for all sprints?","acceptedAnswer":{"@type":"Answer","text":"The chart shows the most recent sprints the team completed, and Atlassian's guide does not describe a setting to change how many. For a longer history, read the numbers sprint by sprint and keep them in a spreadsheet."}},{"@type":"Question","name":"What is a good velocity?","acceptedAnswer":{"@type":"Answer","text":"There is no universal number, because points only mean something within one team. A good velocity is a stable one: it lets you forecast. A sudden jump usually means the estimates changed, not the output."}},{"@type":"Question","name":"Does Jira show velocity per person?","acceptedAnswer":{"@type":"Answer","text":"No. The velocity report is team-level. Velocity per assignee in Jira covers the workarounds, and why to be careful with them."}}]}]}</script>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css?v=c639a90e51">
+<link rel="stylesheet" href="/style.css?v=f289d705fd">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -58,9 +60,10 @@
   <main id="main">
     <div class="doc-head">
       <div class="wrap">
-        <p class="eyebrow">Scope Planner &middot; Articles</p>
+        <p class="eyebrow">Scope Planner &middot; <a href="/articles/">Articles</a></p>
         <h1>How to calculate sprint velocity in Jira</h1>
-        <p class="doc-meta">Last updated: 22 October 2026</p>
+        <p class="doc-meta">Last updated: 30 October 2026</p>
+        <p class="doc-meta">By the team behind Scope Planner &middot; <a href="/about/">About DSPlugins</a></p>
       </div>
     </div>
     <div class="wrap doc">
@@ -68,84 +71,153 @@
         <nav class="toc-side">
           <p class="toc-title">On this page</p>
           <ol>
-            <li><a href="#what-counts">What counts</a></li>
-            <li><a href="#reading-it-in-jira">Reading it in Jira</a></li>
+            <li><a href="#where-to-find-velocity-in-jira">Where to find velocity in Jira</a></li>
+            <li><a href="#what-the-velocity-chart-shows">What the Velocity Chart shows</a></li>
+            <li><a href="#how-to-calculate-velocity-yourself">How to calculate velocity yourself</a></li>
+            <li><a href="#sprint-completion-rate-and-scope-change">Sprint completion rate and scope change</a></li>
             <li><a href="#turning-it-into-a-planning-number">Turning it into a planning number</a></li>
             <li><a href="#mistakes-that-distort-velocity">Mistakes that distort velocity</a></li>
             <li><a href="#planning-against-velocity-in-one-table">Planning against velocity in one table</a></li>
+            <li><a href="#frequently-asked-questions">Frequently asked questions</a></li>
           </ol>
         </nav>
         <details class="toc-fold">
           <summary>On this page</summary>
           <ol>
-            <li><a href="#what-counts">What counts</a></li>
-            <li><a href="#reading-it-in-jira">Reading it in Jira</a></li>
+            <li><a href="#where-to-find-velocity-in-jira">Where to find velocity in Jira</a></li>
+            <li><a href="#what-the-velocity-chart-shows">What the Velocity Chart shows</a></li>
+            <li><a href="#how-to-calculate-velocity-yourself">How to calculate velocity yourself</a></li>
+            <li><a href="#sprint-completion-rate-and-scope-change">Sprint completion rate and scope change</a></li>
             <li><a href="#turning-it-into-a-planning-number">Turning it into a planning number</a></li>
             <li><a href="#mistakes-that-distort-velocity">Mistakes that distort velocity</a></li>
             <li><a href="#planning-against-velocity-in-one-table">Planning against velocity in one table</a></li>
+            <li><a href="#frequently-asked-questions">Frequently asked questions</a></li>
           </ol>
         </details>
       </aside>
       <article class="prose">
-<p>Velocity is the amount of work a team actually finishes in a sprint, usually measured in story
-points. Averaged over a few sprints, it tells you how much to plan into the next one. This article
-shows how to read it in Jira, how to turn it into a planning number, and the mistakes that make it
-misleading.</p>
-<h2 id="what-counts">What counts<a class="anchor" href="#what-counts" aria-label="Link to this section">#</a></h2>
+<p><strong>Short answer:</strong> sprint velocity is the amount of work a team finishes in a sprint, usually in story
+points. Average velocity is the sum of the completed work over your last few sprints, divided by the
+number of sprints. Jira draws both on its velocity report, and you can check the number yourself in a
+minute.</p>
+<p>This article shows where to find the report, what each bar means, how to calculate the average, how to
+turn it into a plan for the next sprint, and which mistakes make it misleading.</p>
+<h2 id="where-to-find-velocity-in-jira">Where to find velocity in Jira<a class="anchor" href="#where-to-find-velocity-in-jira" aria-label="Link to this section">#</a></h2>
+<p>Where the report lives depends on the type of project. Jira now says <em>space</em> for project and <em>work
+item</em> for issue; this article keeps the older words, which are the ones most people search for.</p>
 <ul>
-<li><strong>Only finished work.</strong> An issue counts toward the sprint in which it was completed. Work started
-but not done counts for nothing in that sprint.</li>
-<li><strong>Only estimated work.</strong> An issue without story points adds zero, however big it was.</li>
-<li><strong>The board’s estimation field.</strong> Velocity is computed from the one field the board estimates with
-(its <strong>Estimation</strong> settings). Points typed into another field are invisible to it.</li>
+<li><strong>Company-managed Scrum projects:</strong> in the sidebar, open <strong>Reports</strong>, then <strong>Velocity Chart</strong>. Only
+Scrum projects have it. See <a href="https://support.atlassian.com/jira-software-cloud/docs/view-and-understand-the-velocity-chart/">Atlassian’s Velocity Chart
+guide</a>.</li>
+<li><strong>Team-managed projects:</strong> the <a href="https://support.atlassian.com/jira-software-cloud/docs/view-and-understand-the-team-managed-velocity-report/">velocity
+report</a>
+is under Reports too, but the <strong>Sprints</strong> feature has to be turned on first.</li>
 </ul>
-<h2 id="reading-it-in-jira">Reading it in Jira<a class="anchor" href="#reading-it-in-jira" aria-label="Link to this section">#</a></h2>
-<p>On a Scrum board, open <strong>Reports</strong> and choose the <strong>Velocity report</strong>. For each recent sprint it
-shows two bars:</p>
+<h2 id="what-the-velocity-chart-shows">What the Velocity Chart shows<a class="anchor" href="#what-the-velocity-chart-shows" aria-label="Link to this section">#</a></h2>
+<p>Each recent sprint gets two bars, and a line shows the average.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th style="text-align:left">On the chart</th>
+<th style="text-align:left">What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Commitment</strong> (gray bar)</td>
+<td style="text-align:left">The total estimate of the issues in the sprint when it began</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Completed</strong> (green bar)</td>
+<td style="text-align:left">The total estimate of the issues completed when the sprint ended</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Average</strong> (black line)</td>
+<td style="text-align:left">The work completed on average across the sprints shown</td>
+</tr>
+</tbody>
+</table></div>
+<p>The details decide whether your number can be trusted:</p>
 <ul>
-<li><strong>Commitment</strong> — the estimates of the issues in the sprint when it started;</li>
-<li><strong>Completed</strong> — the estimates of the issues finished by the time it closed.</li>
+<li><strong>Work added after the sprint starts</strong> is not part of Commitment, but it does count in Completed if
+it gets finished.</li>
+<li><strong>Estimates changed after the sprint starts</strong> do not change Commitment.</li>
+<li><strong>“Done” means the board’s right-most column.</strong> An issue counts as completed when it reaches a
+status mapped to that column.</li>
+<li><strong>Subtasks are not included.</strong> Their estimates do not reach the chart.</li>
+<li><strong>Only the board’s filter counts.</strong> The chart includes only issues that match the board’s saved
+filter.</li>
+<li><strong>Only the board’s estimation field counts.</strong> Velocity uses the one statistic the board estimates
+with, chosen in its settings. Points typed into another field are invisible to it — see <a href="/articles/story-points-vs-time-estimates/#which-one-the-board-uses">story
+points vs. time estimates</a>.</li>
 </ul>
-<p>The gap between them is the useful part. A team that always commits far more than it completes is
-planning on hope, not on velocity.</p>
-<h2 id="turning-it-into-a-planning-number">Turning it into a planning number<a class="anchor" href="#turning-it-into-a-planning-number" aria-label="Link to this section">#</a></h2>
-<p>Take the <strong>Completed</strong> values of the last few sprints — five is a common choice — and average them:</p>
+<h2 id="how-to-calculate-velocity-yourself">How to calculate velocity yourself<a class="anchor" href="#how-to-calculate-velocity-yourself" aria-label="Link to this section">#</a></h2>
+<p>The formula is simple:</p>
+<p><code>Average velocity = (Completed in sprint 1 + … + Completed in sprint n) ÷ n</code></p>
+<p>Take the <strong>Completed</strong> values of your last five sprints, for example:</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
 <th style="text-align:left">Sprint</th>
+<th style="text-align:right">Commitment</th>
 <th style="text-align:right">Completed</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left">Sprint 20</td>
+<td style="text-align:right">40</td>
 <td style="text-align:right">34</td>
 </tr>
 <tr>
 <td style="text-align:left">Sprint 21</td>
+<td style="text-align:right">42</td>
 <td style="text-align:right">41</td>
 </tr>
 <tr>
 <td style="text-align:left">Sprint 22</td>
+<td style="text-align:right">38</td>
 <td style="text-align:right">29</td>
 </tr>
 <tr>
 <td style="text-align:left">Sprint 23</td>
+<td style="text-align:right">40</td>
 <td style="text-align:right">38</td>
 </tr>
 <tr>
 <td style="text-align:left">Sprint 24</td>
+<td style="text-align:right">40</td>
 <td style="text-align:right">36</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Average</strong></td>
+<td style="text-align:right"></td>
 <td style="text-align:right"><strong>35.6</strong></td>
 </tr>
 </tbody>
 </table></div>
-<p>Plan the next sprint at about that total, then adjust for what you know: holidays, a new teammate,
-an unusual amount of support work. Use the average, not the best sprint.</p>
+<p>(34 + 41 + 29 + 38 + 36) ÷ 5 = 178 ÷ 5 = <strong>35.6 points per sprint</strong>.</p>
+<p>How many sprints should you use? Atlassian’s guide notes that more sprints give a more accurate
+forecast. Five is a common choice: enough to smooth out a bad sprint, recent enough to describe the
+team you have now. Leave out a sprint that says nothing about the team, such as one where nothing was
+completed.</p>
+<h2 id="sprint-completion-rate-and-scope-change">Sprint completion rate and scope change<a class="anchor" href="#sprint-completion-rate-and-scope-change" aria-label="Link to this section">#</a></h2>
+<p>Two related numbers come from the same data. Jira shows the bars, so you work these out yourself.</p>
+<p><strong>Sprint completion rate</strong> shows how much of the plan was delivered:</p>
+<p><code>Completion rate = Completed ÷ Commitment × 100</code></p>
+<p>For Sprint 22 above, 29 ÷ 38 × 100 = <strong>76%</strong>. Because Completed can include work added mid-sprint, the
+rate can exceed 100%. Read it over several sprints rather than judging one.</p>
+<p><strong>Scope change</strong> shows how much the sprint moved after it started. The <a href="https://support.atlassian.com/jira-software-cloud/docs/view-and-understand-the-sprint-report/">sprint
+report</a>
+lists what was added and removed. A common way to express it:</p>
+<p><code>Scope change = (points added + points removed) ÷ Commitment × 100</code></p>
+<p>High scope change usually explains a low completion rate better than the team’s speed does.</p>
+<h2 id="turning-it-into-a-planning-number">Turning it into a planning number<a class="anchor" href="#turning-it-into-a-planning-number" aria-label="Link to this section">#</a></h2>
+<p>Plan the next sprint at about the average, then adjust for what you already know: holidays, a new
+teammate, an unusual amount of support work. With an average of 35.6 and one of six people away for
+the whole sprint, about 30 points is a reasonable starting point.</p>
+<p>Use the average, not your best sprint. And compare the plan against it while you estimate, not after
+the sprint has started.</p>
 <h2 id="mistakes-that-distort-velocity">Mistakes that distort velocity<a class="anchor" href="#mistakes-that-distort-velocity" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><strong>Changing estimates after the work is done.</strong> Re-pointing a finished issue rewrites history, and
@@ -154,26 +226,68 @@ the average stops describing the team.</li>
 another’s.</li>
 <li><strong>Counting half-done work.</strong> Splitting an unfinished issue and crediting the “done half” inflates
 the number. Carry the issue over and let it count when it is finished.</li>
+<li><strong>Treating it as a target.</strong> Asking a team to raise velocity mostly raises the estimates.</li>
+<li><strong>Judging individuals by it.</strong> Velocity is a team measure. If you need a per-person view, read
+<a href="/articles/velocity-per-assignee-in-jira/">velocity per assignee in Jira</a> first.</li>
 <li><strong>Too few sprints.</strong> One or two sprints are noise. Wait for four or five before trusting the
 average.</li>
 </ul>
 <h2 id="planning-against-velocity-in-one-table">Planning against velocity in one table<a class="anchor" href="#planning-against-velocity-in-one-table" aria-label="Link to this section">#</a></h2>
-<p><a href="/">Scope Planner</a> shows the sprint total next to a target velocity while you estimate, so you see
-the sprint overflow before you start it, not halfway through.</p>
+<p><a href="/">Scope Planner</a> shows the sprint total next to a target velocity while you estimate, so you see the
+sprint overflow before you start it, not halfway through.</p>
 <ul>
 <li>The totals bar shows the sprint’s story points and, when a target velocity is set, a capacity
 indicator that highlights when the draft total goes over it.</li>
 <li>With <strong>Pro</strong>, <strong>✨ Auto-calculate</strong> fills the target from the average of the board’s last five
-completed sprints — no number to maintain by hand.</li>
+completed sprints, so there is no number to maintain by hand.</li>
 <li>Also with <strong>Pro</strong>, the <strong>Workload</strong> tab shows each assignee’s points and flags anyone above 1.5×
 the team average, so you can rebalance before the sprint starts.</li>
 </ul>
+<figure class="doc-fig" id="figref-screenshot-3b-velocity">
+  <a href="#fig-screenshot-3b-velocity" aria-label="Open full size"><img src="/assets/shots/screenshot-3b-velocity.webp" width="480" height="200" loading="lazy" decoding="async" alt="🚀 Target Velocity (Pro): ✨ Auto-calculate averages the board’s last five completed sprints."></a>
+  <figcaption><b>🚀 Target Velocity</b> <i>(Pro)</i>: <b>✨ Auto-calculate</b> averages the board’s last five completed sprints.</figcaption>
+</figure>
 <p>The estimation table, drafts and totals are free; target velocity, workload and publishing to Jira
 are <strong>Pro</strong> — see <a href="/#pricing">Free and Pro</a> and <a href="/guide/#10-preferences-per-user">Preferences</a> in the
 user guide.</p>
+<h2 id="frequently-asked-questions">Frequently asked questions<a class="anchor" href="#frequently-asked-questions" aria-label="Link to this section">#</a></h2>
+<h3 id="how-is-velocity-calculated-in-jira">How is velocity calculated in Jira?<a class="anchor" href="#how-is-velocity-calculated-in-jira" aria-label="Link to this section">#</a></h3>
+<p>Jira adds up the estimates of the issues completed in each sprint, and the Velocity Chart shows the
+average across the sprints it displays. To check it, add the Completed values and divide by the number
+of sprints.</p>
+<h3 id="why-is-my-velocity-chart-empty">Why is my velocity chart empty?<a class="anchor" href="#why-is-my-velocity-chart-empty" aria-label="Link to this section">#</a></h3>
+<p>Usually the issues are not estimated in the field the board reads, or no sprint has been completed
+yet. Check the board’s estimation setting first, then that the issues reached a status in the board’s
+right-most column. In a company-managed project the chart is only available for Scrum.</p>
+<h3 id="can-i-see-velocity-for-all-sprints">Can I see velocity for all sprints?<a class="anchor" href="#can-i-see-velocity-for-all-sprints" aria-label="Link to this section">#</a></h3>
+<p>The chart shows the most recent sprints the team completed, and Atlassian’s guide does not describe a
+setting to change how many. For a longer history, read the numbers sprint by sprint and keep them in a
+spreadsheet.</p>
+<h3 id="what-is-a-good-velocity">What is a good velocity?<a class="anchor" href="#what-is-a-good-velocity" aria-label="Link to this section">#</a></h3>
+<p>There is no universal number, because points only mean something within one team. A good velocity is
+a stable one: it lets you forecast. A sudden jump usually means the estimates changed, not the output.</p>
+<h3 id="does-jira-show-velocity-per-person">Does Jira show velocity per person?<a class="anchor" href="#does-jira-show-velocity-per-person" aria-label="Link to this section">#</a></h3>
+<p>No. The velocity report is team-level. <a href="/articles/velocity-per-assignee-in-jira/">Velocity per assignee in
+Jira</a> covers the workarounds, and why to be careful with
+them.</p>
 
+        <aside class="related" aria-label="Related articles">
+          <p class="toc-title">Related articles</p>
+          <ul>
+            <li><a href="/articles/velocity-per-assignee-in-jira/">Velocity per assignee in Jira</a></li>
+            <li><a href="/articles/story-points-vs-time-estimates/">Story points vs. time estimates</a></li>
+          </ul>
+        </aside>
         <p class="to-top"><a href="#main">Back to top ↑</a></p>
       </article>
+    </div>
+    <div class="lightbox" id="fig-screenshot-3b-velocity" role="dialog" aria-label="🚀 Target Velocity (Pro): ✨ Auto-calculate averages the board’s last five completed sprints.">
+      <a class="lb-backdrop" href="#figref-screenshot-3b-velocity" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/screenshot-3b-velocity.webp" width="480" height="200" loading="lazy" decoding="async" alt="🚀 Target Velocity (Pro): ✨ Auto-calculate averages the board’s last five completed sprints.">
+        <figcaption><b>🚀 Target Velocity</b> <i>(Pro)</i>: <b>✨ Auto-calculate</b> averages the board’s last five completed sprints.</figcaption>
+        <a class="lb-close" href="#figref-screenshot-3b-velocity" aria-label="Close">×</a>
+      </figure>
     </div>
   </main>
   <footer class="site">
@@ -202,6 +316,7 @@ user guide.</p>
         <div>
           <h2>Help</h2>
           <a href="/support/">Support</a>
+          <a href="/about/">About DSPlugins</a>
           <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
         </div>
         <div>

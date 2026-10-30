@@ -7,5 +7,7 @@ they stop, and how to get a sprint estimated without opening every issue.
   change for one shared value, the issue view for one at a time, and a table for a whole sprint.
 - **[Story points vs. time estimates in Jira](/articles/story-points-vs-time-estimates/)** — what
   each field is for, which one the board reads, and how to pick a scale.
-- **[How to calculate sprint velocity in Jira](/articles/sprint-velocity-in-jira/)** — reading the
-  Velocity report, turning it into a planning number, and the mistakes that distort it.
+- **[How to calculate sprint velocity in Jira](/articles/sprint-velocity-in-jira/)** — the formula,
+  reading the Velocity Chart, sprint completion rate, and turning it all into a planning number.
+- **[Velocity per assignee in Jira](/articles/velocity-per-assignee-in-jira/)** — how to get completed
+  points per person when Jira has no such report, and why to be careful with the number.

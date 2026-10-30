@@ -27,6 +27,8 @@ served at `https://dsplugins.github.io`, which redirects to the custom domain on
 | Support | `https://dsplugins.dev/support/` — hours and the first-reply target; the Marketplace profile's *Support Channels* link and *Hours of Operation* SLA link point here |
 | **Privacy policy** | `https://dsplugins.dev/privacy/` |
 | **Terms of use** | `https://dsplugins.dev/terms/` |
+| About | `https://dsplugins.dev/about/` |
+| Articles | `https://dsplugins.dev/articles/`, one page per article |
 
 The two in bold are the ones the listing form asks for; the guide is the listing's required
 documentation URL.
@@ -142,11 +144,13 @@ hover anchors, an *On this page* index built from the `##` headings (a sticky si
 screens, a collapsed `<details>` on narrow ones), and a framed scroll box around tables. A
 `_Last updated: …_` line directly under the title moves into the page header.
 
-**Search engines.** The build also writes `robots.txt` and `sitemap.xml` (every page in `PAGES`,
-no `<lastmod>` — a date from the build or a shallow checkout would make the `check` job's diff fail
-by itself), and one JSON-LD block per page: Organization, WebSite, SoftwareApplication and an
-FAQPage on the landing page — the FAQ is parsed from the landing page's own `<details>`, and the
-build fails if it finds none — and WebPage + BreadcrumbList on the documents. A JSON-LD block is
+**Search engines.** The build also writes `robots.txt` and `sitemap.xml` (every page in `PAGES`;
+`<lastmod>` only from a source's own `_Last updated: …_` line, because a date from the build or a
+shallow checkout would make the `check` job's diff fail by itself), and one JSON-LD block per page:
+Organization, WebSite, SoftwareApplication and an FAQPage on the landing page — the FAQ is parsed from
+the landing page's own `<details>`, and the build fails if it finds none — WebPage + BreadcrumbList
+on the documents, and Article + BreadcrumbList on the articles, plus an FAQPage built from an
+article's `## Frequently asked questions` section (`###` is the question). A JSON-LD block is
 data the browser never runs, so "no scripts" still holds. No `offers` and no `aggregateRating`:
 prices live on the Marketplace and there are no reviews yet, so Search Console may report the app
 item as missing them — expected, not a bug.
@@ -159,6 +163,20 @@ pages — it reads Google's own crawl data — so the no-tracking promise is una
 itself after a push). **Bing Webmaster Tools** has the site too, imported from Search Console under
 the same Google account — no file of its own, and it keeps a read-only Search Console grant to
 re-check verification and pick up the sitemap.
+
+**Articles** are `content/articles/*.md`, each with an entry in `PAGES`: a `title` in search-result
+wording, a `published` date, `related` articles (an unknown one fails the build) and optional
+`figures`, which work like `GUIDE_FIGURES`. They stay out of the header; the landing page's *Articles*
+section, the footer and the sitemap link them. Editing one means changing its `_Last updated: …_`
+line too: that line feeds `dateModified` and `<lastmod>`. Every claim about Jira should link to
+Atlassian's documentation, and every claim about the app must match the user guide.
+
+**IndexNow.** Bing, Yandex and Seznam accept a ping when pages change. The key file at the root
+(`<32 hex>.txt`, written by the build) is public by design. After a deploy is live:
+
+```bash
+npm run indexnow
+```
 
 `assets/style.css` is the whole design: colour tokens with a dark scheme, then components. Files in
 `assets/static/` are copied to `/assets/` — the favicon (the partner mark) and `og-banner.png`, the
@@ -186,5 +204,5 @@ commit metadata here, since this repo is public. It must not reappear in `conten
 - Link the Marketplace listing from the landing page once it is approved and has a public URL.
   Make it the hero's first button (`Try it free on Atlassian Marketplace`) and repeat it in
   *Free and Pro*: the link sends buyers to the listing and also helps the listing rank in Google.
-- After every push that changes pages: Search Console → *Sitemaps* shows the last read; resubmit
-  `https://dsplugins.dev/sitemap.xml` only if a page was added or removed.
+- After every push that changes pages: `npm run indexnow`, and Search Console → *Sitemaps* shows the
+  last read; resubmit `https://dsplugins.dev/sitemap.xml` only if a page was added or removed.

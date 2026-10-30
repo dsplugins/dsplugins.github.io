@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velocity per Assignee in Jira: How to Get It | DSPlugins</title>
+<meta name="description" content="Jira has no velocity report per person. How to get story points per assignee from a search export, the sprint trap to avoid, and why not to judge people by it.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#4f46e5">
+<link rel="canonical" href="https://dsplugins.dev/articles/velocity-per-assignee-in-jira/">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-10-30">
+<meta property="article:modified_time" content="2026-10-30">
+<meta property="og:site_name" content="DSPlugins">
+<meta property="og:title" content="Velocity per Assignee in Jira: How to Get It | DSPlugins">
+<meta property="og:description" content="Jira has no velocity report per person. How to get story points per assignee from a search export, the sprint trap to avoid, and why not to judge people by it.">
+<meta property="og:url" content="https://dsplugins.dev/articles/velocity-per-assignee-in-jira/">
+<meta property="og:image" content="https://dsplugins.dev/assets/og-banner.png">
+<meta property="og:image:width" content="1120">
+<meta property="og:image:height" content="548">
+<meta property="og:image:alt" content="Scope Planner — bulk sprint estimation for Jira Cloud">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://dsplugins.dev/articles/velocity-per-assignee-in-jira/","url":"https://dsplugins.dev/articles/velocity-per-assignee-in-jira/","headline":"Velocity per Assignee in Jira: How to Get It","inLanguage":"en","description":"Jira has no velocity report per person. How to get story points per assignee from a search export, the sprint trap to avoid, and why not to judge people by it.","datePublished":"2026-10-30","dateModified":"2026-10-30","image":"https://dsplugins.dev/assets/og-banner.png","author":{"@id":"https://dsplugins.dev/#org"},"publisher":{"@type":"Organization","@id":"https://dsplugins.dev/#org","name":"DSPlugins","url":"https://dsplugins.dev/","logo":"https://dsplugins.dev/assets/favicon.svg","email":"support@dsplugins.dev","sameAs":["https://marketplace.atlassian.com/vendors/1218450/","https://github.com/dsplugins"]},"isPartOf":{"@id":"https://dsplugins.dev/#site"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scope Planner","item":"https://dsplugins.dev/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://dsplugins.dev/articles/"},{"@type":"ListItem","position":3,"name":"Velocity per assignee in Jira","item":"https://dsplugins.dev/articles/velocity-per-assignee-in-jira/"}]},{"@type":"FAQPage","@id":"https://dsplugins.dev/articles/velocity-per-assignee-in-jira/#faq","url":"https://dsplugins.dev/articles/velocity-per-assignee-in-jira/","mainEntity":[{"@type":"Question","name":"Does Jira have a velocity report per user?","acceptedAnswer":{"@type":"Answer","text":"No. The Velocity Chart and the velocity report are team-level, with no assignee filter. You can export a search and sum story points by assignee in a spreadsheet, or use a board filtered to one person."}},{"@type":"Question","name":"How do I see story points per assignee in a sprint?","acceptedAnswer":{"@type":"Answer","text":"Search for the sprint with JQL, add Assignee and your story points field as columns, export to Excel or CSV, then sum by assignee. Atlassian's support article describes this method. In Scope Planner, the Breakdown tab shows it live for the sprint you have open."}},{"@type":"Question","name":"Can a Jira dashboard show velocity per person?","acceptedAnswer":{"@type":"Answer","text":"Not with the Two Dimensional Filter Statistics gadget, which counts issues rather than summing story points. For points per person on a dashboard you need a reporting app from the Marketplace."}},{"@type":"Question","name":"Should individual velocity be used in performance reviews?","acceptedAnswer":{"@type":"Answer","text":"We would advise against it. It credits only the final assignee, compares points that are only meaningful within a team, and encourages inflated estimates. Use it, if at all, to understand capacity."}},{"@type":"Question","name":"How do I plan capacity per developer?","acceptedAnswer":{"@type":"Answer","text":"Start from the team's average velocity and subtract known absences. Then compare each person's planned load with the others' before the sprint starts, and move work away from anyone well above the average."}}]}]}</script>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=f289d705fd">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="brand" href="/" aria-label="DSPlugins — home">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="19" fill="#FBBF24" opacity=".2"/>
+        <g fill="#FBBF24"><circle cx="32" cy="32" r="11"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(0 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(45 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(90 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(135 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(180 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(225 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(270 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(315 32 32)"/></g>
+      </svg>
+        <span>DSPlugins</span>
+      </a>
+      <nav class="nav" aria-label="Site">
+        <a href="/">Scope Planner</a>
+        <a href="/guide/">User guide</a>
+        <a href="/support/">Support</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+      <a class="btn btn-sm header-cta" href="mailto:support@dsplugins.dev">Contact</a>
+      <details class="menu">
+        <summary aria-label="Menu"><span></span></summary>
+        <nav aria-label="Site (mobile)">
+          <a href="/">Scope Planner</a>
+          <a href="/guide/">User guide</a>
+          <a href="/support/">Support</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+  <main id="main">
+    <div class="doc-head">
+      <div class="wrap">
+        <p class="eyebrow">Scope Planner &middot; <a href="/articles/">Articles</a></p>
+        <h1>Velocity per assignee in Jira: how to get it, and when not to</h1>
+        <p class="doc-meta">Last updated: 30 October 2026</p>
+        <p class="doc-meta">By the team behind Scope Planner &middot; <a href="/about/">About DSPlugins</a></p>
+      </div>
+    </div>
+    <div class="wrap doc">
+      <aside class="toc" aria-label="On this page">
+        <nav class="toc-side">
+          <p class="toc-title">On this page</p>
+          <ol>
+            <li><a href="#what-jira-gives-you-out-of-the-box">What Jira gives you out of the box</a></li>
+            <li><a href="#method-1-export-a-search-and-add-it-up">Method 1: export a search and add it up</a></li>
+            <li><a href="#method-2-a-board-for-one-person">Method 2: a board for one person</a></li>
+            <li><a href="#method-3-gadgets-and-reporting-apps">Method 3: gadgets and reporting apps</a></li>
+            <li><a href="#why-per-person-velocity-misleads">Why per-person velocity misleads</a></li>
+            <li><a href="#what-to-look-at-instead">What to look at instead</a></li>
+            <li><a href="#planned-load-per-person-in-scope-planner">Planned load per person in Scope Planner</a></li>
+            <li><a href="#frequently-asked-questions">Frequently asked questions</a></li>
+          </ol>
+        </nav>
+        <details class="toc-fold">
+          <summary>On this page</summary>
+          <ol>
+            <li><a href="#what-jira-gives-you-out-of-the-box">What Jira gives you out of the box</a></li>
+            <li><a href="#method-1-export-a-search-and-add-it-up">Method 1: export a search and add it up</a></li>
+            <li><a href="#method-2-a-board-for-one-person">Method 2: a board for one person</a></li>
+            <li><a href="#method-3-gadgets-and-reporting-apps">Method 3: gadgets and reporting apps</a></li>
+            <li><a href="#why-per-person-velocity-misleads">Why per-person velocity misleads</a></li>
+            <li><a href="#what-to-look-at-instead">What to look at instead</a></li>
+            <li><a href="#planned-load-per-person-in-scope-planner">Planned load per person in Scope Planner</a></li>
+            <li><a href="#frequently-asked-questions">Frequently asked questions</a></li>
+          </ol>
+        </details>
+      </aside>
+      <article class="prose">
+<p><strong>Short answer:</strong> Jira has no velocity report per person. Its velocity report measures the whole team
+on a board. You can still get completed story points per assignee by exporting a search to a
+spreadsheet, and that number is useful for planning capacity. As a measure of how well someone works,
+it misleads, for reasons this article covers below.</p>
+<p>If you are after the team number, start with <a href="/articles/sprint-velocity-in-jira/">how to calculate sprint velocity in
+Jira</a>.</p>
+<h2 id="what-jira-gives-you-out-of-the-box">What Jira gives you out of the box<a class="anchor" href="#what-jira-gives-you-out-of-the-box" aria-label="Link to this section">#</a></h2>
+<p>The <a href="https://support.atlassian.com/jira-software-cloud/docs/view-and-understand-the-velocity-chart/">Velocity Chart</a>
+in company-managed projects and the <a href="https://support.atlassian.com/jira-software-cloud/docs/view-and-understand-the-team-managed-velocity-report/">velocity
+report</a>
+in team-managed ones show what the team committed to and completed in each sprint. Neither has an
+assignee filter or a breakdown by person. The only thing that narrows the chart is the board’s saved
+filter.</p>
+<p>So every route to a per-person number is a workaround. There are three worth knowing.</p>
+<h2 id="method-1-export-a-search-and-add-it-up">Method 1: export a search and add it up<a class="anchor" href="#method-1-export-a-search-and-add-it-up" aria-label="Link to this section">#</a></h2>
+<p>This is the method <a href="https://support.atlassian.com/jira/kb/track-sprint-story-points-by-assignee-in-jira-cloud/">Atlassian’s own support
+article</a>
+describes, and the one to try first.</p>
+<ol>
+<li>Search for the sprint’s issues with JQL, keeping only finished work:
+<code>project = PAY AND sprint = &quot;Sprint 24&quot; AND statusCategory = Done ORDER BY assignee ASC</code></li>
+<li>Add <strong>Assignee</strong> and your story points field as columns in the results. Use the field your board
+estimates with — see <a href="/articles/bulk-edit-story-points-in-jira/#before-you-start-which-field-holds-your-story-points">which field holds your story
+points</a>.</li>
+<li>Export the results to Excel or CSV.</li>
+<li>In the spreadsheet, make a pivot table: <strong>Assignee</strong> in the rows, the sum of story points in the
+values.</li>
+</ol>
+<p>Repeat it for a few sprints and average each person’s total, the same way you would <a href="/articles/sprint-velocity-in-jira/#how-to-calculate-velocity-yourself">average team
+velocity</a>.</p>
+<h3 id="the-trap-sprint--x-counts-carried-over-work-twice">The trap: <code>sprint = X</code> counts carried-over work twice<a class="anchor" href="#the-trap-sprint--x-counts-carried-over-work-twice" aria-label="Link to this section">#</a></h3>
+<p>Jira’s Sprint field keeps every sprint an issue has been in. An issue that started in Sprint 23, was
+carried over and finished in Sprint 24 matches <code>sprint = &quot;Sprint 23&quot; AND statusCategory = Done</code> as
+well as the same search for Sprint 24. Run that search for several closed sprints and the same points
+are counted more than once.</p>
+<p>To count work in the sprint it actually finished in, filter by when it reached done rather than by
+the Sprint field:</p>
+<p><code>project = PAY AND status CHANGED TO &quot;Done&quot; DURING (&quot;2026-10-05&quot;, &quot;2026-10-17&quot;)</code></p>
+<p>Use the status your board treats as done, and the sprint’s dates. A date without a time means the
+start of that day, so the end date here is the day after the sprint closed.</p>
+<h2 id="method-2-a-board-for-one-person">Method 2: a board for one person<a class="anchor" href="#method-2-a-board-for-one-person" aria-label="Link to this section">#</a></h2>
+<p>The Velocity Chart only includes work that matches the board’s saved filter. So a company-managed
+Scrum board whose filter adds <code>assignee = &lt;person&gt;</code> draws a velocity chart for that person.</p>
+<p>It works, but it has costs: one board per person, and the chart follows the <em>current</em> assignee, so
+reassigning an issue moves its points from one person’s history to another’s.</p>
+<h2 id="method-3-gadgets-and-reporting-apps">Method 3: gadgets and reporting apps<a class="anchor" href="#method-3-gadgets-and-reporting-apps" aria-label="Link to this section">#</a></h2>
+<p>The <strong>Two Dimensional Filter Statistics</strong> dashboard gadget can show assignees against sprints, but it
+counts issues and does not sum story points. A count treats a 1 and a 13 the same.</p>
+<p>For a real report, several reporting apps on the Atlassian Marketplace add per-person views. We do
+not build one, so try a few on your own data, and check how each handles carried-over issues.</p>
+<h2 id="why-per-person-velocity-misleads">Why per-person velocity misleads<a class="anchor" href="#why-per-person-velocity-misleads" aria-label="Link to this section">#</a></h2>
+<p>Before you put this number on a slide, it helps to know what it does not measure.</p>
+<ul>
+<li><strong>All the credit goes to the assignee at the end.</strong> Points follow whoever holds the issue when it
+closes. Reviewers, testers and the person who paired on the hard part get nothing.</li>
+<li><strong>Points are relative to a team.</strong> They are comparisons between pieces of work, agreed by the group.
+They were never a unit of individual output, so one person’s 20 is not comparable with another’s.</li>
+<li><strong>Helping others scores nothing.</strong> Someone who spends a sprint unblocking teammates can show a low
+total in the sprint the team did its best work.</li>
+<li><strong>People respond to what is measured.</strong> Once the number is used to judge individuals, estimates
+drift upward and helping a teammate starts to cost you points. The team’s velocity gets less useful
+as a result.</li>
+</ul>
+<p>The Scrum Guide puts the accountability on the group: “The entire Scrum Team is accountable for
+creating a valuable, useful Increment every Sprint” (<a href="https://scrumguides.org/scrum-guide.html#scrum-team">The Scrum
+Team</a>).</p>
+<h2 id="what-to-look-at-instead">What to look at instead<a class="anchor" href="#what-to-look-at-instead" aria-label="Link to this section">#</a></h2>
+<p>Most people searching for per-person velocity are really asking one of two questions.</p>
+<p><strong>“How much can we take on?”</strong> That is team velocity. Use the <a href="/articles/sprint-velocity-in-jira/#turning-it-into-a-planning-number">average of recent
+sprints</a>, and adjust for known
+absences.</p>
+<p><strong>“Is anyone overloaded?”</strong> That is about the sprint you are about to start, not about past sprints.
+You need each person’s planned load, compared with the rest of the team and with their availability.
+A person with the most points planned in a week they are off is a problem you can still fix, which
+history will not show you.</p>
+<h2 id="planned-load-per-person-in-scope-planner">Planned load per person in Scope Planner<a class="anchor" href="#planned-load-per-person-in-scope-planner" aria-label="Link to this section">#</a></h2>
+<p><a href="/">Scope Planner</a> is a Jira Cloud app for estimating a sprint in one table. It does not report past
+velocity per person. It shows each person’s load in the sprint you are planning, while you estimate.</p>
+<ul>
+<li><strong>Breakdown</strong> groups the totals by assignee, as well as by epic, label or type, and updates as you
+type. It is free.</li>
+<li><strong>Workload</strong> <em>(Pro)</em> shows each person’s story points with a bar and flags anyone above 1.5× the
+average of everyone with work. Unassigned work is listed but never flagged, and does not skew the
+average.</li>
+</ul>
+<figure class="doc-fig" id="figref-highlight-3-spot-overload">
+  <a href="#fig-highlight-3-spot-overload" aria-label="Open full size"><img src="/assets/shots/highlight-3-spot-overload.webp" width="1120" height="560" loading="lazy" decoding="async" alt="Workload tab (Pro): each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average."></a>
+  <figcaption><b>Workload</b> tab <i>(Pro)</i>: each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average.</figcaption>
+</figure>
+<figure class="doc-fig" id="figref-screenshot-1d-breakdown">
+  <a href="#fig-screenshot-1d-breakdown" aria-label="Open full size"><img src="/assets/shots/screenshot-1d-breakdown.webp" width="1120" height="560" loading="lazy" decoding="async" alt="Breakdown tab: totals grouped by Epic, Assignee, Label or Type."></a>
+  <figcaption><b>Breakdown</b> tab: totals grouped by Epic, Assignee, Label or Type.</figcaption>
+</figure>
+<p>Together with <a href="/articles/sprint-velocity-in-jira/#planning-against-velocity-in-one-table">target velocity</a>,
+that answers both questions above before the sprint starts. See <a href="/#pricing">Free and Pro</a> for the
+split, and <a href="/guide/#7-totals--breakdown">Totals &amp; breakdown</a> in the user guide.</p>
+<h2 id="frequently-asked-questions">Frequently asked questions<a class="anchor" href="#frequently-asked-questions" aria-label="Link to this section">#</a></h2>
+<h3 id="does-jira-have-a-velocity-report-per-user">Does Jira have a velocity report per user?<a class="anchor" href="#does-jira-have-a-velocity-report-per-user" aria-label="Link to this section">#</a></h3>
+<p>No. The Velocity Chart and the velocity report are team-level, with no assignee filter. You can
+export a search and sum story points by assignee in a spreadsheet, or use a board filtered to one
+person.</p>
+<h3 id="how-do-i-see-story-points-per-assignee-in-a-sprint">How do I see story points per assignee in a sprint?<a class="anchor" href="#how-do-i-see-story-points-per-assignee-in-a-sprint" aria-label="Link to this section">#</a></h3>
+<p>Search for the sprint with JQL, add Assignee and your story points field as columns, export to Excel
+or CSV, then sum by assignee. Atlassian’s support article describes this method. In Scope Planner,
+the Breakdown tab shows it live for the sprint you have open.</p>
+<h3 id="can-a-jira-dashboard-show-velocity-per-person">Can a Jira dashboard show velocity per person?<a class="anchor" href="#can-a-jira-dashboard-show-velocity-per-person" aria-label="Link to this section">#</a></h3>
+<p>Not with the Two Dimensional Filter Statistics gadget, which counts issues rather than summing story
+points. For points per person on a dashboard you need a reporting app from the Marketplace.</p>
+<h3 id="should-individual-velocity-be-used-in-performance-reviews">Should individual velocity be used in performance reviews?<a class="anchor" href="#should-individual-velocity-be-used-in-performance-reviews" aria-label="Link to this section">#</a></h3>
+<p>We would advise against it. It credits only the final assignee, compares points that are only
+meaningful within a team, and encourages inflated estimates. Use it, if at all, to understand
+capacity.</p>
+<h3 id="how-do-i-plan-capacity-per-developer">How do I plan capacity per developer?<a class="anchor" href="#how-do-i-plan-capacity-per-developer" aria-label="Link to this section">#</a></h3>
+<p>Start from the team’s average velocity and subtract known absences. Then compare each person’s
+planned load with the others’ before the sprint starts, and move work away from anyone well above the
+average.</p>
+
+        <aside class="related" aria-label="Related articles">
+          <p class="toc-title">Related articles</p>
+          <ul>
+            <li><a href="/articles/sprint-velocity-in-jira/">Sprint velocity in Jira</a></li>
+            <li><a href="/articles/bulk-edit-story-points-in-jira/">Bulk-edit story points in Jira</a></li>
+          </ul>
+        </aside>
+        <p class="to-top"><a href="#main">Back to top ↑</a></p>
+      </article>
+    </div>
+    <div class="lightbox" id="fig-highlight-3-spot-overload" role="dialog" aria-label="Workload tab (Pro): each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average.">
+      <a class="lb-backdrop" href="#figref-highlight-3-spot-overload" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/highlight-3-spot-overload.webp" width="1120" height="560" loading="lazy" decoding="async" alt="Workload tab (Pro): each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average.">
+        <figcaption><b>Workload</b> tab <i>(Pro)</i>: each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average.</figcaption>
+        <a class="lb-close" href="#figref-highlight-3-spot-overload" aria-label="Close">×</a>
+      </figure>
+    </div>
+    <div class="lightbox" id="fig-screenshot-1d-breakdown" role="dialog" aria-label="Breakdown tab: totals grouped by Epic, Assignee, Label or Type.">
+      <a class="lb-backdrop" href="#figref-screenshot-1d-breakdown" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/shots/screenshot-1d-breakdown.webp" width="1120" height="560" loading="lazy" decoding="async" alt="Breakdown tab: totals grouped by Epic, Assignee, Label or Type.">
+        <figcaption><b>Breakdown</b> tab: totals grouped by Epic, Assignee, Label or Type.</figcaption>
+        <a class="lb-close" href="#figref-screenshot-1d-breakdown" aria-label="Close">×</a>
+      </figure>
+    </div>
+  </main>
+  <footer class="site">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="/">
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="19" fill="#FBBF24" opacity=".2"/>
+        <g fill="#FBBF24"><circle cx="32" cy="32" r="11"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(0 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(45 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(90 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(135 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(180 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(225 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(270 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(315 32 32)"/></g>
+      </svg>
+            <span>DSPlugins</span>
+          </a>
+          <p>Focused apps for Jira Cloud that keep your data where it already lives. Built on
+             Atlassian Forge — no external servers, no data egress, no tracking.</p>
+        </div>
+        <div>
+          <h2>Product</h2>
+          <a href="/">Scope Planner</a>
+          <a href="/guide/">User guide</a>
+          <a href="/articles/">Articles</a>
+          <a href="/#pricing">Free and Pro</a>
+          <a href="https://www.youtube.com/watch?v=Fwu-1fwdugA" target="_blank" rel="noopener noreferrer">Demo video ↗</a>
+        </div>
+        <div>
+          <h2>Help</h2>
+          <a href="/support/">Support</a>
+          <a href="/about/">About DSPlugins</a>
+          <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+        </div>
+        <div>
+          <h2>Legal</h2>
+          <a href="/privacy/">Privacy policy</a>
+          <a href="/terms/">Terms of use</a>
+        </div>
+      </div>
+      <div class="foot-base">
+        <p>&copy; 2026 DSPlugins &middot; This site sets no cookies and loads nothing from
+           anywhere else.</p>
+        <p class="fineprint">Scope Planner is a Jira Cloud app built on Atlassian Forge. Jira and
+           Atlassian are trademarks of Atlassian Pty Ltd, used here only to identify the platform the
+           app runs on.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
