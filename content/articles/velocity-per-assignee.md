@@ -44,28 +44,36 @@ velocity](/articles/sprint-velocity-in-jira/#how-to-calculate-velocity-yourself)
 Jira's Sprint field keeps every sprint an issue has been in. An issue that started in Sprint 23, was
 carried over and finished in Sprint 24 matches `sprint = "Sprint 23" AND statusCategory = Done` as
 well as the same search for Sprint 24. Run that search for several closed sprints and the same points
-are counted more than once.
+are counted more than once. The search also picks up work that was left unfinished and closed long
+after the sprint ended.
+
+We tested this on Jira Cloud with a sprint that finished 8 points, plus a 5-point issue carried into
+the next sprint and a 3-point issue finished later. The Velocity Chart showed 8 completed. The search
+added up to 16.
 
 To count work in the sprint it actually finished in, filter by when it reached done rather than by
 the Sprint field:
 
-`project = PAY AND status CHANGED TO "Done" DURING ("2026-10-05", "2026-10-17")`
+`project = PAY AND status CHANGED TO "Done" DURING ("2026-10-05 09:00", "2026-10-16 17:00")`
 
-Use the status your board treats as done, and the sprint's dates. A date without a time means the
-start of that day, so the end date here is the day after the sprint closed.
+Use the status your board treats as done, and the times the sprint started and closed. Give times
+rather than bare dates: they are read in your own time zone, and they leave no doubt about the last
+day of the sprint.
 
 ## Method 2: a board for one person
 
 The Velocity Chart only includes work that matches the board's saved filter. So a company-managed
 Scrum board whose filter adds `assignee = <person>` draws a velocity chart for that person.
 
-It works, but it has costs: one board per person, and the chart follows the *current* assignee, so
-reassigning an issue moves its points from one person's history to another's.
+It works, but it has costs: one board per person, and the chart follows the *current* assignee, not
+the person who did the work. When we unassigned a finished 2-point issue on a test board, its points
+disappeared from that sprint's bar straight away.
 
 ## Method 3: gadgets and reporting apps
 
-The **Two Dimensional Filter Statistics** dashboard gadget can show assignees against sprints, but it
-counts issues and does not sum story points. A count treats a 1 and a 13 the same.
+The **Two Dimensional Filter Statistics** dashboard gadget can show assignees against sprints, but
+Jira users report that it counts issues rather than summing story points. A count treats a 1 and a 13
+the same.
 
 For a real report, several reporting apps on the Atlassian Marketplace add per-person views. We do
 not build one, so try a few on your own data, and check how each handles carried-over issues.
@@ -132,8 +140,9 @@ the Breakdown tab shows it live for the sprint you have open.
 
 ### Can a Jira dashboard show velocity per person?
 
-Not with the Two Dimensional Filter Statistics gadget, which counts issues rather than summing story
-points. For points per person on a dashboard you need a reporting app from the Marketplace.
+Not in story points, as far as we can tell: users report that the Two Dimensional Filter Statistics
+gadget counts issues rather than summing a field. For points per person on a dashboard you need a
+reporting app from the Marketplace.
 
 ### Should individual velocity be used in performance reviews?
 

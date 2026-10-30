@@ -37,6 +37,8 @@ The details decide whether your number can be trusted:
 - **Work added after the sprint starts** is not part of Commitment, but it does count in Completed if
   it gets finished.
 - **Estimates changed after the sprint starts** do not change Commitment.
+- **Carried-over work counts once,** in the sprint it was finished. Work left unfinished when a sprint
+  closes adds nothing to that sprint, even if it gets done later. We checked both on a test board.
 - **"Done" means the board's right-most column.** An issue counts as completed when it reaches a
   status mapped to that column.
 - **Subtasks are not included.** Their estimates do not reach the chart.
