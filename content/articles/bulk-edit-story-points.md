@@ -64,10 +64,13 @@ it is how most teams estimate, but it scales badly:
 ## Option 3: different values from a spreadsheet — CSV import
 
 If the numbers already exist in a spreadsheet, a Jira administrator can update existing issues with a
-CSV import that matches rows by issue key. That sets a different value per issue in one go.
+[CSV import](https://support.atlassian.com/jira-cloud-administration/docs/import-data-from-a-csv-file/):
+map a column to the work item key, and a row whose key exists updates that issue. That sets a
+different value per issue in one go.
 
-It is an admin tool, though, and it writes straight to Jira, so try it on a test project first. It
-suits a one-off migration better than a regular planning meeting.
+It is an admin tool, though, and it writes straight to Jira. A key that is not in the project you
+selected creates a new issue instead, so try it on a test project first. It suits a one-off migration
+better than a regular planning meeting.
 
 ## Option 4: the whole sprint in one table
 
@@ -118,9 +121,10 @@ appear. Ask a Jira administrator to grant it.
 
 ### Why is the story points field missing from bulk change?
 
-The field has to be available on the issues you selected, and you need permission to edit them. If
-the selection mixes projects or issue types, a field that exists on only some of them may not be
-offered. Try narrowing the search to one project and issue type.
+Bulk change offers a field only when every selected issue has it, and you need permission to edit
+them. Sub-tasks are the usual cause: when we added one sub-task to a selection of stories, Story
+Points dropped off Jira's list of bulk-editable fields. Narrow the search to one issue type, for
+example with `issuetype = Story`.
 
 ### How many issues can I bulk edit at once?
 
