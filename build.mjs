@@ -94,9 +94,21 @@ const PAGES = [
     eyebrow: 'Legal',
     description: 'Scope Planner terms of use: licensing, responsibilities, warranty and liability.',
   },
-  // Articles: practical how-tos written for search, one line on the app at the end of each. Out of
-  // the header nav (`nav: false`); the footer and the sitemap link them. `published` feeds the
-  // Article JSON-LD — set it to the day an article is merged, not the day it was drafted.
+  {
+    src: 'about.md',
+    out: 'about',
+    label: 'About',
+    eyebrow: 'About',
+    nav: false,
+    title: 'About DSPlugins | Apps for Jira Cloud',
+    description:
+      'DSPlugins builds focused apps for Jira Cloud that keep your data where it already lives. Who we are, what we make and how to reach us.',
+  },
+  // Articles: practical how-tos written for search, with the app in one section near the end. Out of
+  // the header nav (`nav: false`); the landing page, the footer and the sitemap link them. `published`
+  // is the day an article first went public; its `_Last updated: …_` line is the modified date.
+  // `related` is by `out`, and an unknown one FAILS the build. Keep `title` near 60 characters: it is
+  // what a search result shows, so it uses the words people search for, not the page's own heading.
   {
     src: 'articles.md',
     out: 'articles',
@@ -105,7 +117,7 @@ const PAGES = [
     nav: false,
     title: 'Articles on Jira estimation and sprint planning | DSPlugins',
     description:
-      'Practical articles on estimating in Jira: bulk-editing story points, story points vs. time estimates, and sprint velocity.',
+      'Practical articles on estimating in Jira: bulk-editing story points, story points vs. hours, sprint velocity and velocity per assignee.',
   },
   {
     src: 'articles/bulk-edit-story-points.md',
@@ -114,8 +126,16 @@ const PAGES = [
     eyebrow: 'Articles',
     nav: false,
     published: '2026-10-22',
+    title: 'How to Bulk Edit Story Points in Jira: 4 Ways | DSPlugins',
     description:
-      'Three ways to set story points on many Jira issues: bulk change for one shared value, the issue view for one at a time, and a table for a whole sprint.',
+      'Set story points on many Jira issues at once: bulk change for one shared value, CSV import or a table for different values, with the permissions and limits.',
+    related: ['articles/story-points-vs-time-estimates', 'articles/sprint-velocity-in-jira'],
+    figures: [
+      { section: 'option-4-the-whole-sprint-in-one-table', img: 'shots/highlight-1-whole-sprint', w: 1120, h: 765,
+        caption: 'Scope Planner: one row per issue, with 🎯 Story Points, ⏱ Original and ⏳ Remaining on the right and the totals above the table.' },
+      { section: 'option-4-the-whole-sprint-in-one-table', after: 'The same value, in bulk', img: 'shots/screenshot-1c-bulk', w: 1120, h: 560,
+        caption: 'Tick rows and the bulk bar appears above the table: apply one value to every selected issue, or clear a batch.' },
+    ],
   },
   {
     src: 'articles/story-points-vs-time-estimates.md',
@@ -124,8 +144,14 @@ const PAGES = [
     eyebrow: 'Articles',
     nav: false,
     published: '2026-10-22',
+    title: 'Story Points vs Hours in Jira: Which to Use | DSPlugins',
     description:
-      'Story points or Original and Remaining Estimate in Jira: what each field is for, which one the board reads, and how to pick a scale.',
+      'Story points or hours in Jira: what Story Points, Original and Remaining Estimate are for, which field the board reads, and whether a point equals hours.',
+    related: ['articles/sprint-velocity-in-jira', 'articles/bulk-edit-story-points-in-jira'],
+    figures: [
+      { section: 'picking-a-scale-for-story-points', after: 'T-shirt sizes are not numbers', img: 'shots/screenshot-1b-scales', w: 480, h: 470,
+        caption: 'Scope Planner’s <b>⚙️ Preferences</b>: each person picks a story-points scale and how time cells step.' },
+    ],
   },
   {
     src: 'articles/sprint-velocity-in-jira.md',
@@ -134,8 +160,32 @@ const PAGES = [
     eyebrow: 'Articles',
     nav: false,
     published: '2026-10-22',
+    title: 'How to Calculate Velocity in Jira: Formula & Example | DSPlugins',
     description:
-      'How to read sprint velocity in Jira, turn it into a planning number for the next sprint, and avoid the mistakes that distort it.',
+      'How to calculate sprint velocity in Jira: the formula, a worked example, what the Velocity Chart counts, sprint completion rate and scope change.',
+    related: ['articles/velocity-per-assignee-in-jira', 'articles/story-points-vs-time-estimates'],
+    figures: [
+      { section: 'planning-against-velocity-in-one-table', after: 'Auto-calculate', img: 'shots/screenshot-3b-velocity', w: 480, h: 200,
+        caption: '<b>🚀 Target Velocity</b> <i>(Pro)</i>: <b>✨ Auto-calculate</b> averages the board’s last five completed sprints.' },
+    ],
+  },
+  {
+    src: 'articles/velocity-per-assignee.md',
+    out: 'articles/velocity-per-assignee-in-jira',
+    label: 'Velocity per assignee in Jira',
+    eyebrow: 'Articles',
+    nav: false,
+    published: '2026-10-30',
+    title: 'Velocity per Assignee in Jira: How to Get It | DSPlugins',
+    description:
+      'Jira has no velocity report per person. How to get story points per assignee from a search export, the sprint trap to avoid, and why not to judge people by it.',
+    related: ['articles/sprint-velocity-in-jira', 'articles/bulk-edit-story-points-in-jira'],
+    figures: [
+      { section: 'planned-load-per-person-in-scope-planner', after: 'Workload', img: 'shots/highlight-3-spot-overload', w: 1120, h: 560,
+        caption: '<b>Workload</b> tab <i>(Pro)</i>: each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average.' },
+      { section: 'planned-load-per-person-in-scope-planner', after: 'Workload', img: 'shots/screenshot-1d-breakdown', w: 1120, h: 560,
+        caption: '<b>Breakdown</b> tab: totals grouped by Epic, Assignee, Label or Type.' },
+    ],
   },
 ];
 
@@ -392,7 +442,42 @@ const ORG = {
   url: `${ORIGIN}/`,
   logo: `${ORIGIN}/assets/favicon.svg`,
   email: 'support@dsplugins.dev',
+  sameAs: ['https://marketplace.atlassian.com/vendors/1218450/', 'https://github.com/dsplugins'],
 };
+
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+  'October', 'November', 'December'];
+
+/** A source's `_Last updated: 30 October 2026_` line as an ISO date; undefined when it has none. */
+function lastUpdated(source) {
+  const m = source.match(/^_Last updated: (\d{1,2}) (\w+) (\d{4})_$/m);
+  if (!m) return undefined;
+  const month = MONTHS.indexOf(m[2]) + 1;
+  if (!month) {
+    console.error(`✗ Unreadable date in a "Last updated" line: ${m[0]}`);
+    process.exit(1);
+  }
+  return `${m[3]}-${String(month).padStart(2, '0')}-${m[1].padStart(2, '0')}`;
+}
+
+/** A Markdown article's "## Frequently asked questions" as FAQPage entries: `###` is the question. */
+function faqFromMarkdown(source) {
+  const section = source.split(/^## Frequently asked questions\s*$/m)[1]?.split(/^## /m)[0];
+  if (!section) return null;
+  const plain = (s) =>
+    s.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[*`]/g, '').replace(/\s+/g, ' ').trim();
+  return section
+    .split(/^### /m)
+    .slice(1)
+    .map((block) => {
+      const [q, ...a] = block.split('\n');
+      return {
+        '@type': 'Question',
+        name: plain(q),
+        acceptedAnswer: { '@type': 'Answer', text: plain(a.join(' ')) },
+      };
+    });
+}
 
 function faqFrom(html) {
   const items = [...html.matchAll(/<details>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)].map(
@@ -439,8 +524,10 @@ function structuredData(page, title, description, mainHtml) {
                 '@id': url,
                 url,
                 headline: title.replace(/ \| DSPlugins$/, ''),
+                inLanguage: 'en',
                 description,
                 datePublished: page.published,
+                ...(page.updated ? { dateModified: page.updated } : {}),
                 image: `${ORIGIN}/assets/og-banner.png`,
                 author: { '@id': ORG['@id'] },
                 publisher: ORG,
@@ -463,6 +550,7 @@ function structuredData(page, title, description, mainHtml) {
               { name: page.label, item: url },
             ].map((c, i) => ({ '@type': 'ListItem', position: i + 1, ...c })),
           },
+          ...(page.faq ? [{ '@type': 'FAQPage', '@id': `${url}#faq`, url, mainEntity: page.faq }] : []),
         ];
   // `<` escaped so no string in the data can close the <script> element early.
   return JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
@@ -484,7 +572,9 @@ function layout({ page, title, description, mainHtml, here }) {
 <meta name="description" content="${escapeHtml(description)}">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#4f46e5">
-${canonical ? `<link rel="canonical" href="${canonical}">\n` : ''}<meta property="og:type" content="website">
+${canonical ? `<link rel="canonical" href="${canonical}">\n` : ''}<meta property="og:type" content="${page?.published ? 'article' : 'website'}">${
+  page?.published ? `\n<meta property="article:published_time" content="${page.published}">` : ''
+}${page?.updated && page.published ? `\n<meta property="article:modified_time" content="${page.updated}">` : ''}
 <meta property="og:site_name" content="DSPlugins">
 <meta property="og:title" content="${escapeHtml(title)}">
 <meta property="og:description" content="${escapeHtml(description)}">
@@ -542,6 +632,7 @@ ${mainHtml}
         <div>
           <h2>Help</h2>
           <a href="/support/">Support</a>
+          <a href="/about/">About DSPlugins</a>
           <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
         </div>
         <div>
@@ -596,15 +687,35 @@ function documentMain({ page, bodyHtml, toc, placed = [] }) {
         </details>
       </aside>`
     : '';
+  const isArticle = page.out.startsWith('articles/');
+  if (isArticle) meta += `\n        <p class="doc-meta">By the team behind Scope Planner &middot; <a href="/about/">About DSPlugins</a></p>`;
+  const eyebrow = isArticle ? `<a href="/articles/">${escapeHtml(page.eyebrow)}</a>` : escapeHtml(page.eyebrow);
+  const related = (page.related ?? []).map((out) => {
+    const r = PAGES.find((p) => p.out === out);
+    if (!r) {
+      console.error(`✗ ${page.src}: related page "${out}" is not in PAGES.`);
+      process.exit(1);
+    }
+    return `<li><a href="${hrefOf(r)}">${escapeHtml(r.label)}</a></li>`;
+  });
+  const relatedHtml = related.length
+    ? `
+        <aside class="related" aria-label="Related articles">
+          <p class="toc-title">Related articles</p>
+          <ul>
+            ${related.join('\n            ')}
+          </ul>
+        </aside>`
+    : '';
   return `    <div class="doc-head">
       <div class="wrap">
-        <p class="eyebrow">Scope Planner &middot; ${escapeHtml(page.eyebrow)}</p>
+        <p class="eyebrow">Scope Planner &middot; ${eyebrow}</p>
         <h1>${heading}</h1>${meta}
       </div>
     </div>
     <div class="wrap doc${toc.length ? '' : ' no-toc'}">${aside}
       <article class="prose">
-${rest}
+${rest}${relatedHtml}
         <p class="to-top"><a href="#main">Back to top ↑</a></p>
       </article>
     </div>${placed
@@ -636,12 +747,14 @@ for (const f of sources) {
 
 for (const page of PAGES) {
   const source = readFileSync(join(CONTENT, page.src), 'utf8');
+  page.updated = lastUpdated(source);
+  if (page.published) page.faq = faqFromMarkdown(source);
   let mainHtml;
   let title = page.title;
   if (page.src.endsWith('.html')) {
     mainHtml = source;
   } else {
-    const env = { page: page.src, figures: page.src === 'guide.md' ? GUIDE_FIGURES : null, figureErrors };
+    const env = { page: page.src, figures: page.src === 'guide.md' ? GUIDE_FIGURES : (page.figures ?? null), figureErrors };
     const bodyHtml = md.render(source, env);
     title ??= `${extractTitle(source, page.label)} | DSPlugins`;
     mainHtml = documentMain({ page, bodyHtml, toc: env.toc, placed: env.placed });
@@ -667,8 +780,9 @@ if (unmapped.length) {
 }
 
 /**
- * Crawl hints. No <lastmod>: the CI `check` job re-renders and diffs, so anything derived from the
- * build date or a shallow checkout's git history would make committed output drift by itself.
+ * Crawl hints. <lastmod> comes only from a source's own `_Last updated: …_` line: the CI `check` job
+ * re-renders and diffs, so a date from the build or a shallow checkout's git history would make
+ * committed output drift by itself.
  */
 // Google Search Console ownership proof for the https://dsplugins.dev/ property (account
 // dsplugins@gmail.com, 2026-10-22). Search Console re-checks it: removing it unverifies the site.
@@ -676,12 +790,17 @@ if (unmapped.length) {
 const GOOGLE_VERIFICATION = 'google9b7280b4081c83ac.html';
 writeFileSync(join(OUT, GOOGLE_VERIFICATION), `google-site-verification: ${GOOGLE_VERIFICATION}`);
 
+// IndexNow ownership key (Bing, Yandex, Seznam): public by design, it only proves that whoever pings
+// about these URLs controls the site. `npm run indexnow` sends the sitemap's URLs after a deploy.
+const INDEXNOW_KEY = '59a3ad089cd8fc5aa5899a547f9b24ee';
+writeFileSync(join(OUT, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY);
+
 writeFileSync(join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`);
 writeFileSync(
   join(OUT, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${PAGES.map((p) => `  <url><loc>${ORIGIN}${hrefOf(p)}</loc></url>`).join('\n')}
+${PAGES.map((p) => `  <url><loc>${ORIGIN}${hrefOf(p)}</loc>${p.updated ? `<lastmod>${p.updated}</lastmod>` : ''}</url>`).join('\n')}
 </urlset>
 `,
 );

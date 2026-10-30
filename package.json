@@ -8,7 +8,8 @@
     "build": "node build.mjs",
     "serve": "node --run build && python3 -m http.server 8137 --directory public",
     "sync": "bash sync.sh",
-    "shots": "node shots.mjs"
+    "shots": "node shots.mjs",
+    "indexnow": "node indexnow.mjs"
   },
   "devDependencies": {
     "markdown-it": "^14.1.0"

@@ -3,10 +3,12 @@
   <url><loc>https://dsplugins.dev/</loc></url>
   <url><loc>https://dsplugins.dev/guide/</loc></url>
   <url><loc>https://dsplugins.dev/support/</loc></url>
-  <url><loc>https://dsplugins.dev/privacy/</loc></url>
-  <url><loc>https://dsplugins.dev/terms/</loc></url>
+  <url><loc>https://dsplugins.dev/privacy/</loc><lastmod>2026-10-16</lastmod></url>
+  <url><loc>https://dsplugins.dev/terms/</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://dsplugins.dev/about/</loc></url>
   <url><loc>https://dsplugins.dev/articles/</loc></url>
-  <url><loc>https://dsplugins.dev/articles/bulk-edit-story-points-in-jira/</loc></url>
-  <url><loc>https://dsplugins.dev/articles/story-points-vs-time-estimates/</loc></url>
-  <url><loc>https://dsplugins.dev/articles/sprint-velocity-in-jira/</loc></url>
+  <url><loc>https://dsplugins.dev/articles/bulk-edit-story-points-in-jira/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://dsplugins.dev/articles/story-points-vs-time-estimates/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://dsplugins.dev/articles/sprint-velocity-in-jira/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://dsplugins.dev/articles/velocity-per-assignee-in-jira/</loc><lastmod>2026-10-30</lastmod></url>
 </urlset>

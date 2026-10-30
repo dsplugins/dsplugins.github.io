@@ -1265,6 +1265,15 @@ b.warn { color: var(--warn); }
 .prose > * { max-width: var(--measure); }
 .prose > .doc-fig { max-width: none; }
 
+.eyebrow a { color: inherit; }
+.related {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+}
+.related ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
+.related li { margin-block: 0.3rem; }
+
 .doc-fig { margin: 1.75rem 0 2.25rem; }
 .doc-fig a {
   display: inline-block;
