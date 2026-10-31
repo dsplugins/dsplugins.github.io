@@ -171,6 +171,10 @@ section, the footer and the sitemap link them. Editing one means changing its `_
 line too: that line feeds `dateModified` and `<lastmod>`. Every claim about Jira should link to
 Atlassian's documentation, and every claim about the app must match the user guide.
 
+Links to `scrum-poker.dev` stay inside article text: three so far, two in *Story points vs. time
+estimates* and one in *Sprint velocity*. The two sites have one owner, so a link in the layout would
+reach every page and read as the link scheme Google's spam policy describes.
+
 **IndexNow.** Bing, Yandex and Seznam accept a ping when pages change. The key file at the root
 (`<32 hex>.txt`, written by the build) is public by design. After a deploy is live:
 
