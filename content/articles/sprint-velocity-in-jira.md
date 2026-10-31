@@ -1,6 +1,6 @@
 # How to calculate sprint velocity in Jira
 
-_Last updated: 30 October 2026_
+_Last updated: 31 October 2026_
 
 **Short answer:** sprint velocity is the amount of work a team finishes in a sprint, usually in story
 points. Average velocity is the sum of the completed work over your last few sprints, divided by the
@@ -99,6 +99,10 @@ the whole sprint, about 30 points is a reasonable starting point.
 
 Use the average, not your best sprint. And compare the plan against it while you estimate, not after
 the sprint has started.
+
+For a release rather than the next sprint, one average is too precise: [this velocity forecast
+calculator](https://scrum-poker.dev/guides/velocity-forecasting) turns your last few sprints into a
+best and a worst case.
 
 ## Mistakes that distort velocity
 

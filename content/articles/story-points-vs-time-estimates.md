@@ -1,6 +1,6 @@
 # Story points vs. time estimates in Jira
 
-_Last updated: 30 October 2026_
+_Last updated: 31 October 2026_
 
 **Short answer:** use story points to plan sprints and time estimates to track work in progress.
 Points compare work with other work, so they are quick to agree on and they feed velocity. Hours say
@@ -48,8 +48,10 @@ shows nothing: the numbers went into a field the board does not read.
 
 **Story points suit sprint planning.** Sizes are compared with each other, not with the clock, so
 the conversation is "is this bigger than that?" — quicker to agree on than hours, and less personal.
-Over a few sprints the team's completed points per sprint (its
-[velocity](/articles/sprint-velocity-in-jira/)) becomes a reliable guide to how much to plan.
+Many teams size them with [planning poker](https://scrum-poker.dev/planning-poker-guide), where
+everyone votes privately so the first number spoken does not anchor the rest. Over a few sprints the
+team's completed points per sprint (its [velocity](/articles/sprint-velocity-in-jira/)) becomes a
+reliable guide to how much to plan.
 
 **Time suits tracking work in progress.** Remaining Estimate answers "how much is left on this
 issue?" during the sprint, and logged work answers "where did the time go?" afterwards.
@@ -71,6 +73,10 @@ Most teams use a scale whose steps widen as items grow, because the uncertainty 
 
 T-shirt sizes are not numbers, so Jira cannot add them up. They need their own field, and a team
 that wants velocity eventually maps them to points.
+
+The choice of scale matters less than it seems. In [a simulation of 200,000 planning poker
+rounds](https://scrum-poker.dev/guides/planning-poker-simulation), five voters on Fibonacci cards had
+a median error of 22.4%, against 20.3% for the same five with no cards at all.
 
 ## How many hours is a story point?
 
