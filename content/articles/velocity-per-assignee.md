@@ -1,6 +1,6 @@
 # Velocity per assignee in Jira: how to get it, and when not to
 
-_Last updated: 30 October 2026_
+_Last updated: 3 November 2026_
 
 **Short answer:** Jira has no velocity report per person. Its velocity report measures the whole team
 on a board. You can still get completed story points per assignee by exporting a search to a
@@ -113,6 +113,7 @@ history will not show you.
 
 [Scope Planner](/) is a Jira Cloud app for estimating a sprint in one table. It does not report past
 velocity per person. It shows each person's load in the sprint you are planning, while you estimate.
+It is on the [Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=velocity-per-assignee-in-jira), with a free trial.
 
 - **Breakdown** groups the totals by assignee, as well as by epic, label or type, and updates as you
   type. It is free.

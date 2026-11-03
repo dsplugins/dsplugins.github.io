@@ -1,6 +1,6 @@
 # How to bulk-edit story points in Jira
 
-_Last updated: 30 October 2026_
+_Last updated: 3 November 2026_
 
 **Short answer:** to set the same story points on many issues, use Jira's bulk change: search for the
 issues, open **More actions (•••)**, choose **Bulk change work items**, then **Edit work items**. To
@@ -75,7 +75,8 @@ better than a regular planning meeting.
 ## Option 4: the whole sprint in one table
 
 [Scope Planner](/) is a Jira Cloud app that loads a sprint, a backlog or any JQL into one editable
-table, so you estimate every issue where you can see all of them.
+table, so you estimate every issue where you can see all of them. It is on the
+[Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=bulk-edit-story-points-in-jira), with a free trial.
 
 - **Different values, inline.** Click a story-points cell and pick from your scale — Fibonacci,
   Modified Fibonacci, Powers of 2, Linear or T-shirt sizes — or type a number. Original and
