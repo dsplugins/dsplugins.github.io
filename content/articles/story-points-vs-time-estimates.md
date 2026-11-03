@@ -1,6 +1,6 @@
 # Story points vs. time estimates in Jira
 
-_Last updated: 31 October 2026_
+_Last updated: 3 November 2026_
 
 **Short answer:** use story points to plan sprints and time estimates to track work in progress.
 Points compare work with other work, so they are quick to agree on and they feed velocity. Hours say
@@ -90,7 +90,8 @@ sprint is about four sprints. That is a statement about the team's history, not 
 ## Estimating both in one place
 
 [Scope Planner](/) puts story points, **Original** and **Remaining** in the same row of one table,
-for a whole sprint, a backlog or any JQL.
+for a whole sprint, a backlog or any JQL. It is on the
+[Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=story-points-vs-time-estimates), with a free trial.
 
 - Pick your story-points scale in **⚙️ Preferences**; the cells offer that scale's values.
 - Type time as a Jira duration (`1d 2h`, `1w`) or as a bare number in the unit you chose.

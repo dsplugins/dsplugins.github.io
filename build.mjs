@@ -27,6 +27,10 @@ const CONTENT = join(ROOT, 'content');
 const ASSETS = join(ROOT, 'assets');
 const OUT = join(ROOT, 'public');
 const ORIGIN = 'https://dsplugins.dev';
+// The Marketplace listing by app ID: it redirects to whatever the listing's name makes the URL, so
+// a rename never breaks a link. Pages add UTM tags (README → "Links to the Marketplace listing").
+const LISTING = 'https://marketplace.atlassian.com/apps/2134578868';
+const LISTING_FOOTER = `${LISTING}?utm_source=dsplugins.dev&amp;utm_medium=referral&amp;utm_campaign=website&amp;utm_content=footer`;
 
 /**
  * The stylesheet's URL carries a hash of its content. Pages serves everything with
@@ -442,7 +446,11 @@ const ORG = {
   url: `${ORIGIN}/`,
   logo: `${ORIGIN}/assets/favicon.svg`,
   email: 'support@dsplugins.dev',
-  sameAs: ['https://marketplace.atlassian.com/vendors/1218450/', 'https://github.com/dsplugins'],
+  sameAs: [
+    'https://marketplace.atlassian.com/vendors/1218450/',
+    'https://www.youtube.com/@dsplugins',
+    'https://github.com/dsplugins',
+  ],
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
@@ -513,6 +521,8 @@ function structuredData(page, title, description, mainHtml) {
             applicationSubCategory: 'Agile estimation',
             operatingSystem: 'Jira Cloud',
             softwareHelp: { '@type': 'CreativeWork', url: `${ORIGIN}/guide/` },
+            installUrl: LISTING,
+            sameAs: [LISTING],
             publisher: { '@id': ORG['@id'] },
           },
           { '@type': 'FAQPage', '@id': `${url}#faq`, url, mainEntity: faqFrom(mainHtml) },
@@ -627,6 +637,7 @@ ${mainHtml}
           <a href="/guide/">User guide</a>
           <a href="/articles/">Articles</a>
           <a href="/#pricing">Free and Pro</a>
+          <a href="${LISTING_FOOTER}">Atlassian Marketplace</a>
           <a href="https://www.youtube.com/watch?v=Fwu-1fwdugA" target="_blank" rel="noopener noreferrer">Demo video ↗</a>
         </div>
         <div>
