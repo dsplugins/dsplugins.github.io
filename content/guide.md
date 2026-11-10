@@ -87,9 +87,9 @@ step-by-step navigation), then:
 
 > **Why some cells are disabled:** a Story Points cell is disabled when that issue type is outside
 > the Story Points field's **context** in Jira — Jira would refuse the write, so the app does not
-> let you type one. That's Jira configuration, not an app error. A field that is in context but
-> missing from the issue type's **edit screen** stays editable here and publishes fine; it just
-> cannot be edited from the issue view. Either way a banner above the table names the issue types.
+> let you type one. That's Jira configuration, not an app error, and a banner above the table names
+> the issue types. Whether the field is on the issue type's **edit screen** does not matter here: it
+> stays editable and publishes fine either way.
 
 ---
 
@@ -607,7 +607,6 @@ server call to withhold, and the underlying data is issue data you can already s
 | SP column empty for everyone, banner at top | Story Points field not configured — a Jira admin must complete §3 |
 | One issue's SP cell disabled | That issue type is outside the Story Points field's context in Jira — a Jira admin adds it. The banner above the table names the types |
 | *"N of M issues can't store a Story Points value"* | Same cause, counted: those issue types are outside the field's context. A publish to them would fail, so their cells are disabled |
-| *"N of M issues have the Story Points field hidden"* | The field is in context but not on those issue types' edit screen. Estimating and publishing work; only the issue view cannot edit it until an admin adds the field to the screen |
 | *"This board estimates on a different field"* | The board (**Board settings → Estimation**) uses another field than the Story Points field Scope Planner is set to, so the column looks empty and what you publish does not count toward the board's velocity. An admin makes one match the other — or dismisses the warning if the difference is intended |
 | T-Shirt scale greyed out in Preferences | No T-shirt field mapped by the admin |
 | "Narrow your JQL" warning | Scope exceeded 1,000 issues; auto-load stopped — refine the query |
