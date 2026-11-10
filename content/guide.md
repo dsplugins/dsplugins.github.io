@@ -469,7 +469,9 @@ The ⚙️ button next to the title opens **Preferences**:
 - **🚀 Target Velocity** *(Pro)* — your team's SP-per-sprint target; powers the capacity
   indicator in the totals bar. **✨ Auto-calculate** fills it with the average completed SP of
   the board's last 5 completed sprints (only available when the app was opened from a board or
-  sprint, since that's what identifies the board).
+  sprint, since that's what identifies the board). An issue counts only in the sprint it was
+  finished in: work carried over counts once, and work closed after a sprint ended does not count
+  for that sprint.
 
 ---
 
