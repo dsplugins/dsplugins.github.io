@@ -207,15 +207,16 @@ commit metadata here, since this repo is public. It must not reappear in `conten
 
 The listing went public on 2026-11-03. It is linked from the hero's first button and the
 *Free and Pro* buttons (*Try it free on Atlassian Marketplace*, *See prices*), the footer's
-*Atlassian Marketplace* under *Product*, one sentence in each article's Scope Planner section, and
-the landing page's `SoftwareApplication` (`installUrl`, `sameAs`). The rules, each with its reason:
+*Atlassian Marketplace* under *Product*, one sentence in each article's Scope Planner section, one in
+the About page's *What we make* (since 2026-11-18), and the landing page's `SoftwareApplication`
+(`installUrl`, `sameAs`). The rules, each with its reason:
 
 - **The ID URL, `https://marketplace.atlassian.com/apps/2134578868`**, never the name slug. It
   redirects to the current slug, and the slug changes whenever the listing is renamed (it did on
   2026-11-03). The redirect keeps the query string.
 - **UTM tags on every link a visitor clicks:** `utm_source=dsplugins.dev`, `utm_medium=referral`,
   `utm_campaign=website`, and `utm_content` naming the place (`hero`, `pricing`, `pricing-prices`,
-  `footer`, or the article's slug). Atlassian copies them into the *attribution* of each new
+  `footer`, `about`, or the article's slug). Atlassian copies them into the *attribution* of each new
   evaluation (*Reports → Licenses → With additional insights*; developer.atlassian.com, *Marketing
   funnel insights*), and the listing's own GA4 property reads them too. They carry no personal
   data, which Atlassian requires. The structured data takes the bare URL: it is an identity, not a

@@ -6,8 +6,9 @@ lives. Our apps run entirely on Atlassian Forge: no external servers, no data eg
 ## What we make
 
 **[Scope Planner](/)** is our sprint estimation app. It puts a whole sprint on one screen, keeps work
-in private and team drafts, and publishes to Jira only when you decide. The [user guide](/guide/)
-covers every feature.
+in private and team drafts, and publishes to Jira only when you decide. It is on the [Atlassian
+Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=about),
+and the [user guide](/guide/) covers every feature.
 
 You can find our apps on our [Atlassian Marketplace partner
 page](https://marketplace.atlassian.com/vendors/1218450/).
