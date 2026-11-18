@@ -3,6 +3,8 @@
 Practical notes on estimating and planning sprints in Jira Cloud — what the built-in tools do, where
 they stop, and how to get a sprint estimated without opening every issue.
 
+- **[Story points in Jira](/articles/story-points-in-jira/)** — turning estimation on, adding points to
+  work items, and what to check when the field is missing.
 - **[How to bulk-edit story points in Jira](/articles/bulk-edit-story-points-in-jira/)** — bulk
   change for one shared value, the issue view for one at a time, and a table for a whole sprint.
 - **[Story points vs. time estimates in Jira](/articles/story-points-vs-time-estimates/)** — what

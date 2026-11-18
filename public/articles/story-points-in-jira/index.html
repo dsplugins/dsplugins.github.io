@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story Points in Jira: What They Are, How to Add Them | DSPlugins</title>
+<meta name="description" content="Story points in Jira: what they are, how to turn estimation on, add points to work items, fix a missing Story Points field and find them with JQL.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#4f46e5">
+<link rel="canonical" href="https://dsplugins.dev/articles/story-points-in-jira/">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-11-18">
+<meta property="article:modified_time" content="2026-11-18">
+<meta property="og:site_name" content="DSPlugins">
+<meta property="og:title" content="Story Points in Jira: What They Are, How to Add Them | DSPlugins">
+<meta property="og:description" content="Story points in Jira: what they are, how to turn estimation on, add points to work items, fix a missing Story Points field and find them with JQL.">
+<meta property="og:url" content="https://dsplugins.dev/articles/story-points-in-jira/">
+<meta property="og:image" content="https://dsplugins.dev/assets/og-banner.png">
+<meta property="og:image:width" content="1120">
+<meta property="og:image:height" content="548">
+<meta property="og:image:alt" content="Scope Planner — bulk sprint estimation for Jira Cloud">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://dsplugins.dev/articles/story-points-in-jira/","url":"https://dsplugins.dev/articles/story-points-in-jira/","headline":"Story Points in Jira: What They Are, How to Add Them","inLanguage":"en","description":"Story points in Jira: what they are, how to turn estimation on, add points to work items, fix a missing Story Points field and find them with JQL.","datePublished":"2026-11-18","dateModified":"2026-11-18","image":"https://dsplugins.dev/assets/og-banner.png","author":{"@id":"https://dsplugins.dev/#org"},"publisher":{"@type":"Organization","@id":"https://dsplugins.dev/#org","name":"DSPlugins","url":"https://dsplugins.dev/","logo":"https://dsplugins.dev/assets/favicon.svg","email":"support@dsplugins.dev","sameAs":["https://marketplace.atlassian.com/vendors/1218450/","https://www.youtube.com/@dsplugins","https://github.com/dsplugins"]},"isPartOf":{"@id":"https://dsplugins.dev/#site"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scope Planner","item":"https://dsplugins.dev/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://dsplugins.dev/articles/"},{"@type":"ListItem","position":3,"name":"Story points in Jira","item":"https://dsplugins.dev/articles/story-points-in-jira/"}]},{"@type":"FAQPage","@id":"https://dsplugins.dev/articles/story-points-in-jira/#faq","url":"https://dsplugins.dev/articles/story-points-in-jira/","mainEntity":[{"@type":"Question","name":"What are story points in Jira?","acceptedAnswer":{"@type":"Answer","text":"A number that sizes a work item relative to other work, not in hours. Jira stores it in the Story Points field in company-managed spaces and in Story point estimate in team-managed ones, and a Scrum board uses it for sprint planning and velocity."}},{"@type":"Question","name":"How do I add story points in Jira?","acceptedAnswer":{"@type":"Answer","text":"Turn estimation on for the board (company-managed: Board settings → Estimation) or for the space (team-managed: Space settings → Features → Estimation). Then type a number into the story points field of each work item, in the backlog or in the work item view."}},{"@type":"Question","name":"Why can't I see the Story Points field in Jira?","acceptedAnswer":{"@type":"Answer","text":"Usually estimation is off, the field's context leaves out that work type, or the field is hidden from the work item's layout. A Jira administrator can open the work item and use More actions → Find your field to see which."}},{"@type":"Question","name":"How do I enable story points in a team-managed space?","acceptedAnswer":{"@type":"Answer","text":"Select More actions (•••) next to the space name, then Space settings → Features, turn on Estimation and choose Story points. Jira adds the Story point estimate field to every standard work type."}},{"@type":"Question","name":"Can sub-tasks have story points in Jira?","acceptedAnswer":{"@type":"Answer","text":"Not by default: the field applies to stories and epics. A Jira administrator can extend its context, but Atlassian recommends estimating the story and tracking its sub-tasks in time."}},{"@type":"Question","name":"How do I see the total story points of a sprint?","acceptedAnswer":{"@type":"Answer","text":"In the backlog, the sprint's header adds up its estimates for to do, in progress and done. After the sprint, the Sprint Report and the Velocity Chart show what was committed and what was completed."}}]}]}</script>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=6ed06f7b1c">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="brand" href="/" aria-label="DSPlugins — home">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="19" fill="#FBBF24" opacity=".2"/>
+        <g fill="#FBBF24"><circle cx="32" cy="32" r="11"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(0 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(45 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(90 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(135 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(180 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(225 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(270 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(315 32 32)"/></g>
+      </svg>
+        <span>DSPlugins</span>
+      </a>
+      <nav class="nav" aria-label="Site">
+        <a href="/">Scope Planner</a>
+        <a href="/guide/">User guide</a>
+        <a href="/support/">Support</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+      <a class="btn btn-sm header-cta" href="mailto:support@dsplugins.dev">Contact</a>
+      <details class="menu">
+        <summary aria-label="Menu"><span></span></summary>
+        <nav aria-label="Site (mobile)">
+          <a href="/">Scope Planner</a>
+          <a href="/guide/">User guide</a>
+          <a href="/support/">Support</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+  <main id="main">
+    <div class="doc-head">
+      <div class="wrap">
+        <p class="eyebrow">Scope Planner &middot; <a href="/articles/">Articles</a></p>
+        <h1>Story points in Jira: how to turn them on, add them and find a missing field</h1>
+        <p class="doc-meta">Last updated: 18 November 2026</p>
+        <p class="doc-meta">By the team behind Scope Planner &middot; <a href="/about/">About DSPlugins</a></p>
+      </div>
+    </div>
+    <div class="wrap doc">
+      <aside class="toc" aria-label="On this page">
+        <nav class="toc-side">
+          <p class="toc-title">On this page</p>
+          <ol>
+            <li><a href="#what-story-points-are-in-jira">What story points are in Jira</a></li>
+            <li><a href="#how-to-turn-story-points-on">How to turn story points on</a></li>
+            <li><a href="#how-to-add-story-points-to-a-work-item">How to add story points to a work item</a></li>
+            <li><a href="#why-the-story-points-field-is-missing">Why the Story Points field is missing</a></li>
+            <li><a href="#finding-story-points-with-jql">Finding story points with JQL</a></li>
+            <li><a href="#what-a-3-a-5-or-an-8-means">What a 3, a 5 or an 8 means</a></li>
+            <li><a href="#estimating-a-whole-sprints-story-points-at-once">Estimating a whole sprint’s story points at once</a></li>
+            <li><a href="#frequently-asked-questions">Frequently asked questions</a></li>
+          </ol>
+        </nav>
+        <details class="toc-fold">
+          <summary>On this page</summary>
+          <ol>
+            <li><a href="#what-story-points-are-in-jira">What story points are in Jira</a></li>
+            <li><a href="#how-to-turn-story-points-on">How to turn story points on</a></li>
+            <li><a href="#how-to-add-story-points-to-a-work-item">How to add story points to a work item</a></li>
+            <li><a href="#why-the-story-points-field-is-missing">Why the Story Points field is missing</a></li>
+            <li><a href="#finding-story-points-with-jql">Finding story points with JQL</a></li>
+            <li><a href="#what-a-3-a-5-or-an-8-means">What a 3, a 5 or an 8 means</a></li>
+            <li><a href="#estimating-a-whole-sprints-story-points-at-once">Estimating a whole sprint’s story points at once</a></li>
+            <li><a href="#frequently-asked-questions">Frequently asked questions</a></li>
+          </ol>
+        </details>
+      </aside>
+      <article class="prose">
+<p><strong>Short answer:</strong> Jira keeps story points in a number field: <strong>Story Points</strong> in company-managed
+spaces, <strong>Story point estimate</strong> in team-managed ones. Turn estimation on for the board or the space,
+then type a number into that field on each work item, in the backlog or in the work item view. When
+the field is missing, the cause is almost always one of four: estimation is off, the field does not
+apply to that work type, it is hidden from the work item’s layout, or the work item is a sub-task.</p>
+<p>Jira now calls projects <em>spaces</em> and issues <em>work items</em>; this article uses the new names, and the
+old ones mean the same thing. What story points are <em>for</em>, and why they are not hours, is in <a href="/articles/story-points-vs-time-estimates/">story
+points vs. time estimates</a>.</p>
+<h2 id="what-story-points-are-in-jira">What story points are in Jira<a class="anchor" href="#what-story-points-are-in-jira" aria-label="Link to this section">#</a></h2>
+<p>Atlassian describes story points as a measure of effort relative to other work, one that <a href="https://support.atlassian.com/jira-software-cloud/docs/what-are-story-points/">“doesn’t
+correlate to any amount of time”</a>.
+A 3 is roughly three times a 1 for the same team, not three hours.</p>
+<p>In Jira they are an ordinary number field, and two details trip teams up:</p>
+<ul>
+<li><strong>Two fields for two kinds of space.</strong> Company-managed spaces use <strong>Story Points</strong>; team-managed
+spaces use <strong>Story point estimate</strong>. A board reads exactly one field for its estimates, so a value in
+the other one is stored but ignored by the board’s reports.</li>
+<li><strong>Estimation belongs to Scrum.</strong> In company-managed spaces only Scrum boards have estimation
+settings, and the sprint totals and the velocity report come with them.</li>
+</ul>
+<h2 id="how-to-turn-story-points-on">How to turn story points on<a class="anchor" href="#how-to-turn-story-points-on" aria-label="Link to this section">#</a></h2>
+<h3 id="company-managed-the-boards-settings">Company-managed: the board’s settings<a class="anchor" href="#company-managed-the-boards-settings" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>Next to the board’s name in the sidebar, select <strong>More actions (•••)</strong>, then <strong>Board settings</strong>.</li>
+<li>Select <strong>Estimation</strong>.</li>
+<li>In <strong>Estimation method</strong>, choose <strong>Story Points</strong>.</li>
+</ol>
+<p>You need to be an administrator of the board or of its space (<a href="https://support.atlassian.com/jira-software-cloud/docs/configure-estimation-and-tracking/">Atlassian’s
+guide</a>).
+The <strong>Time tracking</strong> option on the same page only decides how progress is tracked during the sprint.</p>
+<h3 id="team-managed-the-estimation-feature">Team-managed: the Estimation feature<a class="anchor" href="#team-managed-the-estimation-feature" aria-label="Link to this section">#</a></h3>
+<ol>
+<li>Next to the space name in the sidebar, select <strong>More actions (•••)</strong>, then <strong>Space settings</strong>.</li>
+<li>Select <strong>Features</strong> and turn on <strong>Estimation</strong>.</li>
+<li>Choose <strong>Story points</strong>.</li>
+</ol>
+<p>Jira then adds <strong>Story point estimate</strong> to every standard work type; epics need it added by hand
+(<a href="https://support.atlassian.com/jira-software-cloud/docs/enable-estimation/">Atlassian’s guide</a>).
+Turning estimation off later hides the values without deleting them, and they come back when it is
+turned on again.</p>
+<h2 id="how-to-add-story-points-to-a-work-item">How to add story points to a work item<a class="anchor" href="#how-to-add-story-points-to-a-work-item" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>In the backlog:</strong> select a work item and type the number into its story points field. Atlassian
+<a href="https://support.atlassian.com/jira-software-cloud/docs/estimate-an-issue/">expects estimating to happen here</a>,
+before the sprint starts.</li>
+<li><strong>In the work item view:</strong> open the work item and fill in the field among its details.</li>
+</ul>
+<p>The value must be a number, and decimals such as 0.5 are allowed. Each value is saved to Jira as soon
+as you enter it. In the backlog, each sprint’s header then adds the estimates up by status: to do,
+in progress and done. That is the quickest check of how full a sprint is. There is no single combined
+total, so add the three.</p>
+<p>The same value on many work items at once is a bulk change. Different values on many work items is a
+different job, covered in <a href="/articles/bulk-edit-story-points-in-jira/">how to bulk-edit story points</a>.</p>
+<h2 id="why-the-story-points-field-is-missing">Why the Story Points field is missing<a class="anchor" href="#why-the-story-points-field-is-missing" aria-label="Link to this section">#</a></h2>
+<p>Work through these in order. The first three cover nearly every case.</p>
+<ol>
+<li><strong>Estimation is off (team-managed).</strong> <strong>Story point estimate</strong> exists only while the Estimation
+feature is on with story points chosen. Turn it on as above.</li>
+<li><strong>The field does not apply to this work type (company-managed).</strong> By default, Story Points applies
+to stories and epics only, so bugs and tasks do not have it (<a href="https://support.atlassian.com/jira-software-cloud/docs/what-are-story-points/">Atlassian’s
+guide</a>). A Jira
+administrator widens it under <strong>Settings → Work items → Fields</strong>: on the field, <strong>More actions
+(•••) → Contexts and default value</strong>, then add the work types and spaces (<a href="https://support.atlassian.com/jira-cloud-administration/docs/add-a-context-to-a-custom-field/">field
+contexts</a>).</li>
+<li><strong>The field is hidden or not on the layout.</strong> Open a work item, select <strong>Configure</strong>, then <strong>Work
+item view</strong>, and check that Story Points is not under <em>Hidden fields</em>. If it is not offered at all,
+it is missing from the work type’s screen, and adding it there takes a site administrator
+(<a href="https://support.atlassian.com/jira-software-cloud/docs/configure-field-layout-in-the-work-item/">field layout</a>).</li>
+<li><strong>It is a sub-task.</strong> Sub-tasks do not have the field by default, and Atlassian
+<a href="https://support.atlassian.com/jira-software-cloud/docs/estimate-an-issue/">advises against estimating on them</a>:
+estimate the story, and track its sub-tasks in time.</li>
+</ol>
+<p><strong>Let Jira tell you.</strong> A Jira administrator can open the work item, select <strong>More actions (•••) →
+Find your field</strong>, pick the story points field, and Jira lists what is blocking it (<a href="https://support.atlassian.com/jira-cloud-administration/docs/find-missing-fields-in-your-spaces-and-work-items/">Atlassian’s
+guide</a>).</p>
+<p><strong>One more trap: the field is there, but the board reads another one.</strong> A site often has more than one
+number field that looks like story points, Story Points and Story point estimate at least. If the
+values are filled in but the board’s badges and velocity stay empty, compare the field with the
+board’s estimation setting, as described in <a href="/articles/story-points-vs-time-estimates/#which-one-the-board-uses">which field the board
+uses</a>.</p>
+<h2 id="finding-story-points-with-jql">Finding story points with JQL<a class="anchor" href="#finding-story-points-with-jql" aria-label="Link to this section">#</a></h2>
+<p>Field names that contain spaces go in quotes:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th style="text-align:left">You want</th>
+<th style="text-align:left">JQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Unestimated work in open sprints (company-managed)</td>
+<td style="text-align:left"><code>sprint in openSprints() AND &quot;Story Points&quot; is EMPTY</code></td>
+</tr>
+<tr>
+<td style="text-align:left">The same in a team-managed space</td>
+<td style="text-align:left"><code>sprint in openSprints() AND &quot;Story point estimate&quot; is EMPTY</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Items big enough to split</td>
+<td style="text-align:left"><code>sprint in openSprints() AND &quot;Story Points&quot; &gt;= 13</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Estimated stories only, no bugs or sub-tasks</td>
+<td style="text-align:left"><code>issuetype = Story AND &quot;Story Points&quot; is not EMPTY</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>JQL finds work items; it does not add up their points. For a total over any search, export it and
+sum the column in a spreadsheet, as in <a href="/articles/velocity-per-assignee-in-jira/#method-1-export-a-search-and-add-it-up">velocity per
+assignee</a>. For
+finished sprints, the Sprint Report and the <a href="/articles/sprint-velocity-in-jira/">Velocity Chart</a>
+already show what was committed and completed.</p>
+<h2 id="what-a-3-a-5-or-an-8-means">What a 3, a 5 or an 8 means<a class="anchor" href="#what-a-3-a-5-or-an-8-means" aria-label="Link to this section">#</a></h2>
+<p>Points only mean something next to each other: a 5 is a little more work than a 3 and a little less
+than an 8, for the same team. Most teams anchor the scale on one well-understood <a href="https://scrum-poker.dev/guides/baseline-story">baseline
+story</a> and size everything against it, often with
+<a href="https://scrum-poker.dev/planning-poker-guide">planning poker</a>, so that nobody anchors on the first
+number said aloud. A point has no fixed number of hours, and <a href="/articles/story-points-vs-time-estimates/#how-many-hours-is-a-story-point">here is
+why</a>.</p>
+<h2 id="estimating-a-whole-sprints-story-points-at-once">Estimating a whole sprint’s story points at once<a class="anchor" href="#estimating-a-whole-sprints-story-points-at-once" aria-label="Link to this section">#</a></h2>
+<p><a href="/">Scope Planner</a> is a Jira Cloud app that loads a sprint, a backlog or any JQL into one table, with
+story points, original and remaining time in every row. It is on the
+<a href="https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&amp;utm_medium=referral&amp;utm_campaign=website&amp;utm_content=story-points-in-jira">Atlassian Marketplace</a>, with a free trial.</p>
+<p>It also catches the field problems above:</p>
+<ul>
+<li><strong>🔍 Detect Fields</strong>, on the app’s admin page, finds the fields on your site that can hold story
+points and asks which one to use when more than one fits.</li>
+<li><strong>A work type outside the field’s context</strong> gets a disabled cell instead of a failed write, and a
+banner above the table names those work types.</li>
+<li><strong>A board that estimates on a different field</strong> gets a warning, so the numbers do not go into a
+field the board ignores.</li>
+</ul>
+<figure class="doc-fig" id="figref-admin-detect">
+  <a href="#fig-admin-detect" aria-label="Open full size"><img src="/assets/guide/admin-detect.webp" width="790" height="640" loading="lazy" decoding="async" alt="Scope Planner’s admin page after 🔍 Detect Fields: on this test site two fields could hold story points, so the app asks which one to use."></a>
+  <figcaption>Scope Planner’s admin page after <b>🔍 Detect Fields</b>: on this test site two fields could hold story points, so the app asks which one to use.</figcaption>
+</figure>
+<p>Estimating, drafts and Sprint Preview are free; publishing the estimates to Jira is part of <strong>Pro</strong> —
+see <a href="/#pricing">Free and Pro</a>. The <a href="/guide/#3-first-time-setup-jira-admins">user guide</a> covers the
+setup.</p>
+<h2 id="frequently-asked-questions">Frequently asked questions<a class="anchor" href="#frequently-asked-questions" aria-label="Link to this section">#</a></h2>
+<h3 id="what-are-story-points-in-jira">What are story points in Jira?<a class="anchor" href="#what-are-story-points-in-jira" aria-label="Link to this section">#</a></h3>
+<p>A number that sizes a work item relative to other work, not in hours. Jira stores it in the Story
+Points field in company-managed spaces and in Story point estimate in team-managed ones, and a Scrum
+board uses it for sprint planning and velocity.</p>
+<h3 id="how-do-i-add-story-points-in-jira">How do I add story points in Jira?<a class="anchor" href="#how-do-i-add-story-points-in-jira" aria-label="Link to this section">#</a></h3>
+<p>Turn estimation on for the board (company-managed: Board settings → Estimation) or for the space
+(team-managed: Space settings → Features → Estimation). Then type a number into the story points field
+of each work item, in the backlog or in the work item view.</p>
+<h3 id="why-cant-i-see-the-story-points-field-in-jira">Why can’t I see the Story Points field in Jira?<a class="anchor" href="#why-cant-i-see-the-story-points-field-in-jira" aria-label="Link to this section">#</a></h3>
+<p>Usually estimation is off, the field’s context leaves out that work type, or the field is hidden from
+the work item’s layout. A Jira administrator can open the work item and use More actions → Find your
+field to see which.</p>
+<h3 id="how-do-i-enable-story-points-in-a-team-managed-space">How do I enable story points in a team-managed space?<a class="anchor" href="#how-do-i-enable-story-points-in-a-team-managed-space" aria-label="Link to this section">#</a></h3>
+<p>Select More actions (•••) next to the space name, then Space settings → Features, turn on Estimation
+and choose Story points. Jira adds the Story point estimate field to every standard work type.</p>
+<h3 id="can-sub-tasks-have-story-points-in-jira">Can sub-tasks have story points in Jira?<a class="anchor" href="#can-sub-tasks-have-story-points-in-jira" aria-label="Link to this section">#</a></h3>
+<p>Not by default: the field applies to stories and epics. A Jira administrator can extend its context,
+but Atlassian recommends estimating the story and tracking its sub-tasks in time.</p>
+<h3 id="how-do-i-see-the-total-story-points-of-a-sprint">How do I see the total story points of a sprint?<a class="anchor" href="#how-do-i-see-the-total-story-points-of-a-sprint" aria-label="Link to this section">#</a></h3>
+<p>In the backlog, the sprint’s header adds up its estimates for to do, in progress and done. After the
+sprint, the Sprint Report and the Velocity Chart show what was committed and what was completed.</p>
+
+        <aside class="related" aria-label="Related articles">
+          <p class="toc-title">Related articles</p>
+          <ul>
+            <li><a href="/articles/bulk-edit-story-points-in-jira/">Bulk-edit story points in Jira</a></li>
+            <li><a href="/articles/story-points-vs-time-estimates/">Story points vs. time estimates</a></li>
+          </ul>
+        </aside>
+        <p class="to-top"><a href="#main">Back to top ↑</a></p>
+      </article>
+    </div>
+    <div class="lightbox" id="fig-admin-detect" role="dialog" aria-label="Scope Planner’s admin page after 🔍 Detect Fields: on this test site two fields could hold story points, so the app asks which one to use.">
+      <a class="lb-backdrop" href="#figref-admin-detect" tabindex="-1" aria-hidden="true"></a>
+      <figure>
+        <img src="/assets/guide/admin-detect.webp" width="790" height="640" loading="lazy" decoding="async" alt="Scope Planner’s admin page after 🔍 Detect Fields: on this test site two fields could hold story points, so the app asks which one to use.">
+        <figcaption>Scope Planner’s admin page after <b>🔍 Detect Fields</b>: on this test site two fields could hold story points, so the app asks which one to use.</figcaption>
+        <a class="lb-close" href="#figref-admin-detect" aria-label="Close">×</a>
+      </figure>
+    </div>
+  </main>
+  <footer class="site">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="/">
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="19" fill="#FBBF24" opacity=".2"/>
+        <g fill="#FBBF24"><circle cx="32" cy="32" r="11"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(0 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(45 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(90 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(135 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(180 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(225 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(270 32 32)"/><path d="M32,16.5 L30.2,6 A1.8,1.8 0 0 1 33.8,6 Z" transform="rotate(315 32 32)"/></g>
+      </svg>
+            <span>DSPlugins</span>
+          </a>
+          <p>Focused apps for Jira Cloud that keep your data where it already lives. Built on
+             Atlassian Forge — no external servers, no data egress, no tracking.</p>
+        </div>
+        <div>
+          <h2>Product</h2>
+          <a href="/">Scope Planner</a>
+          <a href="/guide/">User guide</a>
+          <a href="/articles/">Articles</a>
+          <a href="/#pricing">Free and Pro</a>
+          <a href="https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&amp;utm_medium=referral&amp;utm_campaign=website&amp;utm_content=footer">Atlassian Marketplace</a>
+          <a href="https://www.youtube.com/watch?v=Fwu-1fwdugA" target="_blank" rel="noopener noreferrer">Demo video ↗</a>
+        </div>
+        <div>
+          <h2>Help</h2>
+          <a href="/support/">Support</a>
+          <a href="/about/">About DSPlugins</a>
+          <a href="mailto:support@dsplugins.dev">support@dsplugins.dev</a>
+        </div>
+        <div>
+          <h2>Legal</h2>
+          <a href="/privacy/">Privacy policy</a>
+          <a href="/terms/">Terms of use</a>
+        </div>
+      </div>
+      <div class="foot-base">
+        <p>&copy; 2026 DSPlugins &middot; This site sets no cookies and loads nothing from
+           anywhere else.</p>
+        <p class="fineprint">Scope Planner is a Jira Cloud app built on Atlassian Forge. Jira and
+           Atlassian are trademarks of Atlassian Pty Ltd, used here only to identify the platform the
+           app runs on.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
