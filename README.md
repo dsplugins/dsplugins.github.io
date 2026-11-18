@@ -167,12 +167,15 @@ re-check verification and pick up the sitemap.
 **Articles** are `content/articles/*.md`, each with an entry in `PAGES`: a `title` in search-result
 wording, a `published` date, `related` articles (an unknown one fails the build) and optional
 `figures`, which work like `GUIDE_FIGURES`. They stay out of the header; the landing page's *Articles*
-section, the footer and the sitemap link them. Editing one means changing its `_Last updated: …_`
+section, the footer and the sitemap link them. That section has four cards, a four-column grid, so the
+fifth article (*Story points in Jira*, 2026-11-18) is linked from its intro line instead of a card that
+would sit alone on a row. Editing one means changing its `_Last updated: …_`
 line too: that line feeds `dateModified` and `<lastmod>`. Every claim about Jira should link to
 Atlassian's documentation, and every claim about the app must match the user guide.
 
-Links to `scrum-poker.dev` stay inside article text: three so far, two in *Story points vs. time
-estimates* and one in *Sprint velocity*. The two sites have one owner, so a link in the layout would
+Links to `scrum-poker.dev` stay inside article text: five so far, two in *Story points vs. time
+estimates*, one in *Sprint velocity* and two in *Story points in Jira*. The two sites have one owner,
+so a link in the layout would
 reach every page and read as the link scheme Google's spam policy describes.
 
 **IndexNow.** Bing, Yandex and Seznam accept a ping when pages change. The key file at the root

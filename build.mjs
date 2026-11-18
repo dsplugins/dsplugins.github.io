@@ -121,7 +121,7 @@ const PAGES = [
     nav: false,
     title: 'Articles on Jira estimation and sprint planning | DSPlugins',
     description:
-      'Practical articles on estimating in Jira: bulk-editing story points, story points vs. hours, sprint velocity and velocity per assignee.',
+      'Practical articles on estimating in Jira: story points, bulk editing, story points vs. hours, sprint velocity and velocity per assignee.',
   },
   {
     src: 'articles/bulk-edit-story-points.md',
@@ -133,7 +133,7 @@ const PAGES = [
     title: 'How to Bulk Edit Story Points in Jira: 4 Ways | DSPlugins',
     description:
       'Set story points on many Jira issues at once: bulk change for one shared value, CSV import or a table for different values, with the permissions and limits.',
-    related: ['articles/story-points-vs-time-estimates', 'articles/sprint-velocity-in-jira'],
+    related: ['articles/story-points-in-jira', 'articles/story-points-vs-time-estimates'],
     figures: [
       { section: 'option-4-the-whole-sprint-in-one-table', img: 'shots/highlight-1-whole-sprint', w: 1120, h: 765,
         caption: 'Scope Planner: one row per issue, with 🎯 Story Points, ⏱ Original and ⏳ Remaining on the right and the totals above the table.' },
@@ -151,7 +151,7 @@ const PAGES = [
     title: 'Story Points vs Hours in Jira: Which to Use | DSPlugins',
     description:
       'Story points or hours in Jira: what Story Points, Original and Remaining Estimate are for, which field the board reads, and whether a point equals hours.',
-    related: ['articles/sprint-velocity-in-jira', 'articles/bulk-edit-story-points-in-jira'],
+    related: ['articles/story-points-in-jira', 'articles/sprint-velocity-in-jira'],
     figures: [
       { section: 'picking-a-scale-for-story-points', after: 'T-shirt sizes are not numbers', img: 'shots/screenshot-1b-scales', w: 480, h: 470,
         caption: 'Scope Planner’s <b>⚙️ Preferences</b>: each person picks a story-points scale and how time cells step.' },
@@ -191,6 +191,24 @@ const PAGES = [
         caption: '<b>Workload</b> tab <i>(Pro)</i>: each person’s Story Points with a bar, and ⚠ on anyone above 1.5× the average.' },
       { section: 'planned-load-per-person-in-scope-planner', after: 'Workload', img: 'shots/screenshot-1d-breakdown', w: 1120, h: 560,
         caption: '<b>Breakdown</b> tab: totals grouped by Epic, Assignee, Label or Type.' },
+    ],
+  },
+  {
+    src: 'articles/story-points-in-jira.md',
+    out: 'articles/story-points-in-jira',
+    label: 'Story points in Jira',
+    eyebrow: 'Articles',
+    nav: false,
+    published: '2026-11-18',
+    // Search Console, 2026-10-21 → 11-16: "jira story points", "story points jira", "story points in
+    // jira" and "what are story points in jira" drew ~150 impressions to pages written for other questions.
+    title: 'Story Points in Jira: What They Are, How to Add Them | DSPlugins',
+    description:
+      'Story points in Jira: what they are, how to turn estimation on, add points to work items, fix a missing Story Points field and find them with JQL.',
+    related: ['articles/bulk-edit-story-points-in-jira', 'articles/story-points-vs-time-estimates'],
+    figures: [
+      { section: 'estimating-a-whole-sprints-story-points-at-once', after: 'Detect Fields', img: 'guide/admin-detect', w: 790, h: 640,
+        caption: 'Scope Planner’s admin page after <b>🔍 Detect Fields</b>: on this test site two fields could hold story points, so the app asks which one to use.' },
     ],
   },
 ];
