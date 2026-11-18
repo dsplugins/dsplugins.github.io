@@ -180,9 +180,11 @@ const PAGES = [
     eyebrow: 'Articles',
     nav: false,
     published: '2026-10-30',
-    title: 'Velocity per Assignee in Jira: How to Get It | DSPlugins',
+    // "Individual velocity" leads: in Search Console (2026-10-21 → 11-16) it was the most common
+    // wording of the queries this page showed for, ahead of "per assignee".
+    title: 'Individual Velocity in Jira: Velocity per Assignee | DSPlugins',
     description:
-      'Jira has no velocity report per person. How to get story points per assignee from a search export, the sprint trap to avoid, and why not to judge people by it.',
+      'Jira has no individual velocity report. How to get story points per assignee from a search export, the sprint trap to avoid, and why not to judge people by it.',
     related: ['articles/sprint-velocity-in-jira', 'articles/bulk-edit-story-points-in-jira'],
     figures: [
       { section: 'planned-load-per-person-in-scope-planner', after: 'Workload', img: 'shots/highlight-3-spot-overload', w: 1120, h: 560,
