@@ -113,7 +113,7 @@ history will not show you.
 
 [Scope Planner](/) is a Jira Cloud app for estimating a sprint in one table. It does not report past
 velocity per person. It shows each person's load in the sprint you are planning, while you estimate.
-It is on the [Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=velocity-per-assignee-in-jira), with a free trial.
+It is on the [Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=velocity-per-assignee-in-jira), free for teams of up to 10 users and with a free trial for larger ones.
 
 - **Breakdown** groups the totals by assignee, as well as by epic, label or type, and updates as you
   type. It is free.
