@@ -91,7 +91,7 @@ sprint is about four sprints. That is a statement about the team's history, not 
 
 [Scope Planner](/) puts story points, **Original** and **Remaining** in the same row of one table,
 for a whole sprint, a backlog or any JQL. It is on the
-[Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=story-points-vs-time-estimates), with a free trial.
+[Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=story-points-vs-time-estimates), free for teams of up to 10 users and with a free trial for larger ones.
 
 - Pick your story-points scale in **⚙️ Preferences**; the cells offer that scale's values.
 - Type time as a Jira duration (`1d 2h`, `1w`) or as a bare number in the unit you chose.

@@ -76,7 +76,7 @@ better than a regular planning meeting.
 
 [Scope Planner](/) is a Jira Cloud app that loads a sprint, a backlog or any JQL into one editable
 table, so you estimate every issue where you can see all of them. It is on the
-[Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=bulk-edit-story-points-in-jira), with a free trial.
+[Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=bulk-edit-story-points-in-jira), free for teams of up to 10 users and with a free trial for larger ones.
 
 - **Different values, inline.** Click a story-points cell and pick from your scale — Fibonacci,
   Modified Fibonacci, Powers of 2, Linear or T-shirt sizes — or type a number. Original and

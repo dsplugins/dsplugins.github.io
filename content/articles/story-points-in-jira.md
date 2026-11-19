@@ -124,7 +124,7 @@ why](/articles/story-points-vs-time-estimates/#how-many-hours-is-a-story-point).
 
 [Scope Planner](/) is a Jira Cloud app that loads a sprint, a backlog or any JQL into one table, with
 story points, original and remaining time in every row. It is on the
-[Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=story-points-in-jira), with a free trial.
+[Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=story-points-in-jira), free for teams of up to 10 users and with a free trial for larger ones.
 
 It also catches the field problems above:
 

@@ -122,7 +122,7 @@ best and a worst case.
 
 [Scope Planner](/) shows the sprint total next to a target velocity while you estimate, so you see the
 sprint overflow before you start it, not halfway through. It is on the
-[Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=sprint-velocity-in-jira), with a free trial.
+[Atlassian Marketplace](https://marketplace.atlassian.com/apps/2134578868?utm_source=dsplugins.dev&utm_medium=referral&utm_campaign=website&utm_content=sprint-velocity-in-jira), free for teams of up to 10 users and with a free trial for larger ones.
 
 - The totals bar shows the sprint's story points and, when a target velocity is set, a capacity
   indicator that highlights when the draft total goes over it.
