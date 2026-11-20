@@ -185,6 +185,14 @@ reach every page and read as the link scheme Google's spam policy describes.
 npm run indexnow
 ```
 
+**llms.txt** (`public/llms.txt`, written by the build) is a plain-text fact sheet for AI assistants:
+what the app is, the free/Pro split, the data model, and every page, with the page list taken from
+`PAGES` like the sitemap, so a new article is listed by itself. Its facts are the landing page's, the
+user guide's and the Terms' wording: change one and change the other. It gives no price number on
+purpose (they live on the Marketplace, so the file cannot drift), and it links the listing without
+UTM tags because assistants copy that address into their answers. The build fails if it carries any
+address but `support@dsplugins.dev`.
+
 `assets/style.css` is the whole design: colour tokens with a dark scheme, then components. Files in
 `assets/static/` are copied to `/assets/` — the favicon (the partner mark) and `og-banner.png`, the
 social-preview image (a copy of the app repo's `docs/branding/banner-1120x548.png`). Asset URLs are
