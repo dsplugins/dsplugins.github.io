@@ -173,8 +173,9 @@ would sit alone on a row. Editing one means changing its `_Last updated: …_`
 line too: that line feeds `dateModified` and `<lastmod>`. Every claim about Jira should link to
 Atlassian's documentation, and every claim about the app must match the user guide.
 
-Links to `scrum-poker.dev` stay inside article text: five so far, two in *Story points vs. time
-estimates*, one in *Sprint velocity* and two in *Story points in Jira*. The two sites have one owner,
+Links to `scrum-poker.dev` stay inside page text: six so far, two in *Story points vs. time
+estimates*, one in *Sprint velocity*, two in *Story points in Jira* and, since 2026-11-20, one on
+*About*, which says we run it (the owner allowed linking the two products openly on 2026-11-16). The two sites have one owner,
 so a link in the layout would
 reach every page and read as the link scheme Google's spam policy describes.
 
@@ -185,12 +186,21 @@ reach every page and read as the link scheme Google's spam policy describes.
 npm run indexnow
 ```
 
+**SEO parity.** The owner's rule (2026-11-20): an SEO, listing, directory or marketing change is made
+for this site, scrum-poker.dev and the Marketplace listing in the same task, or marked n/a. The matrix
+is in the app repo's `docs/SEO.md`.
+
+**Links to other products are `rel="nofollow"`.** `isRival()` in `build.mjs` names them: any Marketplace
+app but ours (Scope Planner, the old Estimator) and a list of rival hosts. A Markdown link to one gets
+the attribute by itself; a hand-written one without it fails the build. Same rule as scrum-poker.dev.
+
 **llms.txt** (`public/llms.txt`, written by the build) is a plain-text fact sheet for AI assistants:
 what the app is, the free/Pro split, the data model, and every page, with the page list taken from
 `PAGES` like the sitemap, so a new article is listed by itself. Its facts are the landing page's, the
 user guide's and the Terms' wording: change one and change the other. It gives no price number on
 purpose (they live on the Marketplace, so the file cannot drift), and it links the listing without
-UTM tags because assistants copy that address into their answers. The build fails if it carries any
+UTM tags because assistants copy that address into their answers. Its *Related* section names scrum-poker.dev,
+whose own `llms.txt` names Scope Planner back. The build fails if it carries any
 address but `support@dsplugins.dev`.
 
 `assets/style.css` is the whole design: colour tokens with a dark scheme, then components. Files in
