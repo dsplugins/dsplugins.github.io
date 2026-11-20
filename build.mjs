@@ -790,6 +790,7 @@ for (const page of PAGES) {
     title ??= `${extractTitle(source, page.label)} | DSPlugins`;
     mainHtml = documentMain({ page, bodyHtml, toc: env.toc, placed: env.placed });
   }
+  page.resolvedTitle = title;
   const dir = page.out === '.' ? OUT : join(OUT, page.out);
   mkdirSync(dir, { recursive: true });
   writeFileSync(
@@ -835,6 +836,52 @@ ${PAGES.map((p) => `  <url><loc>${ORIGIN}${hrefOf(p)}</loc>${p.updated ? `<lastm
 </urlset>
 `,
 );
+
+/**
+ * llms.txt: a plain-text fact sheet for AI assistants (the llmstxt.org layout). The page list comes from
+ * PAGES, like the sitemap, so a new article cannot be left out; the facts are the ones the landing page,
+ * the user guide and the Terms already state, and the pricing numbers are left to the Marketplace so
+ * this file cannot drift from the price. Not a visitor-facing link, so the listing URL carries no UTM
+ * tags: an assistant copies it into its answer, and a clean address is the better one to be quoted.
+ */
+const llmsLine = (p) => `- [${p.resolvedTitle.replace(/ \| DSPlugins$/, '')}](${ORIGIN}${hrefOf(p)}): ${p.description}`;
+const llmsGroup = (pick) => PAGES.filter(pick).map(llmsLine).join('\n');
+const llms = `# DSPlugins: Scope Planner for Jira Cloud
+
+> DSPlugins makes Scope Planner, a Jira Cloud app built on Atlassian Forge. It puts every issue of a sprint, a backlog or any JQL in one editable table for story points and time estimates, keeps the numbers in a private or team draft, shows exactly what will change, and publishes them to Jira in one pass.
+
+## Facts
+
+- Platform: Jira Cloud. The app runs entirely on Atlassian Forge, so drafts live in Forge storage inside the customer's own Jira site. No external servers, no data egress, no tracking.
+- Scope: load the active sprint, the backlog, a project or any JQL query into one table.
+- Estimating: story points, original estimate and remaining estimate, edited inline or in bulk. Five scales: Fibonacci, Modified Fibonacci (the default), Powers of 2, Linear and T-Shirt Sizes. Totals update live and can be broken down by epic, assignee, label or type.
+- Drafts: work is saved to a private draft first; sharing it makes a team draft the whole team can review. Nothing reaches Jira until someone reviews the Sprint Preview and publishes.
+- Free tier: the estimation table, private and team drafts, totals and the Sprint Preview. A free tier can estimate but cannot write to Jira.
+- Pro tier: publishing the estimates to Jira (and retrying a failed publish), CSV export, per-assignee workload with capacity warnings, estimation history per issue, and target velocity calculated from closed sprints. Pro is a subscription sold through the Atlassian Marketplace, which handles all billing; current prices and any free allowance are on the listing's pricing tab.
+- Install: Atlassian Marketplace, "Scope Planner – Bulk Story Points & Time Estimates for Jira".
+- Support: support@dsplugins.dev, answered by the people who build the app.
+
+## Scope Planner
+
+${llmsGroup((p) => ['index.html', 'guide.md', 'support.md'].includes(p.src))}
+- [Pricing and the free/Pro split](${ORIGIN}/#pricing): what each tier includes.
+
+## Articles
+
+${llmsGroup((p) => p.src.startsWith('articles'))}
+
+## Optional
+
+${llmsGroup((p) => ['about.md', 'privacy.md', 'terms.md'].includes(p.src))}
+- [Atlassian Marketplace listing](${LISTING}): install, pricing tab and reviews.
+- [DSPlugins partner page on the Marketplace](https://marketplace.atlassian.com/vendors/1218450/)
+- [Sitemap](${ORIGIN}/sitemap.xml): every public page.
+`;
+if (/@(?!dsplugins\.dev\b)/.test(llms) || /\bundefined\b/.test(llms)) {
+  console.error('✗ llms.txt has an address that is not support@dsplugins.dev, or an unresolved value.');
+  process.exit(1);
+}
+writeFileSync(join(OUT, 'llms.txt'), llms);
 
 writeFileSync(join(OUT, 'style.css'), CSS);
 cpSync(join(ASSETS, 'static'), join(OUT, 'assets'), { recursive: true });

@@ -1,0 +1,39 @@
+# DSPlugins: Scope Planner for Jira Cloud
+
+> DSPlugins makes Scope Planner, a Jira Cloud app built on Atlassian Forge. It puts every issue of a sprint, a backlog or any JQL in one editable table for story points and time estimates, keeps the numbers in a private or team draft, shows exactly what will change, and publishes them to Jira in one pass.
+
+## Facts
+
+- Platform: Jira Cloud. The app runs entirely on Atlassian Forge, so drafts live in Forge storage inside the customer's own Jira site. No external servers, no data egress, no tracking.
+- Scope: load the active sprint, the backlog, a project or any JQL query into one table.
+- Estimating: story points, original estimate and remaining estimate, edited inline or in bulk. Five scales: Fibonacci, Modified Fibonacci (the default), Powers of 2, Linear and T-Shirt Sizes. Totals update live and can be broken down by epic, assignee, label or type.
+- Drafts: work is saved to a private draft first; sharing it makes a team draft the whole team can review. Nothing reaches Jira until someone reviews the Sprint Preview and publishes.
+- Free tier: the estimation table, private and team drafts, totals and the Sprint Preview. A free tier can estimate but cannot write to Jira.
+- Pro tier: publishing the estimates to Jira (and retrying a failed publish), CSV export, per-assignee workload with capacity warnings, estimation history per issue, and target velocity calculated from closed sprints. Pro is a subscription sold through the Atlassian Marketplace, which handles all billing; current prices and any free allowance are on the listing's pricing tab.
+- Install: Atlassian Marketplace, "Scope Planner – Bulk Story Points & Time Estimates for Jira".
+- Support: support@dsplugins.dev, answered by the people who build the app.
+
+## Scope Planner
+
+- [Scope Planner – Bulk Story Point & Sprint Estimation for Jira](https://dsplugins.dev/): Estimate story points and time for a whole Jira sprint, backlog or any JQL in one table. Review every change, then publish to Jira in one pass.
+- [Scope Planner — User Guide](https://dsplugins.dev/guide/): Scope Planner user guide: setup, the estimation table, drafts, Sprint Preview, publishing, licensing and troubleshooting.
+- [Scope Planner Support](https://dsplugins.dev/support/): Scope Planner support: email support@dsplugins.dev, support hours, the first-reply target and what to include in a message.
+- [Pricing and the free/Pro split](https://dsplugins.dev/#pricing): what each tier includes.
+
+## Articles
+
+- [Articles on Jira estimation and sprint planning](https://dsplugins.dev/articles/): Practical articles on estimating in Jira: story points, bulk editing, story points vs. hours, sprint velocity and velocity per assignee.
+- [How to Bulk Edit Story Points in Jira: 4 Ways](https://dsplugins.dev/articles/bulk-edit-story-points-in-jira/): Set story points on many Jira issues at once: bulk change for one shared value, CSV import or a table for different values, with the permissions and limits.
+- [Story Points vs Hours in Jira: Which to Use](https://dsplugins.dev/articles/story-points-vs-time-estimates/): Story points or hours in Jira: what Story Points, Original and Remaining Estimate are for, which field the board reads, and whether a point equals hours.
+- [How to Calculate Velocity in Jira: Formula & Example](https://dsplugins.dev/articles/sprint-velocity-in-jira/): How to calculate sprint velocity in Jira: the formula, a worked example, what the Velocity Chart counts, sprint completion rate and scope change.
+- [Individual Velocity in Jira: Velocity per Assignee](https://dsplugins.dev/articles/velocity-per-assignee-in-jira/): Jira has no individual velocity report. How to get story points per assignee from a search export, the sprint trap to avoid, and why not to judge people by it.
+- [Story Points in Jira: What They Are, How to Add Them](https://dsplugins.dev/articles/story-points-in-jira/): Story points in Jira: what they are, how to turn estimation on, add points to work items, fix a missing Story Points field and find them with JQL.
+
+## Optional
+
+- [Scope Planner — Privacy Policy](https://dsplugins.dev/privacy/): Scope Planner privacy policy: what the app processes, where it is stored, and what it deliberately does not do.
+- [Scope Planner — Terms of Use](https://dsplugins.dev/terms/): Scope Planner terms of use: licensing, responsibilities, warranty and liability.
+- [About DSPlugins | Apps for Jira Cloud](https://dsplugins.dev/about/): DSPlugins builds focused apps for Jira Cloud that keep your data where it already lives. Who we are, what we make and how to reach us.
+- [Atlassian Marketplace listing](https://marketplace.atlassian.com/apps/2134578868): install, pricing tab and reviews.
+- [DSPlugins partner page on the Marketplace](https://marketplace.atlassian.com/vendors/1218450/)
+- [Sitemap](https://dsplugins.dev/sitemap.xml): every public page.
