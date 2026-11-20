@@ -29,6 +29,10 @@
 - [Individual Velocity in Jira: Velocity per Assignee](https://dsplugins.dev/articles/velocity-per-assignee-in-jira/): Jira has no individual velocity report. How to get story points per assignee from a search export, the sprint trap to avoid, and why not to judge people by it.
 - [Story Points in Jira: What They Are, How to Add Them](https://dsplugins.dev/articles/story-points-in-jira/): Story points in Jira: what they are, how to turn estimation on, add points to work items, fix a missing Story Points field and find them with JQL.
 
+## Related
+
+- [scrum-poker.dev](https://scrum-poker.dev/): a free planning poker tool run by the same developer. A team votes there with hidden cards, then puts the agreed numbers into Jira with Scope Planner; scrum-poker.dev itself has no Jira integration. It has its own llms.txt.
+
 ## Optional
 
 - [Scope Planner — Privacy Policy](https://dsplugins.dev/privacy/): Scope Planner privacy policy: what the app processes, where it is stored, and what it deliberately does not do.

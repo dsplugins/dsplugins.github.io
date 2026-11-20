@@ -33,6 +33,32 @@ const LISTING = 'https://marketplace.atlassian.com/apps/2134578868';
 const LISTING_FOOTER = `${LISTING}?utm_source=dsplugins.dev&amp;utm_medium=referral&amp;utm_campaign=website&amp;utm_content=footer`;
 
 /**
+ * Links to other products in the same market carry rel="nofollow": a link that recommends or names a
+ * rival must not pass it search rank. Same rule as scrum-poker.dev's rule 10 (scope-planner
+ * docs/SEO.md, row B9). Markdown links get the attribute here; a hand-written link to a rival without
+ * it FAILS the build. Our own listings are not rivals: Scope Planner and the old Estimator.
+ */
+const OWN_APPS = new Set(['2134578868', '1223067']);
+const RIVAL_HOSTS = ['scrumpoker-online.org', 'pointingpoker.com', 'planitpoker.com', 'planningpoker.com',
+  'parabol.co', 'crisp.se', 'mountaingoatsoftware.com', 'ricksoft-inc.com', 'xray.app', 'tempo.io'];
+function isRival(href) {
+  const m = href.match(/^https?:\/\/([^/?#]+)([^?#]*)/i);
+  if (!m) return false;
+  const host = m[1].toLowerCase();
+  const app = host === 'marketplace.atlassian.com' && m[2].match(/^\/apps\/(\d+)/);
+  if (app) return !OWN_APPS.has(app[1]);
+  return RIVAL_HOSTS.some((rival) => host === rival || host.endsWith(`.${rival}`));
+}
+function assertRivalsNofollow(html, where) {
+  for (const [tag, href] of html.matchAll(/<a\b[^>]*\bhref="([^"]+)"[^>]*>/g)) {
+    if (isRival(href.replace(/&amp;/g, '&')) && !/\brel="[^"]*\bnofollow\b/.test(tag)) {
+      console.error(`✗ ${where}: a link to another product has no rel="nofollow": ${href}`);
+      process.exit(1);
+    }
+  }
+}
+
+/**
  * The stylesheet's URL carries a hash of its content. Pages serves everything with
  * `max-age=600`, so after a deploy a returning browser fetched the new HTML but kept the cached
  * old CSS for up to ten minutes — new markup with no styles for it (seen 2026-10-16: the demo
@@ -227,6 +253,7 @@ md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
   const hrefIndex = token.attrIndex('href');
   if (hrefIndex >= 0) {
     const href = token.attrs[hrefIndex][1];
+    if (isRival(href)) token.attrSet('rel', 'nofollow');
     if (/\.md($|[#?])/i.test(href)) {
       const [path, hash = ''] = href.split(/(?=[#?])/);
       const mapped = LINK_MAP[path];
@@ -793,10 +820,9 @@ for (const page of PAGES) {
   page.resolvedTitle = title;
   const dir = page.out === '.' ? OUT : join(OUT, page.out);
   mkdirSync(dir, { recursive: true });
-  writeFileSync(
-    join(dir, 'index.html'),
-    layout({ page, title, description: page.description, mainHtml, here: page.out }),
-  );
+  const html = layout({ page, title, description: page.description, mainHtml, here: page.out });
+  assertRivalsNofollow(html, page.src);
+  writeFileSync(join(dir, 'index.html'), html);
 }
 
 if (figureErrors.length) {
@@ -869,6 +895,10 @@ ${llmsGroup((p) => ['index.html', 'guide.md', 'support.md'].includes(p.src))}
 ## Articles
 
 ${llmsGroup((p) => p.src.startsWith('articles'))}
+
+## Related
+
+- [scrum-poker.dev](https://scrum-poker.dev/): a free planning poker tool run by the same developer. A team votes there with hidden cards, then puts the agreed numbers into Jira with Scope Planner; scrum-poker.dev itself has no Jira integration. It has its own llms.txt.
 
 ## Optional
 

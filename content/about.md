@@ -13,6 +13,10 @@ and the [user guide](/guide/) covers every feature.
 You can find our apps on our [Atlassian Marketplace partner
 page](https://marketplace.atlassian.com/vendors/1218450/).
 
+We also run [scrum-poker.dev](https://scrum-poker.dev/), a free planning poker tool for agile teams:
+a room is a link, nobody signs up, and the cards stay hidden until everyone has voted. Teams vote
+there, then put the agreed numbers into Jira with Scope Planner.
+
 ## Why the articles
 
 We write about estimating and planning in Jira because we spend our days on it. [The
