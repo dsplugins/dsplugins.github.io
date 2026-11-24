@@ -173,7 +173,13 @@ also a separate <strong>admin configuration page</strong> (see §3) for Jira adm
 <hr>
 <h2 id="3-first-time-setup-jira-admins">3. First-time setup (Jira admins)<a class="anchor" href="#3-first-time-setup-jira-admins" aria-label="Link to this section">#</a></h2>
 <p>Until a Story Points field is configured, every user sees an <strong>onboarding banner</strong> explaining
-that setup is needed (admins see inline steps; other users are told to ask an admin).</p>
+that setup is needed. Admins see inline steps; other users are told exactly what to pass on: <em>Ask a
+Jira admin to open Scope Planner’s settings (⚙️ → Apps → Scope Planner) and click Detect Fields — it
+takes a minute.</em></p>
+<figure class="doc-fig" id="figref-admin-detect">
+  <a href="#fig-admin-detect" aria-label="Open full size"><img src="/assets/guide/admin-detect.webp" width="790" height="640" loading="lazy" decoding="async" alt="After 🔍 Detect Fields: a suggestion for every role, each with a badge — Detected, 2 matches where more than one field fits (pick from the dropdown), or a warning such as On no screen. ✓ Apply to form copies them into the form; Save still has to be pressed."></a>
+  <figcaption>After <b>🔍 Detect Fields</b>: a suggestion for every role, each with a badge — <i>Detected</i>, <i>2 matches</i> where more than one field fits (pick from the dropdown), or a warning such as <i>On no screen</i>. <b>✓ Apply to form</b> copies them into the form; <b>Save</b> still has to be pressed.</figcaption>
+</figure>
 <p>If the app cannot load its settings at all — a network or service hiccup — it says exactly that on
 its own screen and offers <strong>Retry</strong>, instead of claiming the app is unconfigured. Your drafts and
 settings are untouched while that screen is up.</p>
@@ -216,10 +222,6 @@ automatically.</li>
 <li><strong>Save</strong>. Only users with Jira admin permission can save this page — the server rejects
 anyone else.</li>
 </ol>
-<figure class="doc-fig" id="figref-admin-detect">
-  <a href="#fig-admin-detect" aria-label="Open full size"><img src="/assets/guide/admin-detect.webp" width="790" height="640" loading="lazy" decoding="async" alt="After 🔍 Detect Fields: a suggestion for every role, each with a badge — Detected, 2 matches where more than one field fits (pick from the dropdown), or a warning such as On no screen. ✓ Apply to form copies them into the form; Save still has to be pressed."></a>
-  <figcaption>After <b>🔍 Detect Fields</b>: a suggestion for every role, each with a badge — <i>Detected</i>, <i>2 matches</i> where more than one field fits (pick from the dropdown), or a warning such as <i>On no screen</i>. <b>✓ Apply to form</b> copies them into the form; <b>Save</b> still has to be pressed.</figcaption>
-</figure>
 <blockquote>
 <p><strong>Why some cells are disabled:</strong> a Story Points cell is disabled when that issue type is outside
 the Story Points field’s <strong>context</strong> in Jira — Jira would refuse the write, so the app does not
@@ -761,6 +763,11 @@ types involved, so you find out before the write rather than after it.</p>
 which is where they were going. Untick it if you mean to keep working on the draft afterwards: it
 stays, reading <strong>0 rows differ from Jira</strong>, and the result banner reminds you that <strong>🗑 Delete My
 Draft</strong> removes it when you are done.</p>
+<p><strong>Once, after your third publish</strong> in which every row reached Jira, the result banner also asks
+whether Scope Planner is saving you time and offers <strong>Write a review</strong> (the app’s Marketplace page,
+Reviews tab) or <strong>Not now</strong>. It asks each person once and never again, whichever you choose — or if
+you choose nothing. The app keeps a count of your successful publishes for this, in your own
+preferences on your site, and stops counting once it has asked.</p>
 <p>If you publish only <strong>some</strong> rows, there is <strong>no box</strong>: the draft stays, with the rows you left out,
 and nothing you did not publish can be deleted from this screen. A draft is only ever deleted
 because you asked — this box, <strong>🗑 Delete</strong>, or the draft’s expiry. On a <strong>partial failure nothing
@@ -789,6 +796,14 @@ export is always full-scope.</p>
 </figure>
 <hr>
 <h2 id="13-licensing">13. Licensing<a class="anchor" href="#13-licensing" aria-label="Link to this section">#</a></h2>
+<p>Scope Planner is <strong>free for sites of up to 10 users</strong>: on such a site the Marketplace subscription
+costs nothing, and the app is <strong>Active</strong>, with every feature, Pro included. A larger site pays per
+user after a 30-day trial; the prices are on the
+<a href="https://marketplace.atlassian.com/apps/2134578868?tab=pricing">Marketplace listing</a>.</p>
+<figure class="doc-fig" id="figref-pro-badges">
+  <a href="#fig-pro-badges" aria-label="Open full size"><img src="/assets/guide/pro-badges.webp" width="1120" height="235" loading="lazy" decoding="async" alt="Pro features carry a PRO badge — here 📥 Export CSV and the Workload tab. Without a subscription or trial they are locked; estimating, drafts and Sprint Preview keep working."></a>
+  <figcaption>Pro features carry a <b>PRO</b> badge — here 📥 Export CSV and the Workload tab. Without a subscription or trial they are locked; estimating, drafts and Sprint Preview keep working.</figcaption>
+</figure>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -803,7 +818,7 @@ export is always full-scope.</p>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Trial</strong></td>
-<td style="text-align:left"><strong>Everything works, including all Pro features.</strong> An informational banner reminds you to add a license before the trial ends</td>
+<td style="text-align:left"><strong>Everything works, including all Pro features.</strong> An informational banner names the day the trial ends and the days left — <em>unlocked until 3 December 2026 (19 days left)</em>, <em>(last day)</em> on the last one — and reminds you to add a license before then</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Expired / no license</strong></td>
@@ -811,14 +826,14 @@ export is always full-scope.</p>
 </tr>
 </tbody>
 </table></div>
-<figure class="doc-fig" id="figref-pro-badges">
-  <a href="#fig-pro-badges" aria-label="Open full size"><img src="/assets/guide/pro-badges.webp" width="1120" height="235" loading="lazy" decoding="async" alt="Pro features carry a PRO badge — here 📥 Export CSV and the Workload tab. Without a subscription or trial they are locked; estimating, drafts and Sprint Preview keep working."></a>
-  <figcaption>Pro features carry a <b>PRO</b> badge — here 📥 Export CSV and the Workload tab. Without a subscription or trial they are locked; estimating, drafts and Sprint Preview keep working.</figcaption>
-</figure>
 <p>Pro features are: publishing to Jira (and retrying failed publishes), CSV export, the per-assignee
 workload view, estimation history, and auto-calculated target velocity.</p>
 <p>Locked Pro features show an upgrade dialog explaining which feature needs a license — including
-the publish button in Sprint Preview.</p>
+the publish button in Sprint Preview. Only a Jira admin can buy an app, so the dialog offers two
+ways forward: <strong>View on Marketplace</strong> opens the app’s Marketplace page (prices, trial, purchase), and
+<strong>Copy a request for your Jira admin</strong> copies a short ready-made message — what a license adds, that
+the data never leaves Atlassian, and the Marketplace link — for you to send to whoever administers
+your Jira. If your browser does not allow the copy, the message appears in a box to copy by hand.</p>
 <p>The features that talk to the server — <strong>publishing, retrying a publish, estimation history and
 auto-calculated velocity</strong> — are enforced server-side; for those the UI gate is a courtesy, not the
 security boundary. <strong>CSV export and the workload view are UI-gated only</strong>, because both are
@@ -834,9 +849,10 @@ publish records expire on the same administrator-configured clock (30 days by de
 avatars. The one thing to know: your <strong>JQL is stored exactly as you typed it</strong>, so a filter like
 <code>assignee = &quot;alex@example.com&quot;</code> keeps that text with the draft or publish record until it
 expires.</li>
-<li>When a user is deleted from Jira, their private drafts and preferences are hard-deleted
-automatically; their attribution on shared/published records is anonymized. User
-anonymization in Jira triggers the same reference cleanup.</li>
+<li>When a user is deleted from your site (for example, removed from your Atlassian
+organization), Atlassian notifies the app, which hard-deletes their private drafts and
+preferences and anonymizes their attribution on team and published records. This relies on
+Atlassian’s notification and is provided on a reasonable-efforts basis — see the Privacy Policy.</li>
 </ul>
 <figure class="doc-fig" id="figref-retention">
   <a href="#fig-retention" aria-label="Open full size"><img src="/assets/guide/retention.webp" width="790" height="170" loading="lazy" decoding="async" alt="Draft Retention Policy on the admin page: drafts and publish records expire after this many days — 30 by default."></a>

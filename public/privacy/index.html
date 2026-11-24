@@ -60,7 +60,7 @@
       <div class="wrap">
         <p class="eyebrow">Scope Planner &middot; Legal</p>
         <h1>Scope Planner — Privacy Policy</h1>
-        <p class="doc-meta">Last updated: 16 October 2026</p>
+        <p class="doc-meta">Last updated: 23 November 2026</p>
       </div>
     </div>
     <div class="wrap doc">
@@ -74,6 +74,7 @@
             <li><a href="#what-the-app-does-not-do">What the app does NOT do</a></li>
             <li><a href="#csv-export-pro">CSV export (Pro)</a></li>
             <li><a href="#sub-processors">Sub-processors</a></li>
+            <li><a href="#if-you-contact-us">If you contact us</a></li>
             <li><a href="#data-retention-and-deletion">Data retention and deletion</a></li>
             <li><a href="#data-residency">Data residency</a></li>
             <li><a href="#security">Security</a></li>
@@ -92,6 +93,7 @@
             <li><a href="#what-the-app-does-not-do">What the app does NOT do</a></li>
             <li><a href="#csv-export-pro">CSV export (Pro)</a></li>
             <li><a href="#sub-processors">Sub-processors</a></li>
+            <li><a href="#if-you-contact-us">If you contact us</a></li>
             <li><a href="#data-retention-and-deletion">Data retention and deletion</a></li>
             <li><a href="#data-residency">Data residency</a></li>
             <li><a href="#security">Security</a></li>
@@ -109,7 +111,8 @@ manifest declares no external permissions, so the Forge platform itself blocks a
 this is enforced by Atlassian, not merely promised by us.</p>
 <p><strong>In short:</strong> the app stores your estimation drafts and preferences inside your own Atlassian site,
 identifies people only by their Atlassian account ID, sends nothing anywhere, uses no analytics or
-cookies, and deletes a person’s private data automatically when their Atlassian account is deleted.</p>
+cookies, and, when Atlassian tells the app that a user has been deleted from your site, erases that
+user’s private data (see <em>Data retention and deletion</em> for how this works and its limits).</p>
 <h2 id="who-we-are">Who we are<a class="anchor" href="#who-we-are" aria-label="Link to this section">#</a></h2>
 <p>Scope Planner is developed and published on the Atlassian Marketplace by <strong>DSPlugins</strong> (“we”,
 “the developer”). Contact: <strong>support@dsplugins.dev</strong>.</p>
@@ -139,7 +142,9 @@ app itself when you share the draft, by running your scope’s query <strong>as 
 decide who may see the draft afterwards (see below). They are project identifiers, not personal
 data.</li>
 <li><strong>User preferences</strong> (estimation scales, column visibility, target velocity) are stored per
-account ID.</li>
+account ID. The same record keeps a count of your successful publishes to Jira and whether the
+app has already asked you once for a Marketplace review, so that it asks only once; the count
+stops at that point and is never sent anywhere.</li>
 <li><strong>Site settings</strong> (which Jira fields hold estimates, default scales, how long drafts are kept)
 are stored once per site and can be changed only by Jira administrators. They contain no personal
 data.</li>
@@ -152,8 +157,9 @@ issue content and no personal data.</li>
 <li><strong>Estimation history</strong> (Pro) is read live from Jira issue changelogs each time it is shown. The
 app does <strong>not</strong> store estimation history itself.</li>
 <li><strong>License status</strong> — the app receives from Atlassian only whether the site’s subscription is
-active or in trial. Billing runs entirely through the Atlassian Marketplace; the app and its
-developer never see payment details, invoices, or billing contacts.</li>
+active or in trial and, during a trial, the day it ends (shown in the trial banner). Billing
+runs entirely through the Atlassian Marketplace; the app and its developer never see payment
+details, invoices, or billing contacts.</li>
 </ul>
 <h3 id="who-can-see-a-team-draft">Who can see a team draft<a class="anchor" href="#who-can-see-a-team-draft" aria-label="Link to this section">#</a></h3>
 <p><strong>Anyone who can browse every Jira project the draft’s scope touches.</strong> They do not have to have
@@ -180,7 +186,10 @@ only, and display names are fetched live from Jira when shown. One exception is 
 plainly: the <strong>JQL text is stored exactly as you typed it</strong>, so if you write a person’s name or
 email address into a filter (for example <code>assignee = &quot;alex@example.com&quot;</code>), that text is stored
 with the draft or publish record until it expires or is deleted.</li>
-<li>No analytics, tracking, cookies, or advertising.</li>
+<li>No analytics, tracking, cookies, or advertising. The app contains links to its own page on the
+Atlassian Marketplace (for example to subscribe, or to write a review); a link opens only when
+you click it, and what happens on the Marketplace is governed by Atlassian’s privacy policy,
+not this one.</li>
 <li>No sale or sharing of any data with third parties, and no use of your data to train AI models.</li>
 <li>No issue content in logs. Application logs available to the developer for troubleshooting
 contain technical diagnostics only (and, for GDPR processing records, the account ID being
@@ -194,6 +203,14 @@ the exported file is under your control and your organisation’s policies.</p>
 <p><strong>Atlassian</strong> is the only party that hosts or processes data for the app: Forge compute, Forge
 hosted storage and the Jira APIs, under your organisation’s agreements with Atlassian. The developer
 uses no other sub-processor, hosting provider or service.</p>
+<h2 id="if-you-contact-us">If you contact us<a class="anchor" href="#if-you-contact-us" aria-label="Link to this section">#</a></h2>
+<p>The app itself sends the developer nothing. If <strong>you</strong> write to the support address, the
+developer receives what you send — your email address, your name if you give it, and the content
+of your message, including any screenshots or data you choose to attach — and uses it only to
+answer you and to fix the problem you report. Please do not attach Jira content you are not
+allowed to share. Support correspondence is kept for as long as needed to resolve the request and
+to keep a record of it, and is not used for marketing. Marketplace reviews and support tickets
+raised through the Atlassian Marketplace are processed by Atlassian under its own policy.</p>
 <h2 id="data-retention-and-deletion">Data retention and deletion<a class="anchor" href="#data-retention-and-deletion" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>Private drafts, team drafts and publish records all expire automatically on the same
@@ -202,11 +219,20 @@ at any time by its owner, and only by its owner. A <strong>team</strong> draft i
 deleted from within the app by any user who can see it, not only the person who shared it.</li>
 <li>Publish records are additionally overwritten by any subsequent publish of the same scope.</li>
 <li>The velocity cache expires after at most 6 hours; the permissions cache after 5 minutes.</li>
-<li>When an Atlassian account is deleted or anonymized, the app’s GDPR handlers automatically
-delete that user’s private data (drafts, preferences, and the permissions cache described above)
-and anonymize their account ID in any team or published records. A team draft is not deleted with
-its author’s account — it belongs to the team — so the free text inside it (its name, its JQL) is
+<li><strong>When a user is deleted from your site.</strong> The app subscribes to the user-deletion notification
+that Atlassian’s Forge platform sends to installed apps; it is the only way the app learns that a
+user has gone. When the notification arrives, the app deletes that user’s private data (drafts,
+preferences, and the permissions cache described above) and replaces their account ID with an
+anonymous placeholder in team and published records. A team draft is not deleted with its
+author’s account — it belongs to the team — so the free text inside it (its name, its JQL) is
 limited by the retention period rather than by erasure.</li>
+<li><strong>This erasure is provided on a reasonable-efforts basis.</strong> It depends on Atlassian delivering
+that notification and on the Forge platform and Jira APIs working as Atlassian documents them,
+which we do not control. We make reasonable efforts to keep it working, but we cannot guarantee
+that every notification arrives or is processed — for example, if Atlassian changes, delays or
+stops delivering it. The developer has no access to the data stored in your site, so data a
+notification did not reach remains in your site’s app storage until the app is uninstalled;
+contact us if you need help.</li>
 <li>Uninstalling the app removes its Forge storage per Atlassian’s platform policy.</li>
 </ul>
 <h2 id="data-residency">Data residency<a class="anchor" href="#data-residency" aria-label="Link to this section">#</a></h2>
@@ -244,9 +270,9 @@ written with it.</p>
 <h2 id="your-rights">Your rights<a class="anchor" href="#your-rights" aria-label="Link to this section">#</a></h2>
 <p>Because your organisation is the controller, requests to access, correct, export or erase personal
 data are best made to your Jira site administrator, who has control over your Atlassian site and
-the accounts on it. Deleting or anonymizing an Atlassian account triggers the app’s automatic
-erasure described above. You can also delete your own private drafts at any time from the app’s
-<strong>🗂 Drafts</strong> screen. If you need help with a request, contact us.</p>
+the accounts on it. Deleting a user from your site triggers the app’s erasure described above, on
+the reasonable-efforts basis stated there. You can also delete your own private drafts at any time
+from the app’s <strong>🗂 Drafts</strong> screen. If you need help with a request, contact us.</p>
 <p>The app is a business tool for Jira users and is not directed at children.</p>
 <h2 id="changes-to-this-policy">Changes to this policy<a class="anchor" href="#changes-to-this-policy" aria-label="Link to this section">#</a></h2>
 <p>This policy may be updated when the app’s functionality changes. The “Last updated” date above
