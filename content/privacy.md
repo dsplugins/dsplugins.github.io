@@ -1,6 +1,6 @@
 # Scope Planner — Privacy Policy
 
-_Last updated: 16 October 2026_
+_Last updated: 23 November 2026_
 
 Scope Planner is a Jira Cloud app built on Atlassian Forge. It runs entirely on Atlassian's
 infrastructure and has **no servers, storage, or network egress outside Atlassian**. The app's
@@ -9,7 +9,8 @@ this is enforced by Atlassian, not merely promised by us.
 
 **In short:** the app stores your estimation drafts and preferences inside your own Atlassian site,
 identifies people only by their Atlassian account ID, sends nothing anywhere, uses no analytics or
-cookies, and deletes a person's private data automatically when their Atlassian account is deleted.
+cookies, and, when Atlassian tells the app that a user has been deleted from your site, erases that
+user's private data (see *Data retention and deletion* for how this works and its limits).
 
 ## Who we are
 
@@ -44,7 +45,9 @@ own and receives no copies of customer data.
   decide who may see the draft afterwards (see below). They are project identifiers, not personal
   data.
 * **User preferences** (estimation scales, column visibility, target velocity) are stored per
-  account ID.
+  account ID. The same record keeps a count of your successful publishes to Jira and whether the
+  app has already asked you once for a Marketplace review, so that it asks only once; the count
+  stops at that point and is never sent anywhere.
 * **Site settings** (which Jira fields hold estimates, default scales, how long drafts are kept)
   are stored once per site and can be changed only by Jira administrators. They contain no personal
   data.
@@ -57,8 +60,9 @@ own and receives no copies of customer data.
 * **Estimation history** (Pro) is read live from Jira issue changelogs each time it is shown. The
   app does **not** store estimation history itself.
 * **License status** — the app receives from Atlassian only whether the site's subscription is
-  active or in trial. Billing runs entirely through the Atlassian Marketplace; the app and its
-  developer never see payment details, invoices, or billing contacts.
+  active or in trial and, during a trial, the day it ends (shown in the trial banner). Billing
+  runs entirely through the Atlassian Marketplace; the app and its developer never see payment
+  details, invoices, or billing contacts.
 
 ### Who can see a team draft
 
@@ -89,7 +93,10 @@ the control that limits how long that text is exposed — see "Data retention an
   plainly: the **JQL text is stored exactly as you typed it**, so if you write a person's name or
   email address into a filter (for example `assignee = "alex@example.com"`), that text is stored
   with the draft or publish record until it expires or is deleted.
-* No analytics, tracking, cookies, or advertising.
+* No analytics, tracking, cookies, or advertising. The app contains links to its own page on the
+  Atlassian Marketplace (for example to subscribe, or to write a review); a link opens only when
+  you click it, and what happens on the Marketplace is governed by Atlassian's privacy policy,
+  not this one.
 * No sale or sharing of any data with third parties, and no use of your data to train AI models.
 * No issue content in logs. Application logs available to the developer for troubleshooting
   contain technical diagnostics only (and, for GDPR processing records, the account ID being
@@ -107,6 +114,16 @@ the exported file is under your control and your organisation's policies.
 hosted storage and the Jira APIs, under your organisation's agreements with Atlassian. The developer
 uses no other sub-processor, hosting provider or service.
 
+## If you contact us
+
+The app itself sends the developer nothing. If **you** write to the support address, the
+developer receives what you send — your email address, your name if you give it, and the content
+of your message, including any screenshots or data you choose to attach — and uses it only to
+answer you and to fix the problem you report. Please do not attach Jira content you are not
+allowed to share. Support correspondence is kept for as long as needed to resolve the request and
+to keep a record of it, and is not used for marketing. Marketplace reviews and support tickets
+raised through the Atlassian Marketplace are processed by Atlassian under its own policy.
+
 ## Data retention and deletion
 
 * Private drafts, team drafts and publish records all expire automatically on the same
@@ -115,11 +132,20 @@ uses no other sub-processor, hosting provider or service.
   deleted from within the app by any user who can see it, not only the person who shared it.
 * Publish records are additionally overwritten by any subsequent publish of the same scope.
 * The velocity cache expires after at most 6 hours; the permissions cache after 5 minutes.
-* When an Atlassian account is deleted or anonymized, the app's GDPR handlers automatically
-  delete that user's private data (drafts, preferences, and the permissions cache described above)
-  and anonymize their account ID in any team or published records. A team draft is not deleted with
-  its author's account — it belongs to the team — so the free text inside it (its name, its JQL) is
+* **When a user is deleted from your site.** The app subscribes to the user-deletion notification
+  that Atlassian's Forge platform sends to installed apps; it is the only way the app learns that a
+  user has gone. When the notification arrives, the app deletes that user's private data (drafts,
+  preferences, and the permissions cache described above) and replaces their account ID with an
+  anonymous placeholder in team and published records. A team draft is not deleted with its
+  author's account — it belongs to the team — so the free text inside it (its name, its JQL) is
   limited by the retention period rather than by erasure.
+* **This erasure is provided on a reasonable-efforts basis.** It depends on Atlassian delivering
+  that notification and on the Forge platform and Jira APIs working as Atlassian documents them,
+  which we do not control. We make reasonable efforts to keep it working, but we cannot guarantee
+  that every notification arrives or is processed — for example, if Atlassian changes, delays or
+  stops delivering it. The developer has no access to the data stored in your site, so data a
+  notification did not reach remains in your site's app storage until the app is uninstalled;
+  contact us if you need help.
 * Uninstalling the app removes its Forge storage per Atlassian's platform policy.
 
 ## Data residency
@@ -164,9 +190,9 @@ written with it.
 
 Because your organisation is the controller, requests to access, correct, export or erase personal
 data are best made to your Jira site administrator, who has control over your Atlassian site and
-the accounts on it. Deleting or anonymizing an Atlassian account triggers the app's automatic
-erasure described above. You can also delete your own private drafts at any time from the app's
-**🗂 Drafts** screen. If you need help with a request, contact us.
+the accounts on it. Deleting a user from your site triggers the app's erasure described above, on
+the reasonable-efforts basis stated there. You can also delete your own private drafts at any time
+from the app's **🗂 Drafts** screen. If you need help with a request, contact us.
 
 The app is a business tool for Jira users and is not directed at children.
 

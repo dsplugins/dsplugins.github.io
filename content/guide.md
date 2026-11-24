@@ -47,7 +47,9 @@ also a separate **admin configuration page** (see §3) for Jira administrators.
 ## 3. First-time setup (Jira admins)
 
 Until a Story Points field is configured, every user sees an **onboarding banner** explaining
-that setup is needed (admins see inline steps; other users are told to ask an admin).
+that setup is needed. Admins see inline steps; other users are told exactly what to pass on: *Ask a
+Jira admin to open Scope Planner's settings (⚙️ → Apps → Scope Planner) and click Detect Fields — it
+takes a minute.*
 
 If the app cannot load its settings at all — a network or service hiccup — it says exactly that on
 its own screen and offers **Retry**, instead of claiming the app is unconfigured. Your drafts and
@@ -532,6 +534,12 @@ which is where they were going. Untick it if you mean to keep working on the dra
 stays, reading **0 rows differ from Jira**, and the result banner reminds you that **🗑 Delete My
 Draft** removes it when you are done.
 
+**Once, after your third publish** in which every row reached Jira, the result banner also asks
+whether Scope Planner is saving you time and offers **Write a review** (the app's Marketplace page,
+Reviews tab) or **Not now**. It asks each person once and never again, whichever you choose — or if
+you choose nothing. The app keeps a count of your successful publishes for this, in your own
+preferences on your site, and stops counting once it has asked.
+
 If you publish only **some** rows, there is **no box**: the draft stays, with the rows you left out,
 and nothing you did not publish can be deleted from this screen. A draft is only ever deleted
 because you asked — this box, **🗑 Delete**, or the draft's expiry. On a **partial failure nothing
@@ -565,17 +573,26 @@ export is always full-scope.
 
 ## 13. Licensing
 
+Scope Planner is **free for sites of up to 10 users**: on such a site the Marketplace subscription
+costs nothing, and the app is **Active**, with every feature, Pro included. A larger site pays per
+user after a 30-day trial; the prices are on the
+[Marketplace listing](https://marketplace.atlassian.com/apps/2134578868?tab=pricing).
+
 | State | Behavior |
 | :-- | :-- |
 | **Active** | All features available |
-| **Trial** | **Everything works, including all Pro features.** An informational banner reminds you to add a license before the trial ends |
+| **Trial** | **Everything works, including all Pro features.** An informational banner names the day the trial ends and the days left — *unlocked until 3 December 2026 (19 days left)*, *(last day)* on the last one — and reminds you to add a license before then |
 | **Expired / no license** | Banner shown; Pro features locked. Estimating, drafts, shared drafts, Sprint Preview and totals keep working — your drafts are never lost |
 
 Pro features are: publishing to Jira (and retrying failed publishes), CSV export, the per-assignee
 workload view, estimation history, and auto-calculated target velocity.
 
 Locked Pro features show an upgrade dialog explaining which feature needs a license — including
-the publish button in Sprint Preview.
+the publish button in Sprint Preview. Only a Jira admin can buy an app, so the dialog offers two
+ways forward: **View on Marketplace** opens the app's Marketplace page (prices, trial, purchase), and
+**Copy a request for your Jira admin** copies a short ready-made message — what a license adds, that
+the data never leaves Atlassian, and the Marketplace link — for you to send to whoever administers
+your Jira. If your browser does not allow the copy, the message appears in a box to copy by hand.
 
 The features that talk to the server — **publishing, retrying a publish, estimation history and
 auto-calculated velocity** — are enforced server-side; for those the UI gate is a courtesy, not the
@@ -594,9 +611,10 @@ server call to withhold, and the underlying data is issue data you can already s
   avatars. The one thing to know: your **JQL is stored exactly as you typed it**, so a filter like
   `assignee = "alex@example.com"` keeps that text with the draft or publish record until it
   expires.
-- When a user is deleted from Jira, their private drafts and preferences are hard-deleted
-  automatically; their attribution on shared/published records is anonymized. User
-  anonymization in Jira triggers the same reference cleanup.
+- When a user is deleted from your site (for example, removed from your Atlassian
+  organization), Atlassian notifies the app, which hard-deletes their private drafts and
+  preferences and anonymizes their attribution on team and published records. This relies on
+  Atlassian's notification and is provided on a reasonable-efforts basis — see the Privacy Policy.
 
 ---
 
